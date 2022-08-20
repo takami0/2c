@@ -19,9 +19,12 @@
 <br>・クリエイティブ系の活動を始める際に、仲間を見つけたい時
 <br>・自分の好きなジャンルについて、他の人と語りたい時
 
-## 設計書
-URL:https://docs.google.com/spreadsheets/d/1GXS_ESMkaYisZpvolbrBLdtJ01JNcoPwSY0CHySXGxo/edit?usp=sharing
-
+## 設計書（URL）
+<br>実装機能リスト:　https://docs.google.com/spreadsheets/d/1GXS_ESMkaYisZpvolbrBLdtJ01JNcoPwSY0CHySXGxo/edit?usp=sharing
+<br>WBS：　https://docs.google.com/spreadsheets/d/1Acb89txFUaEO8p66_eUJdlxKf7PIaIwt4PvJWo2M1Qo/edit#gid=1773513600
+<br>ER図：　
+<br>テーブル定義書：　
+<br>アプリケーション詳細設計書：　
 
 ## 開発環境
 - OS：Linux(CentOS)
