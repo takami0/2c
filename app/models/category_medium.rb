@@ -1,0 +1,2 @@
+class CategoryMedium < ApplicationRecord
+end

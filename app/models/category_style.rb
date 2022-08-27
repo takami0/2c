@@ -1,0 +1,2 @@
+class CategoryStyle < ApplicationRecord
+end

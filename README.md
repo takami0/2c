@@ -22,9 +22,10 @@
 ## 設計書（URL）
 <br>実装機能リスト:　https://docs.google.com/spreadsheets/d/1GXS_ESMkaYisZpvolbrBLdtJ01JNcoPwSY0CHySXGxo/edit?usp=sharing
 <br>WBS：　https://docs.google.com/spreadsheets/d/1Acb89txFUaEO8p66_eUJdlxKf7PIaIwt4PvJWo2M1Qo/edit#gid=1773513600
-<br>ER図：　
-<br>テーブル定義書：　
-<br>アプリケーション詳細設計書：　
+<br>ER図：　https://app.diagrams.net/?libs=general;er#G1HPNfkQ0HPe7gQAbzL0W3dhjjyiwHq1Ci
+<br>テーブル定義書：　https://docs.google.com/spreadsheets/d/11nptTROGBKlm24WTlce0MJHWeVUEc9dpBBxjXMT6YmI/edit#gid=383646341
+<br>アプリケーション詳細設計書：　https://docs.google.com/spreadsheets/d/1hMiWk1E7ePUiZgGv-EhmIN7oJL0QAuabENIjHysvzfQ/edit#gid=0
+
 
 ## 開発環境
 - OS：Linux(CentOS)

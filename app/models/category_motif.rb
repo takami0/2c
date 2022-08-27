@@ -1,0 +1,2 @@
+class CategoryMotif < ApplicationRecord
+end
