@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :telephone_number, null: false
       t.string :address, null: false
-      t.string :medium, null: false
+      t.references :Category_medium, null: false, foreign_key: true
       t.boolean :valid_status, null: false, default: true
 
       t.timestamps null: false

@@ -67,13 +67,15 @@ ActiveRecord::Schema.define(version: 2022_08_27_053820) do
     t.string "name", null: false
     t.string "telephone_number", null: false
     t.string "address", null: false
-    t.string "medium", null: false
+    t.integer "Category_medium_id", null: false
     t.boolean "valid_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["Category_medium_id"], name: "index_users_on_Category_medium_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "users", "Category_media"
 end

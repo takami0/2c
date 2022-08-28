@@ -15,7 +15,7 @@ class Admin::CategoryMediaController < ApplicationController
   end
 
   def edit
-    @medium = CategoryMedium.find(params[:id])
+    # @medium = CategoryMedium.find(params[:id])
   end
   
   def update
