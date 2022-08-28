@@ -1,2 +1,27 @@
-<h1>Admin::CategoryMedia#index</h1>
-<p>Find me in app/views/admin/category_media/index.html.erb</p>
+<h1>カテゴリ（媒体）管理画面</h1>
+
+<%= form_with model: @medium, url: admin_category_media_path, method: :post do |f|%>
+  <%= f.label :name, "媒体名" %>
+  <%= f.text_field :name %>
+  <%= f.submit "作成"%>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>媒体名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @media.each do |medium|%>
+  <tbody>
+    <tr>
+      <td><%= medium.name %></td>
+      <td><%= link_to "編集", url: edit_admin_category_medium_path(medium.id) %></td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>
+
+
+
