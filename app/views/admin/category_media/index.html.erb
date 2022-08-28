@@ -1,3 +1,5 @@
+<%= render "admin/shared/header" %>
+
 <h1>カテゴリ（媒体）管理画面</h1>
 
 <%= form_with model: @medium, url: admin_category_media_path, method: :post do |f|%>
@@ -17,7 +19,7 @@
   <tbody>
     <tr>
       <td><%= medium.name %></td>
-      <td><%= link_to "編集", url: edit_admin_category_medium_path(medium) %></td>
+      <td><%= link_to "編集", url: edit_admin_category_medium_path(medium.id) %></td>
     </tr>
   </tbody>
   <%end%>
