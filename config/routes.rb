@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'relationships/follower'
+  get 'relationships/following'
   devise_for :admin, controllers: {
         sessions: 'admin/sessions'
   }

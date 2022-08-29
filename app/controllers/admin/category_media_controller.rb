@@ -3,7 +3,7 @@ class Admin::CategoryMediaController < ApplicationController
     @medium = CategoryMedium.new
     @media = CategoryMedium.all
   end
-  
+
   def create
     @medium = CategoryMedium.new(category_medium_params)
     if @medium.save
@@ -15,9 +15,9 @@ class Admin::CategoryMediaController < ApplicationController
   end
 
   def edit
-    # @medium = CategoryMedium.find(params[:id])
+    @medium = CategoryMedium.find(params[:id])
   end
-  
+
   def update
     @medium = CategoryMedium.find(params[:id])
     if @medium.update(category_medium_params)
@@ -26,10 +26,10 @@ class Admin::CategoryMediaController < ApplicationController
       render :edit
     end
   end
-  
+
   private
   def category_medium_params
     params.require(:category_medium).permit(:name)
   end
-  
+
 end
