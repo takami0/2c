@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'followers/index'
+  end
+  namespace :public do
+    get 'followings/index'
+  end
   get 'relationships/follower'
   get 'relationships/following'
   devise_for :admin, controllers: {
@@ -30,7 +36,11 @@ Rails.application.routes.draw do
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"
 
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      resource :follow, only: [:create, :destroy]
+      resources :followings, only: [:index]
+      resources :followers, only: [:index]
+    end
     resources :posts
   end
 

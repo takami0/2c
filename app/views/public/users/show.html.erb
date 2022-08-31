@@ -1,2 +1,9 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<h1>ユーザ詳細画面</h1>
+
+<% if current_user != @user %>
+  <% if current_user.user_relationships.exists?(follow_user_id: @user.id) %>
+    <%= link_to "フォロー解除", [@user, :follow], method: :delete %>
+  <%else%>
+    <%= link_to "フォロー", [@user, :follow], method: :post %>
+  <%end%>
+<%end%>

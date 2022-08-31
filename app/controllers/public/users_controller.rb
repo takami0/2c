@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   def my_page
     # @medium = CategoryMedium.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def quit
@@ -11,6 +12,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
