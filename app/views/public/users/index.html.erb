@@ -12,7 +12,7 @@
   <tbody>
     <tr>
       <td><%= user.name %></td>
-      <td>フォロー</td>
+      <td><%= link_to "詳細", public_user_path(user.id)%></td>
     </tr>
   </tbody>
   <%end%>

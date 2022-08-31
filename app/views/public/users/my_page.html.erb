@@ -5,5 +5,5 @@
 <%= current_user.name%>
 <%#= current_user.@medium.name %>
 
-<%= link_to "フォロー", [@user, :followings] %>
-<%= link_to "フォロワー", [@user, :followers] %>
+<%= link_to "フォロー", public_user_followings_path(current_user.id) %>
+<%= link_to "フォロワー", public_user_followers_path(current_user.id) %>
