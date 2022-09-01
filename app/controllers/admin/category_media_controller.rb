@@ -20,7 +20,7 @@ class Admin::CategoryMediaController < ApplicationController
 
   def update
     @medium = CategoryMedium.find(params[:id])
-    if @medium.update(category_medium_params)
+    if @medium.update!(category_medium_params)
       redirect_to admin_category_media_path
     else
       render :edit
