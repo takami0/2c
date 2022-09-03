@@ -1,8 +1,9 @@
 <%= render "public/shared/header"%>
 
 <h1>マイページ</h1>
+<%= render "public/shared/new_post"%>
 
-<%= link_to "編集", edit_public_user_path(current_user.id) %><br>
+<%= link_to "マイページ編集", edit_public_user_path(current_user.id) %><br>
 
 <%= image_tag current_user.get_icon(200,200) %><br>
 ユーザー名：<%= current_user.name %><br>
@@ -11,3 +12,5 @@
 
 <%= link_to "フォロー", public_user_followings_path(current_user.id) %>
 <%= link_to "フォロワー", public_user_followers_path(current_user.id) %>
+
+

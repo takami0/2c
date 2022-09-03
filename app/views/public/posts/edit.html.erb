@@ -1,2 +1,18 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<%= render "public/shared/header" %>
+
+<h1>投稿編集</h1>
+
+<%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f|%>
+  <%= image_tag @post.get_image(200, 200) %>
+  <%= f.file_field  :image %>
+  <%= f.label :title, "タイトル" %>
+  <%= f.text_field :title %><br>
+  <%= f.label :introduction, "紹介文" %>
+  <%= f.text_area :introduction %><br>
+  <%= f.label :display_status, "表示設定" %><br>
+  <%= f.radio_button :display_status, "true" %>
+  <%= f.label :display_status, "表示", value: true %>
+  <%= f.radio_button :display_status, "false" %>
+  <%= f.label :display_status, "非表示", value: false %><br>
+  <%= f.submit "更新" %>
+<%end%>

@@ -4,8 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :icon
-
   belongs_to :category_medium, dependent: :destroy
   belongs_to :occupation, dependent: :destroy
   has_many :posts, dependent: :destroy
@@ -16,6 +14,7 @@ class User < ApplicationRecord
   has_many :followings, through: :user_relationships, source: :follow_user
   has_many :followers, through: :follow_user_relationships, source: :user
 
+  has_one_attached :icon
   def get_icon(width, height)
     unless icon.attached?
       file_path = Rails.root.join("app/assets/images/no_image.jpeg")
