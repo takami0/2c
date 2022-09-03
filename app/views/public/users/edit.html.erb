@@ -1,6 +1,12 @@
+<%= render "public/shared/header" %>
+
 <h1>ユーザ編集</h1>
 
 <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
-  <%= f.file_field :icon %>
-  <%= f.text_field :name %>
+  <%= image_tag current_user.get_icon(200, 200) %><br>
+  <%= f.label :jcon, "アイコン" %>
+  <%= f.file_field :icon %><br>
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name %><br>
+  <%= f.submit "更新"%>
 <%end%>

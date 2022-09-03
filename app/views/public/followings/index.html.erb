@@ -1,5 +1,6 @@
 <h1>フォロー一覧</h1>
 
 <% @followings.each do |following|%>
+  <%= link_to (image_tag following.get_icon(100, 100)), public_user_path(following.id) %>
   <%= following.name %>
 <%end%>

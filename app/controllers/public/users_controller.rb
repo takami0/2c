@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
   def my_page
-    #@medium = current_user.CategoryMedium.find(params[:id])
   end
 
   def quit
@@ -15,5 +14,21 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to public_my_page_path
+    else
+      render :edit
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :icon)
+  end
+
 end

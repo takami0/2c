@@ -2,13 +2,12 @@
 
 <h1>マイページ</h1>
 
-<%= link_to "編集", edit_public_user_path(current_user.id) %>
+<%= link_to "編集", edit_public_user_path(current_user.id) %><br>
 
-<%= %>
-<%= current_user.id %>
-<%= current_user.name %>
-<%= current_user.Category_medium_id %>
-<%= current_user.category_medium.name %>
+<%= image_tag current_user.get_icon(200,200) %><br>
+ユーザー名：<%= current_user.name %><br>
+カテゴリ（媒体）：<%= current_user.category_medium.name %><br>
+職業：<%= current_user.occupation.name %><br>
 
 <%= link_to "フォロー", public_user_followings_path(current_user.id) %>
 <%= link_to "フォロワー", public_user_followers_path(current_user.id) %>

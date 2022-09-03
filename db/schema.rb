@@ -105,13 +105,13 @@ ActiveRecord::Schema.define(version: 2022_09_03_062708) do
     t.string "telephone_number", null: false
     t.string "address", null: false
     t.integer "category_medium_id", null: false
-    t.integer "Occupation_id", null: false
+    t.integer "occupation_id", null: false
     t.boolean "user_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["Occupation_id"], name: "index_users_on_Occupation_id"
     t.index ["category_medium_id"], name: "index_users_on_category_medium_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["occupation_id"], name: "index_users_on_occupation_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -119,6 +119,6 @@ ActiveRecord::Schema.define(version: 2022_09_03_062708) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "follows", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "users", "Occupations"
   add_foreign_key "users", "category_media"
+  add_foreign_key "users", "occupations"
 end

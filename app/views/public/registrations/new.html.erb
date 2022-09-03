@@ -4,6 +4,9 @@
   <%= f.label :name, "ユーザー名"%>
   <%= f.text_field :name %>
 
+  <%= f.label :icon, "アイコン"%>
+  <%= f.file_field :icon %>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -29,7 +32,7 @@
   <%= f.text_field :address %>
 
   <%= f.label :occupation, "職業"%>
-  <%= f.collection_select :Occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
+  <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
 
   <%= f.label :medium, "メイン媒体"%>
   <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%>
