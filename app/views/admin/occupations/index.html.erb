@@ -1,2 +1,22 @@
-<h1>Admin::Occupations#index</h1>
-<p>Find me in app/views/admin/occupations/index.html.erb</p>
+<h1>[管理画面] 職業</h1>
+
+<%= form_with model:@new_occupation, url: admin_occupations_path, method: :post do |f|%>
+  <%= f.text_field :name %>
+  <%= f.submit "新規作成" %>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>職業</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @occupations.each do |occupation|%>
+    <tr>
+      <td><%= occupation.name %></td>
+      <td><%= link_to "編集", edit_admin_occupation_path(occupation.id) %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

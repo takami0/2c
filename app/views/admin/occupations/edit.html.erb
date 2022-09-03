@@ -1,2 +1,6 @@
-<h1>Admin::Occupations#edit</h1>
-<p>Find me in app/views/admin/occupations/edit.html.erb</p>
+<h1>[編集画面] 職業</h1>
+
+<%= form_with model: @occupation, url: admin_occupation_path(@occupation.id), method: :patch do |f|%>
+  <%= f.text_field :name %>
+  <%= f.submit "更新" %>
+<%end%>
