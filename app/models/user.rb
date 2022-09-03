@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_one_attached :icon
 
-  has_many :CategoryMedia, dependent: :destroy
+  belongs_to :category_medium, dependent: :destroy
   has_many :occupations, dependent: :destroy
   has_many :posts, dependent: :destroy
   
@@ -14,20 +16,12 @@ class User < ApplicationRecord
   has_many :followings, through: :user_relationships, source: :follow_user
   has_many :followers, through: :follow_user_relationships, source: :user
 
-
-  # def follow(other_user)
-  #   unless self == other_user
-  #     self.relationships.find_or_create_by(follow_id: other_user.id)
-  #   end
-  # end
-
-  # def unfollow(other_user)
-  #   relationship = self.relationships.find_by(follow_id: other_user.id)
-  #   relationship.destroy if relationship
-  # end
-
-  # def following?(other_user)
-  #   self.followings.include?(other_user)
-  # end
-
+  def get_icon(width, height)
+    unless image.attached?
+      file_path = Rails.root.join("app/assets/images/no_image.jpeg")
+      image.attach(io: File.open(file_path), filename: "no_image.jpeg", content_type: "image/jpeg")
+    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
+  
 end

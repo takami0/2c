@@ -1,4 +1,4 @@
 class CategoryMedium < ApplicationRecord
-  belongs_to :user, optional: true
+  has_many :users
   belongs_to :post, optional: true
 end

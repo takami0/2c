@@ -28,8 +28,11 @@
   <%= f.label :address, "住所"%>
   <%= f.text_field :address %>
 
+  <%= f.label :occupation, "職業"%>
+  <%= f.collection_select :Occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
+
   <%= f.label :medium, "メイン媒体"%>
-  <%= f.collection_select :Category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください"%>
+  <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%>
 
   <div class="actions">
     <%= f.submit "登録" %>

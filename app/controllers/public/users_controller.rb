@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   def my_page
-    # @medium = CategoryMedium.find(params[:id])
+    #@medium = current_user.CategoryMedium.find(params[:id])
   end
 
   def quit

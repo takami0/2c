@@ -2,8 +2,13 @@
 
 <h1>マイページ</h1>
 
-<%= current_user.name%>
-<%#= current_user.@medium.name %>
+<%= link_to "編集", edit_public_user_path(current_user.id) %>
+
+<%= %>
+<%= current_user.id %>
+<%= current_user.name %>
+<%= current_user.Category_medium_id %>
+<%= current_user.category_medium.name %>
 
 <%= link_to "フォロー", public_user_followings_path(current_user.id) %>
 <%= link_to "フォロワー", public_user_followers_path(current_user.id) %>
