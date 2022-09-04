@@ -14,8 +14,8 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
   
-  def self.looks(word)
-    Post.where("title like? OR introduction like?", "%#{word}%")
-  end
+  # def self.looks(word)
+  #   Post.where("title like? OR introduction like?", "%#{word}%")
+  # end
 
 end

@@ -23,8 +23,8 @@ class User < ApplicationRecord
     icon.variant(resize_to_limit: [width, height]).processed
   end
   
-  def self.looks(word)
-    User.where("name like?", "%#{word}%")
-  end
+  # def self.looks(word)
+  #   User.where("name like?", "%#{word}%")
+  # end
 
 end

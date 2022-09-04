@@ -1,2 +1,20 @@
-<h1>Searches#search</h1>
-<p>Find me in app/views/searches/search.html.erb</p>
+<h1>検索画面</h1>
+
+<% if @subject.first %>
+  <% if @subject == "ユーザ" %>
+    <%#= render%>
+    <%= @users.each do |user| %>
+      <%= user.icon %>
+      <%= user.name %>
+    <%end%>
+  <%else%>
+    <%= @posts.each do |posts| %>
+      <%#= render%>
+      <%= posts.image %>
+      <%= posts.title %>
+      <%= posts.introduction %>
+    <%end%>
+  <%end%>
+<%else%>
+  <h3>検索対象が見つかりませんでした。条件を変更して再度お試しください。</h3>
+<%end%>
