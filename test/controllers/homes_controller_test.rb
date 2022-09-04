@@ -5,4 +5,15 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
     get homes_top_url
     assert_response :success
   end
+
+  test "should get search" do
+    get searches_search_url
+    assert_response :success
+  end
+
+  test "should get result" do
+    get searches_result_url
+    assert_response :success
+  end
+
 end

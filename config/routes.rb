@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'followers/index'
-  end
-  namespace :public do
-    get 'followings/index'
-  end
-  get 'relationships/follower'
-  get 'relationships/following'
   devise_for :admin, controllers: {
         sessions: 'admin/sessions'
   }
@@ -30,8 +22,15 @@ Rails.application.routes.draw do
         registrations: 'public/registrations',
   }
 
+  get 'followers/index'
+  get 'followings/index'
+  get 'relationships/follower'
+  get 'relationships/following'
+
   namespace :public do
     root "homes#top", as: "top"
+    get "serach" => "homes#search"
+
     get "users/my_page" => "users#my_page", as: "my_page"
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"
