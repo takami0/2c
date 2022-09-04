@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     root "homes#top", as: "top"
-    get "serach" => "homes#search"
+    get "search" => "homes#search"
 
     get "users/my_page" => "users#my_page", as: "my_page"
     get "users/quit" => "users#quit", as: "quit"

@@ -1,19 +1,10 @@
 <h1>検索画面</h1>
 
-<% if @subject.first %>
+<% if @subject.first %> #exists
   <% if @subject == "ユーザ" %>
-    <%#= render%>
-    <%= @users.each do |user| %>
-      <%= user.icon %>
-      <%= user.name %>
-    <%end%>
+    <%= render "public/users/index" %>
   <%else%>
-    <%= @posts.each do |posts| %>
-      <%#= render%>
-      <%= posts.image %>
-      <%= posts.title %>
-      <%= posts.introduction %>
-    <%end%>
+    <%= render "public/posts/index" %>
   <%end%>
 <%else%>
   <h3>検索対象が見つかりませんでした。条件を変更して再度お試しください。</h3>
