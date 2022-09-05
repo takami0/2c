@@ -2,39 +2,10 @@
 
 <h1>検索画面</h1>
 
-<!--<%# if @subject.first %>-->
-<!--  <%# if @subject == "ユーザ" %>-->
-<!--    <table>-->
-<!--      <thead>-->
-<!--        <tr>-->
-<!--          <th></th>-->
-<!--          <th></th>-->
-<!--        </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--        <%# @users.each do |user|%>-->
-<!--        <tr>-->
-<!--          <td><%#= link_to (image_tag user.get_icon(100, 100)), public_user_path(user.id) %></td>-->
-<!--          <td><%#= user.name %></td>-->
-<!--        </tr>-->
-<!--        <%#end%>-->
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  <%#else%>-->
-    <table>
-      <% @posts.each do |post| %>
-        <tr>
-          <th><%= link_to (image_tag post.get_image(100, 100)), public_post_path(post.id) %></th>
-        </tr>
-        <tr>
-          <td><%= post.title %></td>
-        </tr>
-        <tr>
-          <td><%= post.user.name %></td>
-        </tr>
-      <%end%>
-    </table>
-  <%#end%>
-<%#else%>
-  <!--<h3>検索対象が見つかりませんでした。条件を変更して再度お試しください。</h3>-->
-<%#end%>
+<%if @subject == "ユーザ" %>
+  <%= render "public/shared/index_users", users: @users%>
+<%elsif @subject == "投稿" %>
+  <%= render "public/shared/index_posts", posts: @posts %>
+<%else%>
+  <h3>検索対象が見つかりませんでした。条件を変更して再度お試しください。</h3>
+<%end%>

@@ -1,20 +1,5 @@
 <%= render "public/shared/header"%>
 <h1>ユーザ一覧</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user|%>
-    <tr>
-      <td><%= link_to (image_tag user.get_icon(100, 100)), public_user_path(user.id) %></td>
-      <td><%= user.name %></td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
+<%= render "public/shared/index_users", users: @users%>
 

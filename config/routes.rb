@@ -22,11 +22,6 @@ Rails.application.routes.draw do
         registrations: 'public/registrations',
   }
 
-  get 'followers/index'
-  get 'followings/index'
-  get 'relationships/follower'
-  get 'relationships/following'
-
   namespace :public do
     root "homes#top", as: "top"
     get "search" => "homes#search"
