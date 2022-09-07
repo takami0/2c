@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :CategoryMedia, dependent: :destroy
   has_many :CategoryStyles, dependent: :destroy
   has_many :CategoryMotifs, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   has_one_attached :image
   def get_image(width, height)
@@ -13,9 +14,9 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  # def self.looks(word)
-  #   Post.where("title like? OR introduction like?", "%#{word}%")
-  # end
+
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exits?
+  end
 
 end

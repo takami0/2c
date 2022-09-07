@@ -35,7 +35,9 @@ Rails.application.routes.draw do
       resources :followings, only: [:index]
       resources :followers, only: [:index]
     end
-    resources :posts
+    resources :posts do
+      resources :bookmarks, only: [:index, :create, :destroy]
+    end
   end
 
 end
