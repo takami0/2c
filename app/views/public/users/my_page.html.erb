@@ -3,6 +3,7 @@
 <h1>マイページ</h1>
 <%= render "public/shared/new_post"%>
 
+<%=link_to "ブックマーク一覧", public_user_bookmarks_path(current_user.id) %>
 <%= link_to "マイページ編集", edit_public_user_path(current_user.id) %><br>
 
 <%= image_tag current_user.get_icon(200,200) %><br>
