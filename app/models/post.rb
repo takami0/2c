@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :CategoryStyles, dependent: :destroy
   has_many :CategoryMotifs, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :image
   def get_image(width, height)

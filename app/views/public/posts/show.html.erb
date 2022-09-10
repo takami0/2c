@@ -17,3 +17,21 @@
 タイトル：<%= @post.title %><br>
 紹介文：<%= @post.introduction %><br>
 制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
+
+<h4>コメント</h4>
+<%= form_with model: @comment, url: public_post_comments_path(@post.id), method: :post do |f|%>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= f.submit "コメント" %>
+<%end%>
+
+<% @comments.each do |comment| %>
+  <% user = comment.user %>
+  <%= link_to image_tag(user.get_icon(100, 100)), public_user_path(user.id) %>
+  <%= user.name %>
+  <%= comment.content %>
+  <% if user.id == current_user.id %>
+    <%= link_to "削除", public_post_comment_path(@post.id, comment.id), method: :delete %>
+  <%end%>
+<%end%>

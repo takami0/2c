@@ -8,6 +8,7 @@ class User < ApplicationRecord
   belongs_to :occupation, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_many :user_relationships, class_name: "Follow", foreign_key: "user_id"
   has_many :follow_user_relationships, class_name: "Follow", foreign_key: "follow_user_id"

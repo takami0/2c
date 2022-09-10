@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   namespace :public do
     root "homes#top", as: "top"
     get "search" => "homes#search"
-
     get "users/my_page" => "users#my_page", as: "my_page"
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
     end
     resources :posts do
       resource :bookmark, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
   end
 
