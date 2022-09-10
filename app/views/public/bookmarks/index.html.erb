@@ -1,3 +1,10 @@
+<%= render "public/shared/header" %>
+
 <h1>ブックマーク一覧</h1>
 
-<%= render "public/shared/index_posts" , posts: @posts %>
+<% @bookmarks.each do |bookmark| %>
+ <% post = bookmark.post %>
+  <%= link_to image_tag(post.get_image(100, 100)), public_post_path(post.id) %>
+  <%= post.title %>
+  <%= post.introduction %><br>
+<%end%>

@@ -1,7 +1,7 @@
 class Public::BookmarksController < ApplicationController
 
   def index
-    @bookmarks = post.bookmark.where(user_id: current_user.id)
+    @bookmarks = current_user.bookmarks
   end
 
   def create
