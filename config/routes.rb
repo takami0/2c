@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
   devise_for :admin, controllers: {
         sessions: 'admin/sessions'
   }
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
       resources :followings, only: [:index]
       resources :followers, only: [:index]
       resources :bookmarks, only: [:index]
+      resources :notifications, only: [:index]
     end
     resources :posts do
       resource :bookmark, only: [:create, :destroy]

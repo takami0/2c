@@ -8,7 +8,15 @@ class Public::BookmarksController < ApplicationController
   def create
     bookmark_assign = Bookmark.new(user_id: current_user.id, post_id: @post.id )
     if bookmark_assign.save
-      Bookmark.notice_bookmark
+      notice = current_user.send_notifications.new(
+        send_user_id: current_user.id,
+        received_user_id: @post.user.id,
+        #bookmark_id: @bookmark.id,
+        post_id: @post.id,
+        #comment_id: "",
+        action: "bookmark"
+        )
+      notice.save
       redirect_to public_post_path(@post.id)
     end
   end
@@ -16,7 +24,7 @@ class Public::BookmarksController < ApplicationController
   def destroy
     bookmark_release = Bookmark.find_by(user_id: current_user.id, post_id: @post.id).destroy
     if bookmark_release
-      Bookmark.notice_bookmark_delete
+      current_user.send_notifications.find_by(post_id: @post.id).destroy
       redirect_to public_post_path(@post.id)
     end
   end

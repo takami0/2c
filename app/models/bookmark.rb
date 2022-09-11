@@ -7,8 +7,8 @@ class Bookmark < ApplicationRecord
     notice = current_user.send_notifications.new(
       send_user_id: current_user.id,
       received_user_id: @post.user.id,
-      bookmark_id: @bookmark.id,
-      #post_id: @post.id,
+      #bookmark_id: @bookmark.id,
+      post_id: @post.id,
       action: "bookmark"
       )
     notice.save if Notification.valid?
