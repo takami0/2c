@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_10_071422) do
+ActiveRecord::Schema.define(version: 2022_09_11_120857) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -98,6 +98,24 @@ ActiveRecord::Schema.define(version: 2022_09_10_071422) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "send_user_id", null: false
+    t.integer "received_user_id", null: false
+    t.integer "comment_id", null: false
+    t.integer "bookmark_id", null: false
+    t.integer "post_id"
+    t.integer "follow_id", null: false
+    t.string "action", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookmark_id"], name: "index_notifications_on_bookmark_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["follow_id"], name: "index_notifications_on_follow_id"
+    t.index ["received_user_id"], name: "index_notifications_on_received_user_id"
+    t.index ["send_user_id"], name: "index_notifications_on_send_user_id"
+  end
+
   create_table "occupations", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -141,6 +159,9 @@ ActiveRecord::Schema.define(version: 2022_09_10_071422) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "follows", "users"
+  add_foreign_key "notifications", "bookmarks"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "follows"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "category_media"
   add_foreign_key "users", "occupations"

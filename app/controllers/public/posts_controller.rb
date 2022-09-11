@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :set_find, only: [:show, :edit, :update]
+  
   def index
     @posts = Post.all
   end
@@ -17,17 +19,14 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to public_posts_path
     else
@@ -38,6 +37,10 @@ class Public::PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :introduction, :display_status, :image, :user_id)
+  end
+  
+  def set_find
+    @post = Post.find(params[:id])
   end
 
 end
