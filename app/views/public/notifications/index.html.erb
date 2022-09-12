@@ -3,5 +3,16 @@
 <h1>通知一覧</h1>
 
 <% @notices.each do |notice|%>
+<% name = notice.send_user.name %>
+    <% if notice.action == "bookmark" %>
+        <%= "あなたの投稿が #{name} に" %>
+        <%= link_to "ブックマーク", public_post_path(notice.post_id) %>
+        <%= "されました" %><br>
+    <% elsif notice.action == "follow" %>
+        <%= "#{name} に" %>
+        <%= link_to "フォロー", public_user_followers_path(current_user.id) %>
+        <%= "されました" %><br>
+    
+    <%end%>
 <%end%>
 

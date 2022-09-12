@@ -4,6 +4,13 @@ class Public::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if comment.save
+      notice = current_user.send_notifications.new(
+        send_user_id: current_user.id,
+        received_user_id: @post,
+        comment_id: @comment.id,
+        action: "comment"
+        )
+      notice.save
       redirect_to public_post_path(@post.id)
     end
   end
