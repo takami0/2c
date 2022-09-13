@@ -12,7 +12,10 @@
         <%= "#{name} に" %>
         <%= link_to "フォロー", public_user_followers_path(current_user.id) %>
         <%= "されました" %><br>
-    
+    <% elsif notice.action == "comment" %>
+        <%= "#{name} があなたの投稿に" %>
+        <%= link_to "コメント", public_post_path(notice.post_id) %>
+        <%= "しました" %><br>
     <%end%>
 <%end%>
 

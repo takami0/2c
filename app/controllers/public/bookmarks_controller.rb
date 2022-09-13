@@ -6,14 +6,14 @@ class Public::BookmarksController < ApplicationController
   end
 
   def create
-    bookmark_assign = Bookmark.new(user_id: current_user.id, post_id: @post.id )
-    if bookmark_assign.save
+    @bookmark = Bookmark.new(user_id: current_user.id, post_id: @post.id )
+    if @bookmark.save
       notice = current_user.send_notifications.new(
         send_user_id: current_user.id,
         received_user_id: @post.user.id,
         post_id: @post.id,
         action: "bookmark"
-        )
+      )
       notice.save
       redirect_to public_post_path(@post.id)
     end
