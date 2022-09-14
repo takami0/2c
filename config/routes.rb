@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     root "homes#top", as: "top"
     get "search" => "homes#search"
     get "users/my_page" => "users#my_page", as: "my_page"
+
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"
 
@@ -35,7 +36,9 @@ Rails.application.routes.draw do
       resources :followings, only: [:index]
       resources :followers, only: [:index]
       resources :bookmarks, only: [:index]
-      resources :notifications, only: [:index]
+
+      patch "notifications/update_all" => "notifications#update_all", as: "notifications_update"
+      resources :notifications, only: [:index, :update]
     end
     resources :posts do
       resource :bookmark, only: [:create, :destroy]
