@@ -8,8 +8,20 @@
 
 <%= image_tag current_user.get_icon(200,200) %><br>
 ユーザー名：<%= current_user.name %><br>
-カテゴリ（媒体）：<%= current_user.category_medium.name %><br>
-職業：<%= current_user.occupation.name %><br>
+
+カテゴリ（媒体）：
+<% if current_user.category_medium.present? %>
+  <%= current_user.category_medium.name %><br>
+<%else%>
+  <%= "未設定です"%>
+<%end%>
+
+職業：
+<% if current_user.occupation.present? %>
+  <%= current_user.occupation.name %><br>
+<%else%>
+  <%= "未設定です"%>
+<%end%>
 
 <%= link_to "フォロー", public_user_followings_path(current_user.id) %>
 <%= link_to "フォロワー", public_user_followers_path(current_user.id) %>

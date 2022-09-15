@@ -141,8 +141,8 @@ ActiveRecord::Schema.define(version: 2022_09_11_120857) do
     t.string "name", null: false
     t.string "telephone_number", null: false
     t.string "address", null: false
-    t.integer "category_medium_id", null: false
-    t.integer "occupation_id", null: false
+    t.integer "category_medium_id"
+    t.integer "occupation_id"
     t.boolean "user_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
