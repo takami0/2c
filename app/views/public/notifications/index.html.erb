@@ -3,6 +3,7 @@
 <h1>通知一覧</h1>
 
 <% if @notices.exists? %>
+  <%= link_to "全て既読にする", public_user_notifications_update_path(current_user.id), method: :patch %><br>
   <% @notices.each do |notice|%>
     <% received_user = notice.received_user %>
     <% send_user = notice.send_user %>
