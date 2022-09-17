@@ -1,2 +1,8 @@
-<h1>Admin::CategoryStyles#edit</h1>
-<p>Find me in app/views/admin/category_styles/edit.html.erb</p>
+<h1>カテゴリ（スタイル）編集画面</h1>
+
+<%= form_with model: @style, url: admin_category_style_path(@style.id), method: :patch do |f|%>
+  <%= f.text_field :name%>
+  <%= f.submit "更新"%>
+<%end%>
+
+<%= link_to "削除",  admin_category_style_path(@style.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>

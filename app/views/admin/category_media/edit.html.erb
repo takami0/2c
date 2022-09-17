@@ -4,3 +4,5 @@
   <%= f.text_field :name%>
   <%= f.submit "更新"%>
 <%end%>
+
+<%= link_to "削除",  admin_category_medium_path(@medium.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>

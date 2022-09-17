@@ -1,2 +1,26 @@
-<h1>Admin::CategoryStyles#index</h1>
-<p>Find me in app/views/admin/category_styles/index.html.erb</p>
+<%= render "admin/shared/header" %>
+
+<h1>カテゴリ（スタイル）管理画面</h1>
+
+<%= form_with model: @style_new, url: admin_category_styles_path, method: :post do |f|%>
+  <%= f.label :name, "媒体名" %>
+  <%= f.text_field :name %>
+  <%= f.submit "作成"%>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>スタイル</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @styles.each do |style|%>
+  <tbody>
+    <tr>
+      <td><%= style.name %></td>
+      <td><%= link_to "編集",  edit_admin_category_style_path(style.id) %></td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>

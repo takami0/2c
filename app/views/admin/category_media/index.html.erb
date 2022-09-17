@@ -2,7 +2,7 @@
 
 <h1>カテゴリ（媒体）管理画面</h1>
 
-<%= form_with model: @medium, url: admin_category_media_path, method: :post do |f|%>
+<%= form_with model: @medium_new, url: admin_category_media_path, method: :post do |f|%>
   <%= f.label :name, "媒体名" %>
   <%= f.text_field :name %>
   <%= f.submit "作成"%>
@@ -24,6 +24,3 @@
   </tbody>
   <%end%>
 </table>
-
-
-

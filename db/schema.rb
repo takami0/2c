@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_11_120857) do
+ActiveRecord::Schema.define(version: 2022_09_11_000011) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -124,11 +124,17 @@ ActiveRecord::Schema.define(version: 2022_09_11_120857) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "category_medium_id"
+    t.integer "category_style_id"
+    t.integer "category_motif_id"
     t.string "title", null: false
     t.text "introduction", null: false
     t.boolean "display_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_medium_id"], name: "index_posts_on_category_medium_id"
+    t.index ["category_motif_id"], name: "index_posts_on_category_motif_id"
+    t.index ["category_style_id"], name: "index_posts_on_category_style_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -162,6 +168,9 @@ ActiveRecord::Schema.define(version: 2022_09_11_120857) do
   add_foreign_key "notifications", "bookmarks"
   add_foreign_key "notifications", "comments"
   add_foreign_key "notifications", "follows"
+  add_foreign_key "posts", "category_media"
+  add_foreign_key "posts", "category_motifs"
+  add_foreign_key "posts", "category_styles"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "category_media"
   add_foreign_key "users", "occupations"

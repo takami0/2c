@@ -1,2 +1,26 @@
-<h1>Admin::CategoryMotifs#index</h1>
-<p>Find me in app/views/admin/category_motifs/index.html.erb</p>
+<%= render "admin/shared/header" %>
+
+<h1>カテゴリ（モチーフ）管理画面</h1>
+
+<%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>
+  <%= f.label :name, "媒体名" %>
+  <%= f.text_field :name %>
+  <%= f.submit "作成"%>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>モチーフ</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @motifs.each do |motif|%>
+  <tbody>
+    <tr>
+      <td><%= motif.name %></td>
+      <td><%= link_to "編集",  edit_admin_category_motif_path(motif.id) %></td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>

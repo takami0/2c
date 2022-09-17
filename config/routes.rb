@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :occupations, only: [:index, :create, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
-    resources :category_media, only: [:index, :create, :edit, :update]
-    resources :category_styles, only: [:index, :create, :edit, :update]
-    resources :category_motifs, only: [:index, :create, :edit, :update]
+    resources :category_media, only: [:index, :create, :edit, :update, :destroy]
+    resources :category_styles, only: [:index, :create, :edit, :update, :destroy]
+    resources :category_motifs, only: [:index, :create, :edit, :update, :destroy]
   end
 
 
