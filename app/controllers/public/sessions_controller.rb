@@ -6,6 +6,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_login
     guest = User.find(1)
     sign_in guest
+    redirect_to public_my_page_path
   end
 
   def after_sign_in_path_for(resource)

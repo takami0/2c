@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     registrations: 'public/registrations',
   }
-  devise_scope :users do
+  devise_scope :user do
     post "users/sign_in/guest" => "public/sessions#guest_login", as: "user_session_guest"
   end
 
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     root "homes#top", as: "top"
     get "search" => "homes#search"
     get "users/my_page" => "homes#my_page", as: "my_page"
+    #post "users/sign_in/guest" => "homes#guest_login", as: "user_session_guest"
 
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"

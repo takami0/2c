@@ -1,5 +1,11 @@
 class Public::HomesController < ApplicationController
+
   def top
+  end
+
+  def guest_login
+    guest = User.find(1)
+    sign_in guest
   end
 
   def my_page
