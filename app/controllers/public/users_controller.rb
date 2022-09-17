@@ -1,6 +1,4 @@
 class Public::UsersController < ApplicationController
-  def my_page
-  end
 
   def quit
   end

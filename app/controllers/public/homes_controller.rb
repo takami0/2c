@@ -2,6 +2,9 @@ class Public::HomesController < ApplicationController
   def top
   end
 
+  def my_page
+  end
+
   def search
     @subject = params[:subject]
     if @subject == "ユーザ"

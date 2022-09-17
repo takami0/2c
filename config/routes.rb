@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'notifications/index'
   devise_for :admin, controllers: {
-        sessions: 'admin/sessions'
+    sessions: 'admin/sessions'
   }
 
   namespace :admin do
@@ -19,14 +18,17 @@ Rails.application.routes.draw do
 
 
   devise_for :users, controllers: {
-        sessions: 'public/sessions',
-        registrations: 'public/registrations',
+    sessions: 'public/sessions',
+    registrations: 'public/registrations',
   }
+  devise_scope :users do
+    post "users/sign_in/guest" => "public/sessions#guest_login", as: "user_session_guest"
+  end
 
   namespace :public do
     root "homes#top", as: "top"
     get "search" => "homes#search"
-    get "users/my_page" => "users#my_page", as: "my_page"
+    get "users/my_page" => "homes#my_page", as: "my_page"
 
     get "users/quit" => "users#quit", as: "quit"
     patch "users/leave" => "users#leave", as: "leave"
