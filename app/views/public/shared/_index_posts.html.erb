@@ -1,13 +1,15 @@
 <table>
   <% posts.each do |post| %>
-    <tr>
-      <th><%= link_to (image_tag post.get_image(100, 100)), public_post_path(post.id) %></th>
-    </tr>
-    <tr>
-      <td><%= post.title %></td>
-    </tr>
-    <tr>
-      <td><%= post.user.name %></td>
-    </tr>
+    <% if post.user.user_status == true %>
+      <tr>
+        <th><%= link_to (image_tag post.get_image(100, 100)), public_post_path(post.id) %></th>
+      </tr>
+      <tr>
+        <td><%= post.title %></td>
+      </tr>
+      <tr>
+        <td><%= post.user.name %></td>
+      </tr>
     <%end%>
+  <%end%>
 </table>

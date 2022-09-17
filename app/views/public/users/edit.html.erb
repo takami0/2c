@@ -8,5 +8,21 @@
   <%= f.file_field :icon %><br>
   <%= f.label :name, "名前" %>
   <%= f.text_field :name %><br>
+  <%= f.label :address, "お住まいの地域" %>
+  <%= f.text_field :address %><br>
+
+  <%= f.label :occupation, "職業"%>
+  <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-制作媒体を選択ください-" %><br>
+
+  <%= f.label :medium, "作品媒体"%>
+  <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-作品媒体を選択ください-"%><br>
+
+  <h4>表示設定</h4>
+  <%= f.radio_button :user_status, true %>
+  <%= f.label :user_status, "表示", value: true %><br>
+
+  <%= f.radio_button :user_status, false %>
+  <%= f.label :user_status, "非表示", value: false %><br>
+
   <%= f.submit "更新"%>
 <%end%>
