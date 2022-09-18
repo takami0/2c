@@ -15,7 +15,10 @@
 <%end%>
 
 
-<%= image_tag @post.get_image(200, 200) %>
+<%= image_tag @post.get_image(200, 200) %><br>
+媒体: <%= @medium.name%><br>
+モチーフ: <%= @motif.name%><br>
+スタイル: <%= @style.name%><br>
 タイトル：<%= @post.title %><br>
 紹介文：<%= @post.introduction %><br>
 制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>

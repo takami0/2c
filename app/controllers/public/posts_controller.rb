@@ -19,6 +19,9 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @medium = CategoryMedium.find(@post.category_medium_id)
+    @motif = CategoryMotif.find(@post.category_motif_id)
+    @style = CategoryStyle.find(@post.category_style_id)
     @comment = Comment.new
     @comments = @post.comments
   end

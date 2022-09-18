@@ -1,3 +1,3 @@
 class CategoryStyle < ApplicationRecord
-  belongs_to :post, optional: true
+  belongs_to :post
 end

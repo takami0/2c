@@ -1,3 +1,3 @@
 class CategoryMotif < ApplicationRecord
-  belongs_to :post, optional: true
+  belongs_to :post
 end
