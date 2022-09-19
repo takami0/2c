@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :category_medium, optional: true
-  belongs_to :occupation, optional: true
+  has_one :category_medium
+  has_one :occupation
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy

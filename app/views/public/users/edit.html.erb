@@ -18,11 +18,11 @@
   <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-作品媒体を選択ください-"%><br>
 
   <h4>表示設定</h4>
-  <%= f.radio_button :user_status, true %>
-  <%= f.label :user_status, "表示", value: true %><br>
+  <%= f.radio_button :display_status, true %>
+  <%= f.label :display_status, "表示", value: true %><br>
 
-  <%= f.radio_button :user_status, false %>
-  <%= f.label :user_status, "非表示", value: false %><br>
+  <%= f.radio_button :display_status, false %>
+  <%= f.label :display_status, "非表示", value: false %><br>
 
   <%= f.submit "更新"%>
 <%end%>

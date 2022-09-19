@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.integer "category_motif_id", null: false
     t.string "title", null: false
     t.text "introduction", null: false
-    t.boolean "display_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_medium_id"], name: "index_posts_on_category_medium_id"
@@ -149,7 +148,8 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.string "address", null: false
     t.integer "category_medium_id"
     t.integer "occupation_id"
-    t.boolean "user_status", default: true, null: false
+    t.boolean "display_status", default: true, null: false
+    t.boolean "valid_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_medium_id"], name: "index_users_on_category_medium_id"

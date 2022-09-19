@@ -9,6 +9,8 @@ class Public::HomesController < ApplicationController
   end
 
   def my_page
+    @medium = CategoryMedium.find(current_user.category_medium_id)
+    @occupation = Occupation.find(current_user.occupation_id)
   end
 
   def search
