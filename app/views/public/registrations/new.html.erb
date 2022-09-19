@@ -1,43 +1,60 @@
 <h2>新規アカウント登録</h2>
 
-<%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
-  <%= f.label :name, "ユーザー名"%>
-  <%= f.text_field :name %>
+<div class="container">
+  <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
 
-  <%= f.label :icon, "アイコン"%>
-  <%= f.file_field :icon %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :name, "ユーザ名"%></div>
+    <div class="col-lg-2"><%= f.text_field :name %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :icon, "アイコン"%></div>
+    <div class="col-lg-2"><%= f.file_field :icon %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :email %></div>
+    <div class="col-lg-2"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :password %><br>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+      ( <%= @minimum_password_length %> 文字以上)
+    <% end %>
+    </div>
+    <div class="col-lg-2"><%= f.password_field :password, autocomplete: "new-password" %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :password_confirmation, "password (確認用)" %></div>
+    <div class="col-lg-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
   </div>
 
-  <%= f.label :telephone_number, "電話番号"%>
-  <%= f.text_field :telephone_number %>
-
-  <%= f.label :address, "住所"%>
-  <%= f.text_field :address %>
-
-  <%= f.label :occupation, "職業"%>
-  <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
-
-  <%= f.label :medium, "メイン媒体"%>
-  <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%>
-
-  <div class="actions">
-    <%= f.submit "登録" %>
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :telephone_number, "電話番号"%></div>
+    <div class="col-lg-2"><%= f.text_field :telephone_number %></div>
   </div>
-<% end %>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :address, "お住まいの地域"%></div>
+    <div class="col-lg-2"><%= f.text_field :address %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :occupation, "職業"%></div>
+    <div class="col-lg-2"><%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :medium, "メイン媒体"%></div>
+    <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <%end%>

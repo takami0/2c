@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :bookmarks, only: [:index]
     end
     resources :occupations, only: [:index, :create, :edit, :update, :destroy]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
     resources :category_media, only: [:index, :create, :edit, :update, :destroy]
     resources :category_styles, only: [:index, :create, :edit, :update, :destroy]
