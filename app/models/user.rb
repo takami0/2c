@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :category_medium
-  has_one :occupation
+  has_one :category_medium, dependent: :destroy
+  has_one :occupation, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -27,5 +27,11 @@ class User < ApplicationRecord
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
+
+  enum address: {
+    HOKKAIDO: 0,
+    AOMORI: 1,
+    IWATE: 2
+  }
 
 end

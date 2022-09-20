@@ -10,7 +10,7 @@ User.create!(
   password: "guestpass",
   name: "ゲスト",
   telephone_number: "00000000000",
-  address: "東京都",
+  address: 0,
   category_medium_id: 1,
   occupation_id: 1,
   display_status: true,

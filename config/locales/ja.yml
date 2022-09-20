@@ -1,0 +1,6 @@
+ja:
+  enums:
+    address:
+      HOKKAIDO: "北海道"
+      AOMORI: "青森"
+      IWATE: "岩手"
