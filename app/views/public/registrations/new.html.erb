@@ -39,7 +39,7 @@
 
   <div class="row">
     <div class="col-lg-2"><%= f.label :address, "お住まいの地域"%></div>
-    <div class="col-lg-2"><%= f.text_field :address %></div>
+    <div class="col-lg-2"><%= f.select :address, User.addresses.keys, {} %></div>
   </div>
 
   <div class="row">
@@ -50,6 +50,11 @@
   <div class="row">
     <div class="col-lg-2"><%= f.label :medium, "メイン媒体"%></div>
     <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"><%= f.label :introduction, "自己紹介"%></div>
+    <div class="col-lg-2"><%= f.text_area :introduction %></div>
   </div>
 
   <div class="row">

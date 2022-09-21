@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "telephone_number", null: false
+    t.string "introduction"
     t.integer "address", null: false
     t.integer "category_medium_id", null: false
     t.integer "occupation_id", null: false

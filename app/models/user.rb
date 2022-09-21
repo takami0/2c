@@ -12,7 +12,6 @@ class User < ApplicationRecord
 
   has_many :user_relationships, class_name: "Follow", foreign_key: "user_id", dependent: :destroy
   has_many :follow_user_relationships, class_name: "Follow", foreign_key: "follow_user_id", dependent: :destroy
-
   has_many :followings, through: :user_relationships, source: :follow_user, dependent: :destroy
   has_many :followers, through: :follow_user_relationships, source: :user, dependent: :destroy
 
@@ -20,6 +19,7 @@ class User < ApplicationRecord
   has_many :received_notifications, class_name: "Notification", foreign_key: "received_user_id", dependent: :destroy
 
   has_one_attached :icon
+
   def get_icon(width, height)
     unless icon.attached?
       file_path = Rails.root.join("app/assets/images/no_image.jpeg")
@@ -28,10 +28,17 @@ class User < ApplicationRecord
     icon.variant(resize_to_limit: [width, height]).processed
   end
 
-  enum address: {
-    HOKKAIDO: 0,
-    AOMORI: 1,
-    IWATE: 2
-  }
+  enum address:{
+     "-お住まいの地域を選択ください-":0,
+     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
+     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
+     新潟県:15,富山県:16,石川県:17,福井県:18,山梨県:19,長野県:20,
+     岐阜県:21,静岡県:22,愛知県:23,三重県:24,
+     滋賀県:25,京都府:26,大阪府:27,兵庫県:28,奈良県:29,和歌山県:30,
+     鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,
+     徳島県:36,香川県:37,愛媛県:38,高知県:39,
+     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
+     沖縄県:47
+   }
 
 end
