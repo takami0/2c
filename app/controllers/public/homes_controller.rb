@@ -1,6 +1,8 @@
 class Public::HomesController < ApplicationController
 
   def top
+    @posts = Post.all.reverse
+    @users = User.all.reverse
   end
 
   def search

@@ -14,12 +14,12 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-2"><%= f.label :email %></div>
+    <div class="col-lg-2"><%= f.label :email, "メールアドレス" %></div>
     <div class="col-lg-2"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
   </div>
 
   <div class="row">
-    <div class="col-lg-2"><%= f.label :password %><br>
+    <div class="col-lg-2"><%= f.label :password, "パスワード" %><br>
     <% if @minimum_password_length %>
       ( <%= @minimum_password_length %> 文字以上)
     <% end %>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-2"><%= f.label :password_confirmation, "password (確認用)" %></div>
+    <div class="col-lg-2"><%= f.label :password_confirmation, "パスワード (確認用)" %></div>
     <div class="col-lg-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
   </div>
 
@@ -48,7 +48,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-2"><%= f.label :medium, "メイン媒体"%></div>
+    <div class="col-lg-2"><%= f.label :medium, "制作媒体"%></div>
     <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%></div>
   </div>
 
@@ -58,8 +58,8 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div>
     <div class="col-lg-2"></div>
+    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div>
   </div>
 
   <%end%>

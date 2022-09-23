@@ -1,3 +1,15 @@
-<%= render "public/shared/header"%>
 
-<h3>Top</h3>
+<div class="container">
+  <h3>Top</h3>
+  <%= render "public/shared/header"%>  
+  
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
+
+<% @posts.each do |_post| %>
+  <% _post.user.display_status == true %>
+    <%= _post%>
