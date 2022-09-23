@@ -152,7 +152,6 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"reset_password_token\"", name: "index_users_on_reset_password_token", unique: true
     t.index ["category_medium_id"], name: "index_users_on_category_medium_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["occupation_id"], name: "index_users_on_occupation_id"

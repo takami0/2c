@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   end
   
   def get_image_sub1(width, height)
-    image_sub1.variant(resize_to_limit: [width, height]).processed
+    image_sub1.variant(resize_to_limit: [width, height]).processed 
   end
   
   def get_image_sub2(width, height)
