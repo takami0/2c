@@ -2,7 +2,8 @@ class Public::HomesController < ApplicationController
 
   def top
     @posts = Post.all.reverse
-    @users = User.all.reverse
+    @users = User.where(display_status: true).last(4)
+    
   end
 
   def search

@@ -6,8 +6,8 @@
 ユーザー名：<%= @user.name %><br>
 住所：<%= @user.address %><br>
 自己紹介：<%= @user.introduction %><br>
-カテゴリ（媒体）：<%= @user.category_medium.name %><br>
-職業：<%= @user.occupation.name %><br>
+カテゴリ（媒体）：<%= @medium.name %><br>
+職業：<%= @occupation.name %><br>
 
 <% if current_user != @user %>
   <% if current_user.user_relationships.exists?(follow_user_id: @user.id) %>

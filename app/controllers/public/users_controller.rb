@@ -9,6 +9,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @medium = CategoryMedium.find(@user.category_medium_id)
+    @occupation = Occupation.find(@user.occupation_id)
   end
 
   def edit

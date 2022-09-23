@@ -1,15 +1,43 @@
 
 <div class="container">
   <h3>Top</h3>
-  <%= render "public/shared/header"%>  
-  
-  <div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4"></div>
-  </div>
-</div>
+  <%= render "public/shared/header"%>
 
-<% @posts.each do |_post| %>
-  <% _post.user.display_status == true %>
-    <%= _post%>
+  <h3>最新の投稿</h3>
+
+  <div class="row">
+    <% time_post = 0 %>
+    <% @posts.each do |_post| %>
+      <% if _post.user.display_status == true %>
+        <div class="col-lg-3">
+          <%= image_tag(_post.get_image(100, 100)) %><br>
+          <%= link_to _post.title, public_post_path(_post.id) %><br>
+          <%= _post.user.name %>
+        </div>
+        <% time_post += 1 %>
+        <% break if time_post == 4%>
+      <%end%>
+    <%end%>
+  </div>
+  <div class="row">
+    <div class="col-lg-10"></div>
+    <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
+  </div>
+
+
+  <h3>最新のユーザ</h3>
+  <div class="row">
+    <% @users.each do |user| %>
+    <div class="col-lg-3">
+      <%= image_tag(user.icon) %><br>
+      <%= link_to user.name, public_user_path(user.id) %><br>
+      <%= CategoryMedium.find(user.category_medium_id).name %>
+    </div>
+    <%end%>
+  </div>
+  <div class="row">
+    <div class="col-lg-10"></div>
+    <div class="col-lg-2"><%= link_to "もっと見る", public_users_path %></div>
+  </div>
+
+</div>
