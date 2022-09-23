@@ -5,6 +5,10 @@
 <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
   <%= f.label :image, "ファイル" %>
   <%= f.file_field :image %><br>
+  <%= f.label :image, "サブファイル１" %>
+  <%= f.file_field :image_sub1 %><br>
+  <%= f.label :image, "サブファイル２" %>
+  <%= f.file_field :image_sub2 %><br>
 
   <%= f.label :category_medium_id, "製作媒体" %>
   <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %><br>

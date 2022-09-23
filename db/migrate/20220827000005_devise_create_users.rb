@@ -17,6 +17,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.boolean :display_status, null: false, default: true
       t.boolean :valid_status, null: false, default: true
       
+      ## Rememberable
+      t.datetime :remember_created_at
+      
       t.timestamps null: false
 
       ## Trackable
@@ -37,8 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Recoverable
       #t.string   :reset_password_token
       #t.datetime :reset_password_sent_at
-      ## Rememberable
-      #t.datetime :remember_created_at
+      
     end
 
     add_index :users, :email,                unique: true

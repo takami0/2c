@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.integer "member_status", default: 1, null: false
     t.boolean "display_status", default: true, null: false
     t.boolean "valid_status", default: true, null: false
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index "\"reset_password_token\"", name: "index_users_on_reset_password_token", unique: true

@@ -16,6 +16,8 @@
 
 
 <%= image_tag @post.get_image(200, 200) %><br>
+<%= image_tag @post.get_image_sub1(150, 150) if @post.get_image_sub1(150, 150).present? %><br>
+<%= image_tag @post.get_image_sub2(150, 150) if @post.get_image_sub2(150, 150).present? %><br>
 媒体: <%= @medium.name%><br>
 モチーフ: <%= @motif.name%><br>
 スタイル: <%= @style.name%><br>

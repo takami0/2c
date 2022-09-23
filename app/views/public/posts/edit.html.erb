@@ -4,7 +4,13 @@
 
 <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f|%>
   <%= image_tag @post.get_image(200, 200) %>
-  <%= f.file_field  :image %>
+  <%= f.label :image, "ファイル" %>
+  <%= f.file_field :image %><br>
+  <%= f.label :image, "サブファイル１" %>
+  <%= f.file_field :image_sub1 %><br>
+  <%= f.label :image, "サブファイル２" %>
+  <%= f.file_field :image_sub2 %><br>
+  
   <%= f.label :title, "タイトル" %>
   <%= f.text_field :title %><br>
   <%= f.label :introduction, "紹介文" %>
