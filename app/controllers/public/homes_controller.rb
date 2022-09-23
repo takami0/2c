@@ -3,16 +3,6 @@ class Public::HomesController < ApplicationController
   def top
   end
 
-  def guest_login
-    guest = User.find(1)
-    sign_in guest
-  end
-
-  def my_page
-    @medium = CategoryMedium.find(current_user.category_medium_id)
-    @occupation = Occupation.find(current_user.occupation_id)
-  end
-
   def search
     @subject = params[:subject]
     if @subject == "ユーザ"
@@ -22,6 +12,16 @@ class Public::HomesController < ApplicationController
     else
       []
     end
+  end
+
+  def my_page
+    @medium = CategoryMedium.find(current_user.category_medium_id)
+    @occupation = Occupation.find(current_user.occupation_id)
+  end
+
+  def guest_destroy
+    User.destroy(current_user.id)
+    redirect_to new_user_registration_path
   end
 
 end

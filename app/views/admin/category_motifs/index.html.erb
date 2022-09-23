@@ -1,6 +1,7 @@
 <%= render "admin/shared/header" %>
 
 <h1>カテゴリ（モチーフ）管理画面</h1>
+<%= link_to "Top", admin_top_path %>
 
 <%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>
   <%= f.label :name, "媒体名" %>

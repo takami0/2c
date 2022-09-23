@@ -1,6 +1,7 @@
 <%= render "admin/shared/header"%>
 
 <h1>[管理画面] 職業</h1>
+<%= link_to "Top", admin_top_path %>
 
 <%= form_with model:@new_occupation, url: admin_occupations_path, method: :post do |f|%>
   <%= f.text_field :name %>
