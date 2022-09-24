@@ -34,7 +34,6 @@ Rails.application.routes.draw do
   namespace :public do
     root "homes#top", as: "top"
     get "search" => "homes#search"
-    get "users/my_page" => "homes#my_page", as: "my_page"
     delete "users/guest_destroy" => "homes#guest_destroy", as: "guest_destroy"
 
     resources :users, only: [:index, :show, :edit, :update] do

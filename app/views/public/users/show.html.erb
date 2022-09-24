@@ -1,18 +1,56 @@
-<%= render "public/shared/header" %>
-
-<h1>ユーザ詳細画面</h1>
-
-<%= image_tag @user.get_icon(200,200) %><br>
-ユーザー名：<%= @user.name %><br>
-住所：<%= @user.address %><br>
-自己紹介：<%= @user.introduction %><br>
-カテゴリ（媒体）：<%= @medium.name %><br>
-職業：<%= @occupation.name %><br>
-
-<% if current_user != @user %>
-  <% if current_user.user_relationships.exists?(follow_user_id: @user.id) %>
-    <%= link_to "フォロー解除", public_user_follow_path(@user.id), method: :delete %>
+<div class="container">
+  <% if @user.id == current_user.id %>
+    <h1>マイページ</h1>
   <%else%>
-    <%= link_to "フォロー", public_user_follow_path(@user.id), method: :post %>
+    <h1>ユーザ詳細</h1>
   <%end%>
-<%end%>
+
+  <%= render "public/shared/header" %>
+
+  <div class="row">
+    <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
+    <div class="col-lg-4">
+      ユーザー名：<%= @user.name %><br>
+
+      <%#フォロー機能%>
+      <% if current_user != @user %>
+        <% if current_user.user_relationships.exists?(follow_user_id: @user.id) %>
+          <%= link_to "フォロー解除", public_user_follow_path(@user.id), method: :delete, class: "btn-primary" %><br>
+        <%else%>
+          <%= link_to "フォローする", public_user_follow_path(@user.id), method: :post, class: "btn-success" %><br>
+        <%end%>
+      <%end%>
+
+      <%= link_to "フォロー (#{@user.followings.count})", public_user_followings_path(@user.id) %><br>
+      <%= link_to "フォロワー (#{@user.followers.count})", public_user_followers_path(@user.id) %><br>
+      <% if @user.id == current_user.id %>
+        <%=link_to "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %><br>
+        <%= link_to "編集する", edit_public_user_path(@user.id), class: "btn-promary" %>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      住まい：<%= @user.address %><br>
+      職業：<%= @occupation.name %><br>
+      制作媒体（メイン）：<%= @medium.name %><br>
+      自己紹介：<%= @user.introduction %><br>
+      <br>
+    </div>
+  </div>
+
+  <h3>作品紹介</h3>
+  <% @posts.each do |_post|%>
+    <% if _post.user.id == current_user.id %>
+      <div class="row">
+        <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), public_post_path(_post.id) %></div>
+        <div class="col-lg-3">
+          Title: <%= _post.title %><br>
+          制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+
+</div>

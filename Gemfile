@@ -60,3 +60,4 @@ gem 'image_processing', '~> 1.2'
 gem 'net-smtp'
 gem 'pry-byebug', group: :development
 gem "enum_help"
+gem "kaminari", "~> 1.2.1"

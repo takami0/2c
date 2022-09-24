@@ -3,7 +3,7 @@ class Public::HomesController < ApplicationController
   def top
     @posts = Post.all.reverse
     @users = User.where(display_status: true).last(4)
-    
+
   end
 
   def search
@@ -15,11 +15,6 @@ class Public::HomesController < ApplicationController
     else
       []
     end
-  end
-
-  def my_page
-    @medium = CategoryMedium.find(current_user.category_medium_id)
-    @occupation = Occupation.find(current_user.occupation_id)
   end
 
   def guest_destroy

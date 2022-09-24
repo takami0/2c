@@ -20,14 +20,6 @@ class User < ApplicationRecord
 
   has_one_attached :icon
 
-  def get_icon(width, height)
-    unless icon.attached?
-      file_path = Rails.root.join("app/assets/images/no_image.jpeg")
-      icon.attach(io: File.open(file_path), filename: "no_image.jpeg", content_type: "image/jpeg")
-    end
-    icon.variant(resize_to_limit: [width, height]).processed
-  end
-
   enum address:{
      "-お住まいの地域を選択ください-":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -40,5 +32,13 @@ class User < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+
+  def get_icon(width, height)
+    unless icon.attached?
+      file_path = Rails.root.join("app/assets/images/no_image.jpeg")
+      icon.attach(io: File.open(file_path), filename: "no_image.jpeg", content_type: "image/jpeg")
+    end
+    icon.variant(resize_to_limit: [width, height]).processed
+  end
 
 end

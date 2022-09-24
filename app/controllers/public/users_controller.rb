@@ -1,32 +1,32 @@
 class Public::UsersController < ApplicationController
-
-  def quit
-  end
+  before_action :user_find, only:[:show, :edit, :update]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
-    @user = User.find(params[:id])
     @medium = CategoryMedium.find(@user.category_medium_id)
     @occupation = Occupation.find(@user.occupation_id)
+    @posts = Post.all
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to public_my_page_path
+      redirect_to public_user_path(@user.id)
     else
       render :edit
     end
   end
 
   private
+  def user_find
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :icon, :address, :occupation_id, :category_medium_id, :introduction, :display_status)
   end
