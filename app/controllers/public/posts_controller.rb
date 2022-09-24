@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :set_find, only: [:show, :edit, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def new
@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
     @motif = CategoryMotif.find(@post.category_motif_id)
     @style = CategoryStyle.find(@post.category_style_id)
     @comment = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments.reverse
   end
 
   def edit

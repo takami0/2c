@@ -1,5 +1,9 @@
-<%= render "public/shared/header"%>
 
-<h1>投稿一覧</h1>
+<div class="container">
+  <h1>投稿一覧</h1>
+  <%= render "public/shared/header"%>
 
-<%= render "public/shared/index_posts", posts: @posts %>
+  <%= render "public/shared/index_posts", posts: @posts %>
+  <%= paginate @posts %>
+  
+</div>

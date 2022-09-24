@@ -1,15 +1,12 @@
-<table>
-  <% posts.each do |post| %>
-    <% if post.user.display_status == true %>
-      <tr>
-        <th><%= link_to (image_tag post.get_image(100, 100)), public_post_path(post.id) %></th>
-      </tr>
-      <tr>
-        <td><%= post.title %></td>
-      </tr>
-      <tr>
-        <td><%= post.user.name %></td>
-      </tr>
-    <%end%>
+
+<% posts.each do |_post| %>
+  <% if _post.user.display_status == true %>
+  <div class="row">
+    <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150, 150)), public_post_path(_post.id) %></div>
+    <div class="col-lg-3">
+      Title: <%= _post.title %><br>
+      投稿者：<%= _post.user.name %>
+    </div>
+  </div>
   <%end%>
-</table>
+<%end%>

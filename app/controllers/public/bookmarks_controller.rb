@@ -2,7 +2,7 @@ class Public::BookmarksController < ApplicationController
   before_action :set_find, only: [:create, :destroy]
 
   def index
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.page(params[:page]).per(10)
   end
 
   def create

@@ -1,49 +1,67 @@
-<%= render "public/shared/header" %>
 
-<h1>投稿詳細画面</h1>
+<div class="container">
+  <h1>投稿詳細</h1>
+  <%= render "public/shared/header" %>
 
-<% if @post.user == current_user %>
-  <%= link_to "編集", edit_public_post_path(@post.id) %>
-<%end%>
+  <div class="row">
+    <div class="col-lg-4"><%= image_tag @post.get_image(300, 300) %></div>
+    <div class="col-lg-4">
+      <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
+      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>
+      <br>
+    </div>
+  </div>
 
-<% if @post.user != current_user %>
-  <% if @post.bookmarked_by?(current_user) %>
-    <%= link_to "ブックマークを外す", public_post_bookmark_path(@post.id), method: :delete %>
-  <%else%>
-    <%= link_to "ブックマーク", public_post_bookmark_path(@post.id), method: :post %>
+  <div class="row">
+    <div class="col-lg-8">
+      タイトル：<%= @post.title %><br>
+      <%#ブックマーク機能%>
+      <% if @post.user != current_user %>
+        <% if @post.bookmarked_by?(current_user) %>
+          <%= link_to "ブックマークを外す", public_post_bookmark_path(@post.id), method: :delete %><br>
+        <%else%>
+          <%= link_to "ブックマーク", public_post_bookmark_path(@post.id), method: :post %><br>
+        <%end%>
+      <%end%>
+
+      制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
+      媒体: <%= @medium.name%><br>
+      モチーフ: <%= @motif.name%><br>
+      スタイル: <%= @style.name%><br>
+      紹介文：<%= @post.introduction %><br>
+      <%= link_to "編集", edit_public_post_path(@post.id) if @post.user.id == current_user.id %><br>
+      <br>
+    </div>
+  </div>
+
+  <h4>コメント</h4>
+  <%#コメント投稿%>
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_with model: @comment, url: public_post_comments_path(@post.id), method: :post do |f|%>
+        <%= f.text_area :content %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "送信", class: "btn-success" %>
+      <%end%>
+      <br>
+    </div>
+  </div>
+
+  <%#コメント表示(降順)%>
+  <% @comments.each do |comment| %>
+    <div class="row">
+      <div class="col-lg-2">
+        <% user = comment.user %>
+        <%= link_to image_tag(user.get_icon(100, 100)), public_user_path(user.id) %><br>
+        name: <%= user.name %>
+      </div>
+      <div class="col-lg-4">
+        コメント：<br>
+        <%= comment.content %><br>
+        <%= link_to "削除", public_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger" if user.id == current_user.id%>
+      </div>
+    </div>
   <%end%>
-<%end%>
 
-
-<%= image_tag @post.get_image(200, 200) %><br>
-<% if @post.image_sub1.present? %>
-  <%= image_tag @post.get_image_sub1(150, 150) %><br>
-<%end%>
-<% if @post.image_sub2.present? %>
-  <%= image_tag @post.get_image_sub2(150, 150) if @post.get_image_sub2(150, 150).present? %><br>
-<%end%>
-
-媒体: <%= @medium.name%><br>
-モチーフ: <%= @motif.name%><br>
-スタイル: <%= @style.name%><br>
-タイトル：<%= @post.title %><br>
-紹介文：<%= @post.introduction %><br>
-制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
-
-<h4>コメント</h4>
-<%= form_with model: @comment, url: public_post_comments_path(@post.id), method: :post do |f|%>
-  <%= f.text_area :content %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :post_id, :value => @post.id %>
-  <%= f.submit "コメント" %>
-<%end%>
-
-<% @comments.each do |comment| %>
-  <% user = comment.user %>
-  <%= link_to image_tag(user.get_icon(100, 100)), public_user_path(user.id) %>
-  <%= user.name %>
-  <%= comment.content %>
-  <% if user.id == current_user.id %>
-    <%= link_to "削除", public_post_comment_path(@post.id, comment.id), method: :delete %>
-  <%end%>
-<%end%>
+</div>

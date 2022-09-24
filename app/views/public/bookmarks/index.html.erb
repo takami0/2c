@@ -1,10 +1,23 @@
-<%= render "public/shared/header" %>
 
-<h1>ブックマーク一覧</h1>
+<div class="container">
+ <h1>ブックマーク一覧</h1>
+ <%= render "public/shared/header" %>
 
-<% @bookmarks.each do |bookmark| %>
- <% post = bookmark.post %>
-  <%= link_to image_tag(post.get_image(100, 100)), public_post_path(post.id) %>
-  <%= post.title %>
-  <%= post.introduction %><br>
-<%end%>
+ <% @bookmarks.each do |bookmark| %>
+  <div class="row">
+   <div class="col-lg-2">
+    <% _post = bookmark.post %>
+    <%= link_to image_tag(_post.get_image(100, 100)), public_post_path(_post.id) %><br>
+    投稿者：<%= _post.user.name %>
+   </div>
+   <div class="col-lg-4">
+    Title: <%= _post.title %><br>
+    Introduction: <br>
+    <%= _post.introduction %>
+   </div>
+  </div>
+ <%end%>
+
+<%= paginate @bookmarks %>
+
+</div>
