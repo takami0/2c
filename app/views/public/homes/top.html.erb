@@ -2,42 +2,47 @@
 <div class="container">
   <h3>Top</h3>
   <%= render "public/shared/header"%>
+  
+  <%= form_with url: public_search_path, method: :get do |f| %>
+    <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>
+    <%= f.text_field :word %>
+    <%= f.submit "検索" %>
+<%end%>
 
-  <h3>最新の投稿</h3>
-
-  <div class="row">
-    <% time_post = 0 %>
-    <% @posts.each do |_post| %>
-      <% if _post.user.display_status == true %>
-        <div class="col-lg-3">
-          <%= image_tag(_post.get_image(100, 100)) %><br>
-          <%= link_to _post.title, public_post_path(_post.id) %><br>
-          <%= _post.user.name %>
-        </div>
-        <% time_post += 1 %>
-        <% break if time_post == 4%>
+  <h3>NEW POST</h3>　<%#最新の投稿を4件表示%>
+    <div class="row">
+      <% time_post = 0 %>
+      <% @posts.each do |_post| %>
+        <% if _post.user.display_status == true %>
+          <div class="col-lg-3">
+            <%= image_tag(_post.get_image(100, 100)) %><br>
+            <%= link_to _post.title, public_post_path(_post.id) %><br>
+            <%= _post.user.name %>
+          </div>
+          <% time_post += 1 %>
+          <% break if time_post == 4%>
+        <%end%>
       <%end%>
-    <%end%>
-  </div>
-  <div class="row">
-    <div class="col-lg-10"></div>
-    <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
-  </div>
-
-
-  <h3>最新のユーザ</h3>
-  <div class="row">
-    <% @users.each do |user| %>
-    <div class="col-lg-3">
-      <%= image_tag(user.icon) %><br>
-      <%= link_to user.name, public_user_path(user.id) %><br>
-      <%= CategoryMedium.find(user.category_medium_id).name %>
     </div>
-    <%end%>
-  </div>
-  <div class="row">
-    <div class="col-lg-10"></div>
-    <div class="col-lg-2"><%= link_to "もっと見る", public_users_path %></div>
-  </div>
+    <div class="row">
+      <div class="col-lg-10"></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
+    </div>
+
+
+  <h3>NEWCOMER</h3>　<%#新規登録ユーザを4件表示%>
+    <div class="row">
+      <% @users.each do |user| %>
+      <div class="col-lg-3">
+        <%= image_tag(user.icon) %><br>
+        <%= link_to user.name, public_user_path(user.id) %><br>
+        <%= CategoryMedium.find(user.category_medium_id).name %>
+      </div>
+      <%end%>
+    </div>
+    <div class="row">
+      <div class="col-lg-10"></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", public_users_path %></div>
+    </div>
 
 </div>

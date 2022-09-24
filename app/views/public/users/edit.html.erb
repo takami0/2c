@@ -1,28 +1,56 @@
-<%= render "public/shared/header" %>
 
-<h1>ユーザ編集</h1>
+<div class="container">
+  <%= render "public/shared/header" %>
+  <h1>ユーザ編集</h1>
 
-<%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
-  <%= image_tag current_user.get_icon(200, 200) %><br>
-  <%= f.label :jcon, "アイコン" %>
-  <%= f.file_field :icon %><br>
-  <%= f.label :name, "名前" %>
-  <%= f.text_field :name %><br>
-  <%= f.label :address, "お住まいの地域" %>
-  <%= f.text_field :address %><br>
+  <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
+  <div class="row">
+    <div class="col-lg-4">
+      <%= image_tag current_user.get_icon(200, 200) %><br>
+      <%= f.label :jcon, "アイコン" %>
+      <%= f.file_field :icon %><br>
+    </div>
+    <div class="col-lg-4">
+      <%= f.label :name, "名前" %><br>
+      <%= f.text_field :name %>
+    </div>
+  </div>
 
-  <%= f.label :occupation, "職業"%>
-  <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-制作媒体を選択ください-" %><br>
+  <div class="row">
+    <div class="col-lg-4">
+      <br>
+      <%= f.label :address, "お住まいの地域" %><br>
+      <%= f.select :address, User.addresses.keys, {} %><br>
+      <br>
+      <%= f.label :occupation, "職業"%><br>
+      <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在のご職業を選択ください-" %><br>
+      <br>
+      <%= f.label :medium, "制作媒体（メイン）"%><br>
+      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%><br>
+      <br>
+      <%= f.label :introduction, "自己紹介"%><br>
+      <%= f.text_area :introduction %>
+    </div>
+  </div>
 
-  <%= f.label :medium, "作品媒体"%>
-  <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-作品媒体を選択ください-"%><br>
+  <div class="row">
+    <div class="col-lg-4">
+      <br>
+      <h4>表示設定</h4>
+      <%= f.radio_button :display_status, true %>
+      <%= f.label :display_status, "表示", value: true %><br>
+      <%= f.radio_button :display_status, false %>
+      <%= f.label :display_status, "非表示", value: false %>
+    </div>
+  </div>
 
-  <h4>表示設定</h4>
-  <%= f.radio_button :display_status, true %>
-  <%= f.label :display_status, "表示", value: true %><br>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"><%= f.submit "更新", class: "btn-success"%></div>
+  </div>
+</div>
 
-  <%= f.radio_button :display_status, false %>
-  <%= f.label :display_status, "非表示", value: false %><br>
+  <%end%>
 
-  <%= f.submit "更新"%>
-<%end%>
+</div>
