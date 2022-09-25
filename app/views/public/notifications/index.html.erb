@@ -1,33 +1,31 @@
-<%= render "public/shared/header" %>
 
-<h1>通知一覧</h1>
+<div class="container">
+  <h1>通知一覧</h1>
+  <%= render "public/shared/header" %>
 
-<% if @notices.exists? %>
-  <%= link_to "全て既読にする", public_user_notifications_update_path(current_user.id), method: :patch %><br>
-  <% @notices.each do |notice|%>
-    <% received_user = notice.received_user %>
-    <% send_user = notice.send_user %>
-      <% if notice.action == "bookmark" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-        <%= "あなたの投稿に #{send_user.name} が" %>
-        <%= link_to "ブックマーク", public_post_path(notice.post_id) %>
-        <%= "しました。" %>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch %><br>
-      <% elsif notice.action == "follow" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-        <%= "#{send_user.name} に" %>
-        <%= link_to "フォロー", public_user_followers_path(current_user.id) %>
-        <%= "されました" %>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch %><br>
-      <% elsif notice.action == "comment" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-        <%= "#{send_user.name} があなたの投稿に" %>
-        <%= link_to "コメント", public_post_path(notice.post_id) %>
-        <%= "しました" %>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch %><br>
-      <%end%>
+  <% if @notices.exists? %>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= link_to "全て既読にする", public_user_notifications_update_path(current_user.id), method: :patch %><br>
+      </div>
+    </div>
+
+    <%= render "public/notifications/notifications", notices: @notices %>
+
+  <%else%>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= "通知はありません" %>
+      </div>
+    </div>
   <%end%>
-<%else%>
-  <%= "通知はありません" %>
-<%end%>
+
+</div>
+
+
+
+
+
+
+
 

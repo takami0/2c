@@ -42,7 +42,7 @@
 
   <h3>作品紹介</h3>
   <% @posts.each do |_post|%>
-    <% if _post.user.id == current_user.id %>
+    <% if _post.user.id == @user.id%>
       <div class="row">
         <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), public_post_path(_post.id) %></div>
         <div class="col-lg-3">
