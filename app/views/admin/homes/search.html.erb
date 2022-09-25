@@ -1,10 +1,10 @@
 <div class="container">
   <h1>検索画面</h1>
-  <%= render "public/shared/header"%>
+  <%= render "admin/shared/header"%>
 
   <br>
   <%#検索フォーム%>
-  <%= form_with url: public_search_path, method: :get do |f| %>
+  <%= form_with url: admin_search_path, method: :get do |f| %>
     <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>
     <%= f.text_field :word %>
     <%= f.submit "検索" %>

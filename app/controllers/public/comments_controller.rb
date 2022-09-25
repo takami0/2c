@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :set_find, only: [:create, :destroy]
+  before_action :post_find, only: [:create, :destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -29,7 +29,7 @@ class Public::CommentsController < ApplicationController
     params.require(:comment).permit(:user_id, :post_id, :content)
   end
 
-  def set_find
+  def post_find
     @post = Post.find(params[:post_id])
   end
 

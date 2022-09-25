@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     end
     resources :occupations, only: [:index, :create, :edit, :update, :destroy]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
     resources :category_media, only: [:index, :create, :edit, :update, :destroy]
     resources :category_styles, only: [:index, :create, :edit, :update, :destroy]
     resources :category_motifs, only: [:index, :create, :edit, :update, :destroy]

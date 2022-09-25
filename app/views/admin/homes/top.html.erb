@@ -1,11 +1,60 @@
-<h1>Top画面</h1>
 
-<%= render "admin/shared/header" %>
+<div class="container">
+  <h3>Top</h3>
+  <%= render "admin/shared/header" %>
 
-<%= link_to "職業", admin_occupations_path %>
+  <h4>職業</h4>
+  <%= link_to "職業", admin_occupations_path %>
+  <h4>カテゴリ</h4>
+  <%= link_to "カテゴリ（媒体）", admin_category_media_path %><br>
+  <%= link_to "カテゴリ（モチーフ）", admin_category_motifs_path %><br>
+  <%= link_to "カテゴリ（スタイル）", admin_category_styles_path %><br>
 
-<h4>カテゴリ</h4>
+  <br>
+  <%#検索フォーム%>
+  <%= form_with url: admin_search_path, method: :get do |f| %>
+    <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>
+    <%= f.text_field :word %>
+    <%= f.submit "検索" %>
+  <%end%>
+  <br>
 
-<%= link_to "カテゴリ（媒体）", admin_category_media_path %>
-<%= link_to "カテゴリ（モチーフ）", admin_category_motifs_path %>
-<%= link_to "カテゴリ（スタイル）", admin_category_styles_path %>
+  <%#最新の投稿を4件表示%>
+  <h3>NEW POST</h3>
+    <div class="row">
+      <% time_post = 0 %>
+      <% @posts.each do |_post| %>
+        <% if _post.user.display_status == true %>
+          <div class="col-lg-3">
+            <%= image_tag(_post.get_image(100, 100)) %><br>
+            <%= link_to _post.title, admin_post_path(_post.id) %><br>
+            <%= _post.user.name %>
+          </div>
+          <% time_post += 1 %>
+          <% break if time_post == 4%>
+        <%end%>
+      <%end%>
+    </div>
+    <div class="row">
+      <div class="col-lg-10"></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", admin_posts_path %></div>
+    </div>
+
+
+  <%#新規登録ユーザを4件表示%>
+  <h3>NEWCOMER</h3>
+    <div class="row">
+      <% @users.each do |user| %>
+      <div class="col-lg-3">
+        <%= image_tag (user.get_icon(150, 150)) %><br>
+        <%= link_to user.name, admin_user_path(user.id) %><br>
+        <%= CategoryMedium.find(user.category_medium_id).name %>
+      </div>
+      <%end%>
+    </div>
+    <div class="row">
+      <div class="col-lg-10"></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", admin_users_path %></div>
+    </div>
+
+</div>

@@ -4,7 +4,9 @@
   <%= render "public/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-4"><%= image_tag @post.get_image(300, 300) %></div>
+    <div class="col-lg-4">
+      <%= image_tag @post.get_image(300, 300) %>
+    </div>
     <div class="col-lg-4">
       <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
       <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>

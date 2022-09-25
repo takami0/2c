@@ -1,2 +1,45 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <h1>投稿詳細</h1>
+  <%= render "admin/shared/header" %>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <%= image_tag @post.get_image(300, 300) %>
+    </div>
+    <div class="col-lg-4">
+      <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
+      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>
+      <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      タイトル：<%= @post.title %><br>
+      制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
+      媒体: <%= @medium.name%><br>
+      モチーフ: <%= @motif.name%><br>
+      スタイル: <%= @style.name%><br>
+      紹介文：<%= @post.introduction %><br>
+      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-danger" %><br>
+      <br>
+    </div>
+  </div>
+
+  <%#コメント表示(降順)%>
+  <% @comments.each do |comment| %>
+    <div class="row">
+      <div class="col-lg-2">
+        <% user = comment.user %>
+        <%= link_to image_tag(user.get_icon(100, 100)), public_user_path(user.id) %><br>
+        name: <%= user.name %>
+      </div>
+      <div class="col-lg-4">
+        コメント：<br>
+        <%= comment.content %><br>
+        <%= link_to "コメント削除", public_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger" %>
+      </div>
+    </div>
+  <%end%>
+
+</div>
