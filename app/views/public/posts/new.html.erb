@@ -8,13 +8,6 @@
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :title, "タイトル" %><br>
-      <%= f.text_field :title %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
       <%= f.label :image, "ファイル" %><br>
       <%= f.file_field :image %>
     </div>
@@ -34,21 +27,22 @@
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :category_medium_id, "製作媒体" %><br>
-      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
+      <%= f.label :title, "タイトル" %><br>
+      <%= f.text_field :title %>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :category_motif_id, "モチーフ" %><br>
-      <%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %>
-    </div>
+    <div class="col-lg-1"><%= f.label :category_medium_id, "制作媒体" %></div>
+    <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></div>
   </div>
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :category_style_id, "スタイル" %><br>
-      <%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %>
-    </div>
+    <div class="col-lg-1"><%= f.label :category_motif_id, "モチーフ" %></div>
+    <div class="col-lg-2"><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"><%= f.label :category_style_id, "スタイル" %></div>
+    <div class="col-lg-2"><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %></div>
   </div>
 
   <div class="row">

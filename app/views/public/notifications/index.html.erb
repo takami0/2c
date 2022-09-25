@@ -11,6 +11,7 @@
     </div>
 
     <%= render "public/notifications/notifications", notices: @notices %>
+    <%= paginate @notices %>
 
   <%else%>
     <div class="row">

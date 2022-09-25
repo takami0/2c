@@ -1,7 +1,7 @@
 class Public::NotificationsController < ApplicationController
-  before_action :set_notices, only: [:index, :update_all]
 
   def index
+    @notices = current_user.received_notifications.where(checked: "false").page(params[:page]).per(10)
   end
 
   def update
@@ -11,13 +11,9 @@ class Public::NotificationsController < ApplicationController
   end
 
   def update_all
+    @notices = current_user.received_notifications.where(checked: "false")
     @notices.update(checked: "true")
     redirect_to public_user_notifications_path(current_user.id)
-  end
-
-  private
-  def set_notices
-    @notices = current_user.received_notifications.where(checked: "false")
   end
 
 end

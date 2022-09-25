@@ -1,37 +1,27 @@
 <% notices.each do |notice|%>
   <% received_user = notice.received_user %>
   <% send_user = notice.send_user %>
+  <% action = notice.action %>
 
   <div class="row">
     <div class="col-lg-2">
-      <% if notice.action == "bookmark" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-      <% elsif notice.action == "follow" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-      <% elsif notice.action == "comment" %>
-        <%= image_tag send_user.get_icon(50, 50) %>
-      <%end%>
+      <%= image_tag send_user.get_icon(50, 50) %>
     </div>
     <div class="col-lg-4">
-      <% if notice.action == "bookmark" %>
-        <%= link_to "あなたの投稿", public_post_path(notice.post_id) %>
-        <%= "に" %>
-        <%= link_to "#{send_user.name}", public_user_path(send_user.id)%>
-        <%= "がブックマークしました。" %><br>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch, class: "btn-warning" %><br>
-
-      <% elsif notice.action == "follow" %>
-        <%= link_to "#{send_user.name}",public_user_path(send_user.id) %>
-        <%= "にフォローされました。" %><br>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch, class: "btn-warning" %><br>
-
-      <% elsif notice.action == "comment" %>
-        <%= link_to "#{send_user.name}",public_user_path(send_user.id) %>
-        <%= "が"%>
-        <%= link_to "あなたの投稿", public_post_path(notice.post_id) %>
-        <%= "にコメントしました" %><br>
-        <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch, class: "btn-warning" %><br>
+      <%= link_to "#{send_user.name}",public_user_path(send_user.id) %>
+      <%= "があなた"%>
+      <% if action == "follow"%>
+        <%= "をフォローしました。"%><br>
+      <%else%>
+        <%= "の" %>
+        <%= link_to "投稿", public_post_path(notice.post_id) %>
+        <% if action == "comment" %>
+          <%= "にコメントしました"%><br>
+        <% elsif action == "bookmark" %>
+          <%= "をブックマークしました。"%><br>
+        <%end%>
       <%end%>
+      <%= link_to "既読", public_user_notification_path(received_user.id, notice.id), method: :patch, class: "btn-warning" %><br>
     </div>
   </div>
 

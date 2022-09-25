@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :set_find, only: [:show, :edit, :update]
+  before_action :post_find, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.page(params[:page]).per(10)
@@ -37,12 +37,19 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(@post.user.id)
+    if @post.destroy!
+      redirect_to public_user_path(user.id)
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :introduction, :display_status, :image, :image_sub1, :image_sub2, :user_id, :category_medium_id, :category_motif_id, :category_style_id)
   end
 
-  def set_find
+  def post_find
     @post = Post.find(params[:id])
   end
 
