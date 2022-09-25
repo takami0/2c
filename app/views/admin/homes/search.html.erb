@@ -13,14 +13,14 @@
 
   <%if @subject == "ユーザ" %>
     <% if @users.exists? %>
-      <%= render "public/shared/index_users", users: @users%>
+      <%= render "admin/shared/index_users", users: @users%>
       <%= paginate @users %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>
     <%end%>
   <%elsif @subject == "投稿" %>
     <% if @posts.exists? %>
-      <%= render "public/shared/index_posts", posts: @posts %>
+      <%= render "admin/shared/index_posts", posts: @posts %>
       <%= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>

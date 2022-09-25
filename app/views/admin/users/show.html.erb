@@ -1,2 +1,45 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <h1>ユーザ詳細</h1>
+  <%= render "admin/shared/header" %>
+
+  <div class="row">
+    <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
+    <div class="col-lg-4">
+      ユーザー名：<%= @user.name %><br>
+
+      <%= link_to "フォロー (#{@user.followings.count})", admin_user_followings_path(@user.id) %><br>
+      <%= link_to "フォロワー (#{@user.followers.count})", admin_user_followers_path(@user.id) %><br>
+      <%=link_to "ブックマーク (一覧)", admin_user_bookmarks_path(@user.id) %><br>
+      <% if @user.valid_status == true %>
+        <%= link_to "強制退会", admin_user_path(@user.id),　method: :patch, class: "btn-danger", data: {confirm: "#{@user.name}を強制退会させますか？"} %><br>
+      <%else%>
+        <%= link_to "有効", admin_user_path(@user.id),　method: :patch, class: "btn-primary", data: {confirm: "#{@user.name}を有効にしますか？"} %><br>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      住まい：<%= @user.address %><br>
+      職業：<%= @occupation.name %><br>
+      制作媒体（メイン）：<%= @medium.name %><br>
+      自己紹介：<%= @user.introduction %><br>
+      <br>
+    </div>
+  </div>
+
+  <h3>作品紹介</h3>
+  <% @posts.each do |_post|%>
+    <% if _post.user.id == @user.id %>
+      <div class="row">
+        <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), admin_post_path(_post.id) %></div>
+        <div class="col-lg-3">
+          Title: <%= _post.title %><br>
+          制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %><br>
+          <%= link_to "投稿削除", admin_post_path(_post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %><br>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+
+</div>

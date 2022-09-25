@@ -13,9 +13,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def destroy
-    user = User.find(@post.user.id)
     if @post.destroy!
-      redirect_to public_user_path(user.id)
+      redirect_to admin_posts_path
     end
   end
 

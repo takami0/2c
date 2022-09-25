@@ -16,12 +16,12 @@
   <div class="row">
     <div class="col-lg-8">
       タイトル：<%= @post.title %><br>
-      制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
+      制作者：<%= link_to @post.user.name, admin_user_path(@post.user.id) %><br>
       媒体: <%= @medium.name%><br>
       モチーフ: <%= @motif.name%><br>
       スタイル: <%= @style.name%><br>
       紹介文：<%= @post.introduction %><br>
-      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-danger" %><br>
+      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %><br>
       <br>
     </div>
   </div>
@@ -31,13 +31,13 @@
     <div class="row">
       <div class="col-lg-2">
         <% user = comment.user %>
-        <%= link_to image_tag(user.get_icon(100, 100)), public_user_path(user.id) %><br>
+        <%= link_to image_tag(user.get_icon(100, 100)), admin_user_path(user.id) %><br>
         name: <%= user.name %>
       </div>
       <div class="col-lg-4">
         コメント：<br>
         <%= comment.content %><br>
-        <%= link_to "コメント削除", public_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger" %>
+        <%= link_to "コメント削除", admin_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %>
       </div>
     </div>
   <%end%>

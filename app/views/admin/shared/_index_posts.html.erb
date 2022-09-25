@@ -1,0 +1,12 @@
+
+<% posts.each do |_post| %>
+  <% if _post.user.display_status == true %>
+  <div class="row">
+    <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150, 150)), admin_post_path(_post.id) %></div>
+    <div class="col-lg-3">
+      Title: <%= _post.title %><br>
+      投稿者：<%= _post.user.name %>
+    </div>
+  </div>
+  <%end%>
+<%end%>
