@@ -1,25 +1,31 @@
-<%= render "admin/shared/header"%>
 
-<h1>[管理画面] 職業</h1>
-<%= link_to "Top", admin_top_path %>
+<div class="container">
+  <h1>[管理画面] 職業</h1>
+  <%= render "admin/shared/header"%>
 
-<%= form_with model:@new_occupation, url: admin_occupations_path, method: :post do |f|%>
-  <%= f.text_field :name %>
-  <%= f.submit "新規作成" %>
-<%end%>
+  <h3>新規作成フォーム</h3>
+  <%= form_with model:@new_occupation, url: admin_occupations_path, method: :post do |f|%>
+  <div class="row">
+    <div class="col-lg-4">
+      <%= f.text_field :name %>
+      <%= f.submit "新規作成", class: "btn-success" %>
+    </div>
+  </div>
+  <%end%>
 
-<table>
-  <thead>
-    <tr>
-      <th>職業</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @occupations.each do |occupation|%>
-    <tr>
-      <td><%= occupation.name %></td>
-      <td><%= link_to "編集", edit_admin_occupation_path(occupation.id) %></td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
+  <br>
+  <h3>職業一覧</h3>
+  <% @occupations.each do |occupation|%>
+  <div class="row">
+    <div class="col-lg-2"><%= occupation.name %></div>
+    <div class="col-lg-2"><%= link_to "編集", edit_admin_occupation_path(occupation.id) %></div>
+  </div>
+  <%end%>
+
+</div>
+
+
+
+
+
+

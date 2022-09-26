@@ -6,14 +6,16 @@
     <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
     <div class="col-lg-4">
       ユーザー名：<%= @user.name %><br>
-
       <%= link_to "フォロー (#{@user.followings.count})", admin_user_followings_path(@user.id) %><br>
       <%= link_to "フォロワー (#{@user.followers.count})", admin_user_followers_path(@user.id) %><br>
       <%=link_to "ブックマーク (一覧)", admin_user_bookmarks_path(@user.id) %><br>
-      <% if @user.valid_status == true %>
-        <%= link_to "強制退会", admin_user_path(@user.id),　method: :patch, class: "btn-danger", data: {confirm: "#{@user.name}を強制退会させますか？"} %><br>
-      <%else%>
-        <%= link_to "有効", admin_user_path(@user.id),　method: :patch, class: "btn-primary", data: {confirm: "#{@user.name}を有効にしますか？"} %><br>
+      <h3>有効ステータス</h3>
+      <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f|%>
+        <%= f.radio_button :valid_status, true %>
+        <%= f.label :valid_status, "有効", value: true%><br>
+        <%= f.radio_button :valid_status, false %>
+        <%= f.label :valid_status, "強制退会", value: false%><br>
+        <%= f.submit "更新", class: "btn-warning"%>
       <%end%>
     </div>
   </div>
