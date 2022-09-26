@@ -1,0 +1,16 @@
+
+<div class="container">
+  <h1>フォロワー(一覧)</h1>
+  <%= render "admin/shared/header" %>
+
+  <% @followers.each do |follower| %>
+  <div class="row">
+    <div class="col-lg-4"><%= link_to (image_tag follower.get_icon(100, 100)), admin_user_path(follower.id) %></div>
+    <div class="col-lg-4">
+      <%= follower.name %>
+    </div>
+  </div>
+  <%end%>
+
+  <%= paginate @followers %>
+</div>

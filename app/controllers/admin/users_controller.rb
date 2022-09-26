@@ -12,13 +12,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user.update!(
-      if @user.valid_status == true
-        (params[:valid_status => false ])
-      else
-        (params[:valid_status => true ])
-      end
-    )
+    if @user.valid_status == true
+      @user.update(params[valid_status: false ])
+    else
+      @user.update(params[:valid_status => true ])
+    end
     redirect_to admin_user_path(@user.id)
   end
 
