@@ -1,27 +1,25 @@
-<%= render "admin/shared/header" %>
 
-<h1>カテゴリ（モチーフ）管理画面</h1>
-<%= link_to "Top", admin_top_path %>
-
-<%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>
-  <%= f.label :name, "媒体名" %>
-  <%= f.text_field :name %>
-  <%= f.submit "作成"%>
-<%end%>
-
-<table>
-  <thead>
-    <tr>
-      <th>モチーフ</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @motifs.each do |motif|%>
-  <tbody>
-    <tr>
-      <td><%= motif.name %></td>
-      <td><%= link_to "編集",  edit_admin_category_motif_path(motif.id) %></td>
-    </tr>
-  </tbody>
+<div class="container">
+  <h1>カテゴリ（モチーフ）管理画面</h1>
+  <%= render "admin/shared/header" %>
+  
+  <h3>新規作成フォーム</h3>
+  <%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>
+  <div class="row">
+    <div class="col-lg-4">
+      <%= f.text_field :name %>
+      <%= f.submit "作成", class: "btn-success"%>
+    </div>
+  </div>
   <%end%>
-</table>
+  
+  <br>
+  <h3>カテゴリ（モチーフ）一覧</h3>
+  <% @motifs.each do |motif|%>
+  <div class="row">
+    <div class="col-lg-2"><%= motif.name %></div>
+    <div class="col-lg-2"><%= link_to "編集",  edit_admin_category_motif_path(motif.id) %></div>
+  </div>
+  <%end%>
+
+</div>

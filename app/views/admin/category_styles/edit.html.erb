@@ -1,8 +1,23 @@
-<h1>カテゴリ（スタイル）編集画面</h1>
 
-<%= form_with model: @style, url: admin_category_style_path(@style.id), method: :patch do |f|%>
-  <%= f.text_field :name%>
-  <%= f.submit "更新"%>
-<%end%>
+<div class="container">
 
-<%= link_to "削除",  admin_category_style_path(@style.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+  <h1>カテゴリ（スタイル）編集画面</h1>
+  <%= render "admin/shared/header"%>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <%= "編集する〈スタイル〉：#{@style.name}"%>
+    </div>
+  </div>
+
+  <%= form_with model: @style, url: admin_category_style_path(@style.id), method: :patch do |f|%>
+  <div class="row">
+    <div class="col-lg-4">
+      <%= f.text_field :name%>
+      <%= f.submit "更新", class: "btn-success"%>
+      <%= link_to "削除",  admin_category_style_path(@style.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    </div>
+  </div>
+  <%end%>
+
+</div>

@@ -1,27 +1,25 @@
-<%= render "admin/shared/header" %>
 
-<h1>カテゴリ（スタイル）管理画面</h1>
-<%= link_to "Top", admin_top_path %>
+<div class="container">
+  <h1>カテゴリ（スタイル）管理画面</h1>
+  <%= render "admin/shared/header" %>
 
-<%= form_with model: @style_new, url: admin_category_styles_path, method: :post do |f|%>
-  <%= f.label :name, "媒体名" %>
-  <%= f.text_field :name %>
-  <%= f.submit "作成"%>
-<%end%>
-
-<table>
-  <thead>
-    <tr>
-      <th>スタイル</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @styles.each do |style|%>
-  <tbody>
-    <tr>
-      <td><%= style.name %></td>
-      <td><%= link_to "編集",  edit_admin_category_style_path(style.id) %></td>
-    </tr>
-  </tbody>
+  <h3>新規作成フォーム</h3>
+  <%= form_with model: @style_new, url: admin_category_styles_path, method: :post do |f|%>
+  <div class="row">
+    <div class="col-lg-4">
+      <%= f.text_field :name %>
+      <%= f.submit "作成", class: "btn-success"%>
+    </div>
+  </div>
   <%end%>
-</table>
+
+  <br>
+  <h3>カテゴリ（スタイル）一覧</h3>
+  <% @styles.each do |style|%>
+  <div class="row">
+    <div class="col-lg-2"><%= style.name %></div>
+    <div class="col-lg-2"><%= link_to "編集",  edit_admin_category_style_path(style.id) %></div>
+  </div>
+  <%end%>
+
+</div>
