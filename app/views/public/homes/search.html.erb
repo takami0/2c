@@ -11,6 +11,7 @@
   <%end%>
   <br>
 
+  <%#検索結果%>
   <%if @subject == "ユーザ" %>
     <% if @users.exists? %>
       <%= render "public/shared/index_users", users: @users%>

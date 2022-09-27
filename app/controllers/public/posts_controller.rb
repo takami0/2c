@@ -2,6 +2,10 @@ class Public::PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy]
 
   def index
+    @valid_post = []
+    posts = Post.all
+    posts.each do |_post|
+      _post.user.
     @posts = Post.page(params[:page]).per(10)
   end
 

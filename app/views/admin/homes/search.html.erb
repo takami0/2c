@@ -10,7 +10,8 @@
     <%= f.submit "検索" %>
   <%end%>
   <br>
-
+  
+  <%#検索結果%>
   <%if @subject == "ユーザ" %>
     <% if @users.exists? %>
       <%= render "admin/shared/index_users", users: @users%>
