@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :user_find, only:[:show, :edit, :update]
 
   def index
-    @users = User.where(valid_status: true).where.not(display_status: false).page(params[:page]).per(10)
+    @display_users = User.where(valid_status: true).where.not(display_status: false).page(params[:page]).per(10)
   end
 
   def show
