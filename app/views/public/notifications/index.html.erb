@@ -1,7 +1,7 @@
 
 <div class="container">
   <h1>通知一覧</h1>
-  <%= render "public/shared/header" %>
+  <%= render partial: "public/shared/header" %>
 
   <% if @notices.exists? %>
     <div class="row">
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <%= render "public/notifications/notifications", notices: @notices %>
+    <%= render partial: "public/notifications/notifications", locals: {notices: @notices} %>
     <%= paginate @notices %>
 
   <%else%>

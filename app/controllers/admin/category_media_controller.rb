@@ -1,4 +1,5 @@
 class Admin::CategoryMediaController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_medium, only: [:edit, :update, :destroy]
 
   def index

@@ -1,7 +1,7 @@
 
 <div class="container">
   <h1>カテゴリ（モチーフ）管理画面</h1>
-  <%= render "admin/shared/header" %>
+  <%= render partial: "admin/shared/header" %>
   
   <h3>新規作成フォーム</h3>
   <%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>

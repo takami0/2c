@@ -1,8 +1,8 @@
 <div class="container">
   <h1>投稿一覧</h1>
-  <%= render "admin/shared/header"%>
+  <%= render partial: "admin/shared/header"%>
 
-  <%= render "admin/shared/index_posts", posts: @posts %>
+  <%= render partial: "admin/shared/index_posts", locals: {posts: @posts} %>
   <%= paginate @posts %>
 
 </div>

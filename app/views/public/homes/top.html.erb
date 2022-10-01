@@ -1,9 +1,9 @@
 
 <div class="container">
   <h3>Top</h3>
-  <%= render "public/shared/header"%>
-
+  <%= render partial: "public/shared/header"%>
   <br>
+  
   <%#検索フォーム%>
   <%= form_with url: public_search_path, method: :get do |f| %>
     <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>

@@ -1,4 +1,6 @@
 class Admin::OccupationsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @new_occupation = Occupation.new
     @occupations = Occupation.all

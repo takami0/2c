@@ -3,7 +3,7 @@
 <div class="container">
   <h3>新規投稿</h3>
   <%= "＊：必須項目です"%>
-  <%= render "public/shared/header" %>
+  <%= render partial: "public/shared/header" %>
 
   <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
 

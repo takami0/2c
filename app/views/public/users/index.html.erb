@@ -1,9 +1,9 @@
 
 <div class="container">
   <h1>ユーザ(一覧)</h1>
-  <%= render "public/shared/header" %>
+  <%= render partial: "public/shared/header" %>
 
-  <%= render "public/shared/index_users", display_users: @display_users %>
+  <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
   <%= paginate @display_users %>
 
 </div>

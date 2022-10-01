@@ -30,5 +30,12 @@ class Post < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
+  
+  validates :category_medium_id, presence: true
+  validates :category_motif_id, presence: true
+  validates :category_style_id, presence: true
+  validates :title, presence: true
+  validates :introduction, length: {minimum: 1, maximum: 240}
+  validates :image, presence: true
 
 end

@@ -1,6 +1,6 @@
 
 <div class="container">
-  <%= render "public/shared/header" %>
+  <%= render partial: "public/shared/header" %>
   <h1>ユーザ編集</h1>
 
   <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>

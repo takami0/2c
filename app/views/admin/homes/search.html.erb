@@ -1,6 +1,6 @@
 <div class="container">
   <h1>検索画面</h1>
-  <%= render "admin/shared/header"%>
+  <%= render partial: "admin/shared/header"%>
 
   <br>
   <%#検索フォーム%>
@@ -14,14 +14,14 @@
   <%#検索結果%>
   <%if @subject == "ユーザ" %>
     <% if @users.exists? %>
-      <%= render "admin/shared/index_users", users: @users%>
+      <%= render partial: "admin/shared/index_users", locals: {users: @users} %>
       <%= paginate @users %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>
     <%end%>
   <%elsif @subject == "投稿" %>
     <% if @posts.exists? %>
-      <%= render "admin/shared/index_posts", posts: @posts %>
+      <%= render partial: "admin/shared/index_posts", locals: {posts: @posts} %>
       <%= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>

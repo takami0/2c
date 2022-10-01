@@ -40,5 +40,14 @@ class User < ApplicationRecord
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
+  
+  validates :category_medium_id, presence: true
+  validates :occupation_id, presence: true
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+  validates :telephone, presence: true
+  validates :address, presence: true
+  validates :icon, presence: true
 
 end

@@ -1,4 +1,5 @@
 class Admin::CategoryStylesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_style, only: [:edit, :update, :destroy]
 
   def index
