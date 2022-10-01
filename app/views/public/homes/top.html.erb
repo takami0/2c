@@ -15,8 +15,8 @@
   <h3>NEW POST</h3>　<%#最新の投稿を4件表示%>
     <div class="row">
       <% time_post = 0 %>
-      <% @display_posts.each do |_post| %>
-        <% if _post.user.display_status == true %>
+      <% @posts.each do |_post| %>
+        <% if _post.user.valid_status == true && _post.user.display_status != false %>
           <div class="col-lg-3">
             <%= image_tag(_post.get_image(100, 100)) %><br>
             <%= link_to _post.title, public_post_path(_post.id) %><br>

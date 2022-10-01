@@ -2,14 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy]
 
   def index
-    display_posts = []
-    posts = Post.all
-    posts.each do |_post|
-      if _post.user.valid_status == true && _post.user.display_statua != false
-        _post.id => display_posts
-      end
-    end
-    @display_posts = display_posts.page(params[:page]).per(10)
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
   def new

@@ -20,9 +20,9 @@
       <h4>検索対象が見つかりませんでした。</h4>
     <%end%>
   <%elsif @subject == "投稿" %>
-    <% if @display_posts.exists? %>
-      <%= render "public/shared/index_posts", display_posts: @display_posts %>
-      <%= paginate @display_posts %>
+    <% if @posts.exists? %>
+      <%= render "public/shared/index_posts", posts: @posts %>
+      <%= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>
     <%end%>
