@@ -5,15 +5,15 @@
   <%= form_with model: @user, url: user_session_path, method: :post do |f| %>
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :email, "メールアドレス" %><br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label :email, "メールアドレス：" %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力ください"%>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :password, "パスワード" %><br>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.label :password, "パスワード：" %><br>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力ください" %>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
   <div class="row">
     <div class="col-lg-4"><%= link_to "ゲストユーザ", user_session_guest_path, method: :post %> としてログイン</div>
   </div>
-  
+
 </div>
 
 

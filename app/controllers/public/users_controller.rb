@@ -1,8 +1,10 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :user_find, only:[:show, :edit, :update]
 
   def index
-    @display_users = User.where(valid_status: true).where.not(display_status: false).page(params[:page]).per(10)
+    display_users = User.where(valid_status: true).where.not(member_status: 2).where.not(display_status: false)
+    @display_users = display_users.page(params[:page]).per(10)
   end
 
   def show

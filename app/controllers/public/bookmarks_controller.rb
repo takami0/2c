@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_find, only: [:create, :destroy]
 
   def index

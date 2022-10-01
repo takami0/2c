@@ -6,6 +6,6 @@
   <%= link_to "マイページ", public_user_path(current_user.id) %>
   <%= link_to "通知", public_user_notifications_path(current_user.id)%>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%else%> <%# user == ゲスト %>
+<% elsif current_user.member_status == 2 %> <%# user == ゲスト %>
   <%= link_to "ログアウト", public_guest_destroy_path, method: :delete %>
 <%end%>

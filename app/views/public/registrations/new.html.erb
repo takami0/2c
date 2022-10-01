@@ -1,12 +1,14 @@
-<h2>新規アカウント登録</h2>
 
 <div class="container">
+  <h2>新規アカウント登録</h2>
+  <%= "＊：必須項目です"%><br>
+  <br>
   <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :name, "ユーザ名"%><br>
-      <%= f.text_field :name %>
+      <%= f.label :name, "ユーザ名：＊"%><br>
+      <%= f.text_field :name, placeholder: "ユーザ名を入力ください"%>
     </div>
   </div>
 
@@ -19,66 +21,58 @@
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :email, "メールアドレス" %><br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label :email, "メールアドレス：＊" %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力ください" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :password, "パスワード" %>
-      <% if @minimum_password_length %>
-        ( <%= @minimum_password_length %> 文字以上)<br>
-      <%end%>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <%= f.label :password, "パスワード：＊" %><br>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %><br>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :password_confirmation, "パスワード (確認用)" %><br>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.label :telephone_number, "電話番号：＊"%><br>
+      <%= f.text_field :telephone_number, placeholder: "ハイフン不要" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :telephone_number, "電話番号"%><br>
-      <%= f.text_field :telephone_number %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :address, "お住まいの地域"%><br>
+      <%= f.label :address, "お住まいの地域（都道府県）：＊"%><br>
       <%= f.select :address, User.addresses.keys, {} %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-2">
-      <%= f.label :occupation, "職業"%><br>
+      <%= f.label :occupation, "職業：＊"%><br>
       <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :medium, "制作媒体（メイン）"%><br>
+      <%= f.label :medium, "制作媒体：＊"%><br>
       <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :introduction, "自己紹介"%><br>
-      <%= f.text_area :introduction %>
+      <%= f.label :introduction, "自己紹介："%><br>
+      <%= f.text_area :introduction, placeholder: "あなたはどんな人ですか？" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-2"></div>
-    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div>
+    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div><br>
+    <br>
   </div>
 
   <div class="row">

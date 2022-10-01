@@ -1,4 +1,5 @@
 class Public::NotificationsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @notices = current_user.received_notifications.where(checked: "false").page(params[:page]).per(10)

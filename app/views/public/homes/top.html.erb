@@ -11,8 +11,9 @@
     <%= f.submit "検索" %>
   <%end%>
   <br>
-
-  <h3>NEW POST</h3>　<%#最新の投稿を4件表示%>
+  
+  <%#最新の投稿を4件表示%>
+  <h3>NEW POST</h3>　
     <div class="row">
       <% time_post = 0 %>
       <% @posts.each do |_post| %>
@@ -31,9 +32,10 @@
       <div class="col-lg-10"></div>
       <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
     </div>
+    
 
-
-  <h3>NEWCOMER</h3>　<%#新規登録ユーザを4件表示%>
+  <%#新規登録ユーザを4件表示%>
+  <h3>NEWCOMER</h3>　
     <div class="row">
       <% @display_users.each do |user| %>
       <div class="col-lg-3">

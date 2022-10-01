@@ -1,4 +1,6 @@
 class Public::FollowsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     follow = current_user.user_relationships.create(follow_user_id: params[:user_id])
     if follow
