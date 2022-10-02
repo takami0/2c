@@ -48,18 +48,19 @@ class Public::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  
+
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
-  
+
   def valid_status_check
     @user = User.find_by(email: params[:user][:email])
     if !@user
-      redirect_to new_user_registration_path
+      render :new
+      #redirect_to new_user_registration_path
     else
       if @user.valid_password?(params[:user][:password]) && @user.valid_status == false
-        redirect_to new_user_registration_path
+        render :new
       end
     end
   end

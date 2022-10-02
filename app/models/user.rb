@@ -35,19 +35,19 @@ class User < ApplicationRecord
 
   def get_icon(width, height)
     unless icon.attached?
-      file_path = Rails.root.join("app/assets/images/no_image.jpeg")
-      icon.attach(io: File.open(file_path), filename: "no_image.jpeg", content_type: "image/jpeg")
+      # binding.pry
+      file_path = Rails.root.join("app/assets/images/no_image.jpg")
+      icon.attach(io: File.open(file_path), filename: "no_image.jpg", content_type: "image/jpeg")
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   validates :category_medium_id, presence: true
   validates :occupation_id, presence: true
   validates :name, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
-  validates :telephone, presence: true
+  #validates :email, presence: true
+  #validates :password, presence: true
+  validates :telephone_number, presence: true
   validates :address, presence: true
-  validates :icon, presence: true
 
 end
