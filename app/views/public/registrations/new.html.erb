@@ -4,6 +4,7 @@
   <%= "＊：必須項目です"%><br>
   <br>
   <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
+  <%= render 'layouts/error_messages', resource: @user %>
 
   <div class="row">
     <div class="col-lg-4">

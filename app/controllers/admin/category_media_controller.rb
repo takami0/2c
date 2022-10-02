@@ -11,6 +11,7 @@ class Admin::CategoryMediaController < ApplicationController
     if CategoryMedium.new(category_medium_params).save
       redirect_to admin_category_media_path
     else
+      @medium_new = CategoryMedium.new
       @media = CategoryMedium.all
       render :index
     end

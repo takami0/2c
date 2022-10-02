@@ -45,8 +45,6 @@ class User < ApplicationRecord
   validates :category_medium_id, presence: true
   validates :occupation_id, presence: true
   validates :name, presence: true
-  #validates :email, presence: true
-  #validates :password, presence: true
   validates :telephone_number, presence: true
   validates :address, presence: true
 
