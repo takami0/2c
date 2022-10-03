@@ -6,22 +6,23 @@
   <%= render partial: "public/shared/header" %>
 
   <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
+    <%= render 'layouts/error_messages', resource: @post %>
 
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :image, "ファイル：＊" %><br>
+      <%= f.label :image, "投稿ファイル（メイン）：＊" %><br>
       <%= f.file_field :image %>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :image, "サブファイル１" %><br>
+      <%= f.label :image, "投稿ファイル（サブ１）" %><br>
       <%= f.file_field :image_sub1 %>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-4">
-      <%= f.label :image, "サブファイル２" %><br>
+      <%= f.label :image, "投稿ファイル（サブ２）" %><br>
       <%= f.file_field :image_sub2 %>
     </div>
   </div>
@@ -34,16 +35,22 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-1"><%= f.label :category_medium_id, "制作媒体：＊" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></div>
+    <div class="col-lg-4">
+      <%= f.label :category_medium_id, "制作媒体：＊" %><br>
+      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
+    </div>
   </div>
   <div class="row">
-    <div class="col-lg-1"><%= f.label :category_motif_id, "モチーフ：＊" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %></div>
+    <div class="col-lg-4">
+      <%= f.label :category_motif_id, "モチーフ：＊" %><br>
+      <%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %>
+    </div>
   </div>
   <div class="row">
-    <div class="col-lg-1"><%= f.label :category_style_id, "スタイル：＊" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %></div>
+    <div class="col-lg-4">
+      <%= f.label :category_style_id, "スタイル：＊" %><br>
+      <%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %>
+    </div>
   </div>
 
   <div class="row">

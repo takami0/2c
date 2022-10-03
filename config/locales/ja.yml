@@ -8,6 +8,17 @@ ja:
         occupation_id: "職業"
         name: "名前"
         telephone_number: "電話番号"
+      post:
+        image: "投稿ファイル（メイン）"
+        title: "タイトル"
+        category_medium_id: "制作媒体"
+        category_motif_id: "モチーフ"
+        category_style_id: "スタイル"
+        introduction: "紹介文"
+      occupation:
+        name: "職業名"
+      category_medium:
+        name: "制作媒体"
   views:
     pagination:
       first: "≪"

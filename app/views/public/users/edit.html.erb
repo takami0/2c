@@ -4,6 +4,7 @@
   <h1>ユーザ編集</h1>
 
   <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
+    <%= render 'layouts/error_messages', resource: @user %>
   <div class="row">
     <div class="col-lg-4">
       <%= image_tag current_user.get_icon(200, 200) %><br>

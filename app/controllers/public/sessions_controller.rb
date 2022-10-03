@@ -55,13 +55,8 @@ class Public::SessionsController < Devise::SessionsController
 
   def valid_status_check
     @user = User.find_by(email: params[:user][:email])
-    if !@user
+    if !@user || @user.valid_status == false
       render :new
-      #redirect_to new_user_registration_path
-    else
-      if @user.valid_password?(params[:user][:password]) && @user.valid_status == false
-        render :new
-      end
     end
   end
 end

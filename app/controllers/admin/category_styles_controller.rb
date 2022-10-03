@@ -20,7 +20,7 @@ class Admin::CategoryStylesController < ApplicationController
   end
 
   def update
-    if @style.update!(category_style_params)
+    if @style.update(category_style_params)
       redirect_to admin_category_styles_path
     else
       render :edit

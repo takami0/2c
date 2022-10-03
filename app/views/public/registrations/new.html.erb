@@ -45,7 +45,7 @@
   <div class="row">
     <div class="col-lg-4">
       <%= f.label :address, "お住まいの地域（都道府県）：＊"%><br>
-      <%= f.select :address, User.addresses.keys, {} %>
+      <%= f.select :address, User.addresses.keys, {prompt: "お住まいの地域を選択ください"}  %>
     </div>
   </div>
 

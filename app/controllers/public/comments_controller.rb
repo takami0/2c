@@ -14,8 +14,6 @@ class Public::CommentsController < ApplicationController
         )
       notice.save if notice.received_user_id != current_user.id
       redirect_to public_post_path(@post.id)
-    else
-      render template: "posts/show"
     end
   end
 

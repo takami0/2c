@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save!
+    if @post.save
       redirect_to public_posts_path
     else
       render :new

@@ -1,6 +1,6 @@
 class Admin::OccupationsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @new_occupation = Occupation.new
     @occupations = Occupation.all
@@ -8,7 +8,7 @@ class Admin::OccupationsController < ApplicationController
 
   def create
     @new_occupation = Occupation.new(occupation_params)
-    if @new_occupation.save!
+    if @new_occupation.save
       redirect_to admin_occupations_path
     else
       @occupations = Occupation.all

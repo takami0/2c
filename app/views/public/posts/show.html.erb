@@ -41,6 +41,7 @@
   <div class="row">
     <div class="col-lg-8">
       <%= form_with model: @comment, url: public_post_comments_path(@post.id), method: :post do |f|%>
+        <%= render 'layouts/error_messages', resource: @comment %>
         <%= f.text_area :content %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :post_id, :value => @post.id %>

@@ -11,7 +11,7 @@
   </div>
 
   <%= form_with model: @medium, url: admin_category_medium_path(@medium.id), method: :patch do |f|%>
-    <%=# render 'layouts/error_messages', resource: @medium %>
+    <%= render 'layouts/error_messages', resource: @medium %>
   <div class="row">
     <div class="col-lg-4">
       <%= f.text_field :name%>

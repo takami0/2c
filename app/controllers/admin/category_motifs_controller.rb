@@ -20,7 +20,7 @@ class Admin::CategoryMotifsController < ApplicationController
   end
 
   def update
-    if @motif.update!(category_motif_params)
+    if @motif.update(category_motif_params)
       redirect_to admin_category_motifs_path
     else
       render :edit
