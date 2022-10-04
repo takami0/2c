@@ -3,12 +3,13 @@ class Admin::CategoryStylesController < ApplicationController
   before_action :set_style, only: [:edit, :update, :destroy]
 
   def index
-    @style_new = CategoryStyle.new
+    @new_style = CategoryStyle.new
     @styles = CategoryStyle.all
   end
 
   def create
-    if CategoryStyle.new(category_style_params).save
+    @new_style = CategoryStyle.new(category_style_params)
+    if @new_style.save
       redirect_to admin_category_styles_path
     else
       @styles = CategoryStyle.all

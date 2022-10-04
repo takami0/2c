@@ -1,20 +1,21 @@
 
 <div class="container">
-  <h1>カテゴリ（スタイル）管理画面</h1>
+  <h1><制作スタイル> 管理画面</h1>
   <%= render partial: "admin/shared/header" %>
 
   <h3>新規作成フォーム</h3>
-  <%= form_with model: @style_new, url: admin_category_styles_path, method: :post do |f|%>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.text_field :name %>
-      <%= f.submit "作成", class: "btn-success"%>
+  <%= form_with model: @new_style, url: admin_category_styles_path, method: :post do |f|%>
+    <%= render 'layouts/error_messages', resource: @new_style %>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= f.text_field :name %>
+        <%= f.submit "作成", class: "btn-success"%>
+      </div>
     </div>
-  </div>
   <%end%>
 
   <br>
-  <h3>カテゴリ（スタイル）一覧</h3>
+  <h3><制作スタイル> 一覧</h3>
   <% @styles.each do |style|%>
   <div class="row">
     <div class="col-lg-2"><%= style.name %></div>

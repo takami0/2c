@@ -4,7 +4,7 @@
   <%= render partial: "admin/shared/header"%>
 
   <h3>新規作成フォーム</h3>
-  <%= form_with model:@new_occupation, url: admin_occupations_path, method: :post do |f|%>
+  <%= form_with model: @new_occupation, url: admin_occupations_path, method: :post do |f|%>
     <%= render 'layouts/error_messages', resource: @new_occupation %>
     <div class="row">
       <div class="col-lg-4">

@@ -19,6 +19,10 @@ ja:
         name: "職業名"
       category_medium:
         name: "制作媒体"
+      category_motif:
+        name: "制作モチーフ"
+      category_style:
+        name: "制作スタイル"
   views:
     pagination:
       first: "≪"

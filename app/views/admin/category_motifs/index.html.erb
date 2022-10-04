@@ -1,18 +1,19 @@
 
 <div class="container">
-  <h1>カテゴリ（モチーフ）管理画面</h1>
+  <h1><制作モチーフ> 管理画面</h1>
   <%= render partial: "admin/shared/header" %>
-  
+
   <h3>新規作成フォーム</h3>
-  <%= form_with model: @motif_new, url: admin_category_motifs_path, method: :post do |f|%>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.text_field :name %>
-      <%= f.submit "作成", class: "btn-success"%>
+  <%= form_with model: @new_motif, url: admin_category_motifs_path, method: :post do |f|%>
+    <%= render 'layouts/error_messages', resource: @new_motif %>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= f.text_field :name %>
+        <%= f.submit "作成", class: "btn-success"%>
+      </div>
     </div>
-  </div>
   <%end%>
-  
+
   <br>
   <h3>カテゴリ（モチーフ）一覧</h3>
   <% @motifs.each do |motif|%>

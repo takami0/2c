@@ -3,15 +3,15 @@ class Admin::CategoryMediaController < ApplicationController
   before_action :set_medium, only: [:edit, :update, :destroy]
 
   def index
-    @medium_new = CategoryMedium.new
+    @new_medium= CategoryMedium.new
     @media = CategoryMedium.all
   end
 
   def create
-    if CategoryMedium.new(category_medium_params).save
+    @new_medium = CategoryMedium.new(category_medium_params)
+    if @new_medium.save
       redirect_to admin_category_media_path
     else
-      @medium_new = CategoryMedium.new
       @media = CategoryMedium.all
       render :index
     end

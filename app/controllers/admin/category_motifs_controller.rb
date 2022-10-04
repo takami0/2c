@@ -3,12 +3,13 @@ class Admin::CategoryMotifsController < ApplicationController
   before_action :set_motif, only: [:edit, :update, :destroy]
 
   def index
-    @motif_new = CategoryMotif.new
+    @new_motif = CategoryMotif.new
     @motifs = CategoryMotif.all
   end
 
   def create
-    if CategoryMotif.new(category_motif_params).save
+    @new_motif = CategoryMotif.new(category_motif_params)
+    if @new_motif.save
       redirect_to admin_category_motifs_path
     else
       @motifs = CategoryMotif.all
