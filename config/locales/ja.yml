@@ -8,6 +8,7 @@ ja:
         occupation_id: "職業"
         name: "名前"
         telephone_number: "電話番号"
+        address: "お住まいの地域"
       post:
         image: "投稿ファイル（メイン）"
         title: "タイトル"
