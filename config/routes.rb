@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    root "homes#top", as: "top"
+    # root "homes#top", as: "top"
     get "search" => "homes#search"
     delete "users/guest_destroy" => "homes#guest_destroy", as: "guest_destroy"
 
@@ -52,4 +52,5 @@ Rails.application.routes.draw do
     end
   end
 
+  root to: 'public/homes#top', as: 'public_top'
 end

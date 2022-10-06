@@ -1,11 +1,11 @@
 <%= link_to "Top", public_top_path %>
 <%= link_to "ユーザ一覧", public_users_path %>
 <%= link_to "投稿一覧", public_posts_path %>
-<% if current_user.member_status == 1 %> <%# user == 会員 %>
+<% if user_signed_in? && current_user.member_status == 1 %> <%# user == 会員 %>
   <%= link_to "新規投稿", new_public_post_path %>
   <%= link_to "マイページ", public_user_path(current_user.id) %>
   <%= link_to "通知", public_user_notifications_path(current_user.id)%>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% elsif current_user.member_status == 2 %> <%# user == ゲスト %>
+<% elsif user_signed_in? && current_user.member_status == 2 %> <%# user == ゲスト %>
   <%= link_to "ログアウト", public_guest_destroy_path, method: :delete %>
 <%end%>

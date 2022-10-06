@@ -57,6 +57,7 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     if !@user || @user.valid_status == false
       flash.now[:danger] = "ログインに失敗しました"
+      @user = User.new
       render :new
     end
   end
