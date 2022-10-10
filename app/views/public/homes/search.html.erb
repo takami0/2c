@@ -12,22 +12,23 @@
   <br>
 
   <%#検索結果%>
-  <%if @subject == "ユーザ" %>
+  <%if @subject == "ユーザ_媒体別" %>
     <% if @display_users.exists? %>
       <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
       <%= paginate @display_users %>
     <%else%>
-      <h4>検索対象が見つかりませんでした。</h4>
+      <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
-  <%elsif @subject == "投稿" %>
+
+  <%elsif @subject == "投稿_媒体別" or "投稿_モチーフ別" or "投稿_スタイル別" %>
     <% if @posts.exists? %>
       <%= render partial: "public/shared/index_posts", locals: {posts: @posts} %>
       <%= paginate @posts %>
     <%else%>
-      <h4>検索対象が見つかりませんでした。</h4>
+      <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
   <%else%>
-    <h3>検索範囲が選択されていません。範囲を変更して再度お試しください。</h3>
+    <h3>検索範囲が選択されていません。条件を変更して再度お試しください。</h3>
   <%end%>
 
 </div>
