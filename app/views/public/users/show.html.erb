@@ -42,19 +42,15 @@
 
   <h3>作品紹介</h3>
   <% @posts.each do |_post|%>
-    <% if _post.user.id == @user.id %>
-      <%# if _post.present? %>
-        <div class="row">
-          <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), public_post_path(_post.id) %></div>
-          <div class="col-lg-3">
-            Title: <%= _post.title %><br>
-            制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %><br>
-            <%= link_to "#{_post.title}の編集", edit_public_post_path(_post.id) if _post.user.id == current_user.id %><br>
-          </div>
+    <% if  _post.user.id == @user.id %>
+      <div class="row">
+        <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), public_post_path(_post.id) %></div>
+        <div class="col-lg-3">
+          Title: <%= _post.title %><br>
+          制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %><br>
+          <%= link_to "#{_post.title}の編集", edit_public_post_path(_post.id) if _post.user.id == current_user.id %><br>
         </div>
-      <%#else%>
-        <!--まだ投稿作品はありません。-->
-      <%#end%>
+      </div>
     <%end%>
   <%end%>
 

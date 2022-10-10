@@ -58,7 +58,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'image_processing', '~> 1.2'
 gem 'net-smtp'
-gem 'pry-byebug', group: :development
+#gem 'pry-byebug', group: :development
 gem "enum_help"
 gem "kaminari", "~> 1.2.1"
 gem "rails-i18n"
+gem 'hirb'
+gem 'hirb-unicode'
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug', group: :development
+end
