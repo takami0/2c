@@ -10,10 +10,10 @@ class Public::HomesController < ApplicationController
     @subject = params[:subject]
     if @subject == "ユーザ"
       display_users = User.where(valid_status: true).where.not(display_status: false)
-      if display_users.where(params[:category_medium_id]).exists?
+      if display_users.where("name like?", "%#{params[:word]}%")
         @display_users = display_users.where(category_medium_id: params[:category_medium_id]).where("name like?", "%#{params[:word]}%").page(params[:page]).per(10)
       else
-        @display_users = display_users.where("name like?", "%#{params[:word]}%").page(params[:page]).per(10)
+        @display_users = display_users.where(category_medium_id: params[:category_medium_id]).page(params[:page]).per(10)
       end
 
     elsif @subject == "投稿"
