@@ -1,9 +1,10 @@
 
 
 <div class="container">
+  <%= render partial: "public/shared/header" %>
+
   <h3>新規投稿</h3>
   <%= "＊：必須項目です"%>
-  <%= render partial: "public/shared/header" %>
 
   <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
     <%= render 'layouts/error_messages', resource: @post %>

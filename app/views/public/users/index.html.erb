@@ -4,12 +4,7 @@
   <%= render partial: "public/shared/header" %>
 
   <h4>ユーザ検索</h4>
-  <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.hidden_field :subject, :value => "ユーザ_媒体別" %>
-    <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+  <%= render partial: "public/shared/search_user" %>
 
   <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
   <%= paginate @display_users %>

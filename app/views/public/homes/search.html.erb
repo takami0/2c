@@ -3,15 +3,13 @@
   <%= render partial: "public/shared/header"%>
 
   <br>
-  <%#検索フォーム%>
-  <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+  <h5>ユーザ検索</h5>
+  <%= render partial: "public/shared/search_user" %>
+  <h5>投稿検索</h5>
+  <%= render partial: "public/shared/search_post" %>
   <br>
 
-  <%#検索結果%>
+  <h5>検索結果</h5>
   <%if @subject == "ユーザ_媒体別" %>
     <% if @display_users.exists? %>
       <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
@@ -28,7 +26,7 @@
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
   <%else%>
-    <h3>検索範囲が選択されていません。条件を変更して再度お試しください。</h3>
+    <h4>検索範囲が選択されていません。条件を変更して再度お試しください。</h4>
   <%end%>
 
 </div>

@@ -3,31 +3,30 @@
   <%= render partial: "admin/shared/header"%>
 
   <br>
-  <%#検索フォーム%>
-  <%= form_with url: admin_search_path, method: :get do |f| %>
-    <%= f.select :subject, options_for_select([["ユーザ"], ["投稿"]]), prompt: "-検索対象を選択ください-"%>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+  <h5>ユーザ検索</h5>
+  <%= render partial: "admin/shared/search_user" %>
+  <h5>投稿検索</h5>
+  <%= render partial: "admin/shared/search_post" %>
   <br>
-  
+
   <%#検索結果%>
-  <%if @subject == "ユーザ" %>
+  <%if @subject == "ユーザ_媒体別" %>
     <% if @users.exists? %>
       <%= render partial: "admin/shared/index_users", locals: {users: @users} %>
       <%= paginate @users %>
     <%else%>
       <h4>検索対象が見つかりませんでした。</h4>
     <%end%>
-  <%elsif @subject == "投稿" %>
+
+  <%elsif @subject == "投稿_媒体別" or "投稿_モチーフ別" or "投稿_スタイル別" %>
     <% if @posts.exists? %>
       <%= render partial: "admin/shared/index_posts", locals: {posts: @posts} %>
       <%= paginate @posts %>
     <%else%>
-      <h4>検索対象が見つかりませんでした。</h4>
+      <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
   <%else%>
-    <h3>検索範囲が選択されていません。範囲を変更して再度お試しください。</h3>
+    <h4>検索範囲が選択されていません。条件を変更して再度お試しください。</h4>
   <%end%>
 
 </div>

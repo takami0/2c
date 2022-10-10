@@ -2,6 +2,10 @@
   <h1>投稿一覧</h1>
   <%= render partial: "admin/shared/header"%>
 
+  <h5>投稿検索</h5>
+  <%= render partial: "admin/shared/search_post" %>
+
+  <h5>投稿一覧</h5>
   <%= render partial: "admin/shared/index_posts", locals: {posts: @posts} %>
   <%= paginate @posts %>
 
