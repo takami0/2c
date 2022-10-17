@@ -12,14 +12,8 @@
     <div class="col-lg-4">
       ユーザー名：<%= @user.name %><br>
 
-      <%#フォロー機能%>
-      <% if current_user != @user %>
-        <% if current_user.user_relationships.exists?(follow_user_id: @user.id) %>
-          <%= link_to "フォロー解除", public_user_follow_path(@user.id), method: :delete, class: "btn-primary" %><br>
-        <%else%>
-          <%= link_to "フォローする", public_user_follow_path(@user.id), method: :post, class: "btn-success" %><br>
-        <%end%>
-      <%end%>
+      <!--フォローボタン-->
+      <%= render partial: "public/shared/follow_button" %>
 
       <%= link_to "フォロー (#{@user.followings.count})", public_user_followings_path(@user.id) %><br>
       <%= link_to "フォロワー (#{@user.followers.count})", public_user_followers_path(@user.id) %><br>
