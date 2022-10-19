@@ -1,0 +1,15 @@
+
+<% if current_user != user %>
+
+  <% if current_user.user_relationships.exists?(follow_user_id: user.id) %>
+    <div id="follow_in">
+      <%= link_to "フォロー解除", public_user_follow_path(user.id), method: :delete, "follow_in", class: "btn-primary" %><br>
+    </div>
+  <%else%>
+    <div id="follow_out">
+      
+    </div>
+  <%end%>
+  
+<%end%>
+

@@ -10,7 +10,7 @@ class Public::FollowsController < ApplicationController
         action: "follow"
         )
       notice.save
-      redirect_to public_user_path(params[:user_id])
+      #redirect_to public_user_path(params[:user_id])
     end
   end
 
@@ -18,7 +18,7 @@ class Public::FollowsController < ApplicationController
     unfollow = current_user.user_relationships.find_by(follow_user_id: params[:user_id]).destroy
     if unfollow
       current_user.send_notifications.find_by(received_user_id: params[:user_id], action: "follow").destroy
-      redirect_to public_user_path(params[:user_id])
+      #redirect_to public_user_path(params[:user_id])
     end
   end
 
