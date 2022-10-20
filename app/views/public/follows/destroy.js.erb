@@ -1,2 +1,4 @@
 
-$("follow_out").html("<%= j render 'public/follows/follow_button', user: @user %>");
+window.onload = function(){
+ $("follow_out").html("<%= j render 'public/follows/follow_button', user: @user %>");
+};

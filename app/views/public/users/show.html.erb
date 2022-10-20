@@ -4,8 +4,10 @@
   <%else%>
     <h1>ユーザ詳細</h1>
   <%end%>
-
-  <%= render partial: "public/shared/header" %>
+  
+  <div id="follow_button">
+    <%= render partial: "public/shared/header" %>
+  </div>
 
   <div class="row">
     <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
