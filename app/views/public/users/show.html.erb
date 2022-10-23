@@ -4,21 +4,23 @@
   <%else%>
     <h1>ユーザ詳細</h1>
   <%end%>
-  
-  <div id="follow_button">
-    <%= render partial: "public/shared/header" %>
-  </div>
+
+  <%= render partial: "public/shared/header" %>
 
   <div class="row">
     <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
     <div class="col-lg-4">
       ユーザー名：<%= @user.name %><br>
 
-      <!--フォローボタン-->
-      <%= render "public/follows/follow_button", user: @user %>
+      <ul id="follow_button">
+        <%= render "public/follows/follow_button", user: @user %>
+      </ul>
 
-      <%= link_to "フォロー (#{@user.followings.count})", public_user_followings_path(@user.id) %><br>
-      <%= link_to "フォロワー (#{@user.followers.count})", public_user_followers_path(@user.id) %><br>
+      <%= link_to "フォロー", public_user_followings_path(@user.id) %>
+        : <%= @user.followings.count %><br>
+      <%= link_to "フォロワー", public_user_followers_path(@user.id) %>
+        : <ul id="followers_count"><%= render "public/follows/followers_count", user: @user %></ul>
+
       <% if @user.id == current_user.id %>
         <%=link_to "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %><br>
         <%= link_to "ユーザ情報の編集", edit_public_user_path(@user.id), class: "btn-promary" %>
