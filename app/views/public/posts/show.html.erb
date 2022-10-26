@@ -17,14 +17,11 @@
   <div class="row">
     <div class="col-lg-8">
       タイトル：<%= @post.title %><br>
+
       <%#ブックマーク機能%>
-      <% if @post.user != current_user %>
-        <% if @post.bookmarked_by?(current_user) %>
-          <%= link_to "ブックマークを外す", public_post_bookmark_path(@post.id), method: :delete %><br>
-        <%else%>
-          <%= link_to "ブックマーク", public_post_bookmark_path(@post.id), method: :post %><br>
-        <%end%>
-      <%end%>
+      <ul id="bookmark">
+        <%= render "public/bookmarks/bookmark_button", post: @post %>
+      </ul>
 
       制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
       媒体: <%= @medium.name%><br>

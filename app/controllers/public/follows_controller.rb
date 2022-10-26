@@ -4,7 +4,7 @@ class Public::FollowsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     follow = current_user.user_relationships.new(follow_user_id: params[:user_id])
-    follow_notice = current_user.send_notifications.new(
+    notice_follow = current_user.send_notifications.new(
         send_user_id: current_user.id,
         received_user_id: params[:user_id],
         action: "follow"
@@ -13,7 +13,7 @@ class Public::FollowsController < ApplicationController
       if follow.save
         format.html { redirect_to public_user_path(params[:user_id]) }
         format.js
-        follow_notice.save
+        notice_follow.save
       end
     end
   end

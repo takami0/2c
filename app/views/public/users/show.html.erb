@@ -12,7 +12,8 @@
     <div class="col-lg-4">
       ユーザー名：<%= @user.name %><br>
 
-      <ul id="follow_button">
+      <!--フォローボタン-->
+      <ul id="follow">
         <%= render "public/follows/follow_button", user: @user %>
       </ul>
 
