@@ -11,7 +11,7 @@
 
   <h5>検索結果</h5>
   <%if @subject == "ユーザ_媒体別" %>
-    <% if @display_users.exists? %>
+    <% if @display_users.present? %>
       <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
       <%= paginate @display_users %>
     <%else%>
@@ -19,7 +19,7 @@
     <%end%>
 
   <%elsif @subject == "投稿_媒体別" or "投稿_モチーフ別" or "投稿_スタイル別" %>
-    <% if @posts.exists? %>
+    <% if @posts.present? %>
       <%= render partial: "public/shared/index_posts", locals: {posts: @posts} %>
       <%= paginate @posts %>
     <%else%>
