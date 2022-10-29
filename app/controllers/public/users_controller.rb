@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
 
   def index
     display_users = User.where(valid_status: true).where.not(member_status: 2).where.not(display_status: false)
-    @display_users = display_users.page(params[:page]).per(10)
+    @display_users = display_users.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show

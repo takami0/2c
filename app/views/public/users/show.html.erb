@@ -20,12 +20,15 @@
       <%= link_to "フォロー", public_user_followings_path(@user.id) %>
         : <%= @user.followings.count %><br>
       <%= link_to "フォロワー", public_user_followers_path(@user.id) %>
-        : <ul id="followers_count"><%= render "public/follows/followers_count", user: @user %></ul>
+        : <div id="followers_count"><%= render "public/follows/followers_count", user: @user %></div>
 
       <% if @user.id == current_user.id %>
-        <%=link_to "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %><br>
-        <%= link_to "ユーザ情報の編集", edit_public_user_path(@user.id), class: "btn-promary" %>
+        <%= link_to  "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %><br>
+        <%= link_to edit_public_user_path(@user.id), method: :get do %>
+          <i class="fa-solid fa-gear"></i>
+        <%end%>
       <%end%>
+
     </div>
   </div>
 

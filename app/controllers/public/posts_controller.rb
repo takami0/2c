@@ -3,7 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -24,7 +24,7 @@ class Public::PostsController < ApplicationController
     @motif = CategoryMotif.find(@post.category_motif_id)
     @style = CategoryStyle.find(@post.category_style_id)
     @comment = Comment.new
-    @comments = @post.comments.reverse
+    @comments = @post.comments.order("created_at DESC").page(params[:page]).per(8)
   end
 
   def edit
