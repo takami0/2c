@@ -1,0 +1,19 @@
+
+  <!--コメント表示(降順)-->
+  <% comments.each do |comment| %>
+  <div class="row">
+    <div class="col-lg-2">
+      <% user = comment.user %>
+      <%= link_to image_tag(user.get_icon(50, 50)), public_user_path(user.id) %><br>
+      <%= user.name %>
+    </div>
+    <div class="col-lg-4">
+      <%= comment.content %><br>
+      <% if user.id == current_user.id %>
+        <%= link_to public_post_comment_path(post.id, comment.id), method: :delete, remote: true do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+  <%end%>

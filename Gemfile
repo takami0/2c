@@ -68,4 +68,3 @@ group :development, :test do
   gem 'pry-byebug', group: :development
 end
 gem "jquery-rails"
-gem "font-awesome-rails"

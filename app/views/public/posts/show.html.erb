@@ -16,25 +16,31 @@
 
   <div class="row">
     <div class="col-lg-8">
-      タイトル：<%= @post.title %><br>
-
-      <%#ブックマーク機能%>
-      <ul id="bookmark">
-        <%= render "public/bookmarks/bookmark_button", post: @post %>
-      </ul>
-
+      タイトル：<%= @post.title %>
       制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
       媒体: <%= @medium.name%><br>
       モチーフ: <%= @motif.name%><br>
       スタイル: <%= @style.name%><br>
       紹介文：<%= @post.introduction %><br>
       <%= link_to "編集", edit_public_post_path(@post.id) if @post.user.id == current_user.id %><br>
-      <br>
+      <% if current_user.member_status == 1 %>
+        <%#ブックマーク機能%>
+        <div id="bookmark">
+          <%= render "public/bookmarks/bookmark_button", post: @post %>
+        </div>
+      <%end%>
     </div>
   </div>
 
-  <!--コメント機能-->
-  <%= render "public/posts/comment", post: @post, comment: @comment, comments: @comments %>
+  <h3>コメント</h3>
+  <!--一覧-->
+  <div id="comment_index">
+    <%= render "public/comments/index", post: @post, comments: @comments %>
+  </div>
   <%= paginate @comments %>
+  <!--入力フォーム-->
+  <% if current_user.member_status == 1 %>
+    <%= render "public/comments/form", post: @post, comment: @comment %>
+  <%end%>
 
 </div>

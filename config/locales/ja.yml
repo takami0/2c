@@ -16,6 +16,8 @@ ja:
         category_motif_id: "モチーフ"
         category_style_id: "スタイル"
         introduction: "紹介文"
+      comment:
+        content: "コメント"
       occupation:
         name: "職業名"
       category_medium:
@@ -51,5 +53,5 @@ ja:
       # not_found: "not found"
       # not_locked: "was not locked"
       not_saved:
-        one: "エラーが発生しました。以下ご確認お願いいたします。"
-        other: "エラーが発生しました。以下ご確認お願いいたします。"
+        one: "エラーが発生しました。"
+        other: "エラーが発生しました。"

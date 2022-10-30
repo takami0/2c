@@ -1,0 +1,12 @@
+<!--投稿フォーム-->
+  <div class="row">
+    <div class="col-lg-8">
+      <div id="comment_error"></div>
+      <%= form_with model: comment, url: public_post_comments_path(post.id), method: :post, local: false, local: false do |f|%>
+        <%= f.text_area :content %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => post.id %>
+        <%= f.submit "送信", class: "btn-success" %>
+      <%end%>
+    </div>
+  </div>
