@@ -3,13 +3,14 @@
   <%= render partial: "public/shared/header"%>
 
   <br>
-  <h5>ユーザ検索</h5>
+  <h5>＜ユーザ検索＞</h5>
   <%= render partial: "public/shared/search_user" %>
-  <h5>投稿検索</h5>
+
+  <h5>＜投稿検索＞</h5>
   <%= render partial: "public/shared/search_post" %>
   <br>
 
-  <h5>検索結果</h5>
+  <h5>ー検索結果ー</h5>
   <%if @subject == "ユーザ_媒体別" %>
     <% if @display_users.present? %>
       <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>

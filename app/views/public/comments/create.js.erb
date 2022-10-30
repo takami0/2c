@@ -1,3 +1,5 @@
+<!--エラーメッセージ-->
 $("#comment_error").html("<%= j render 'layouts/error_messages', resource: @comment %>")
+
 $("#comment_content").val("");
 $("#comment_index").html("<%= j render "public/comments/index", post: @post, comments: @comments %>");

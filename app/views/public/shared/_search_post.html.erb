@@ -1,5 +1,5 @@
 
-  媒体別：
+  媒体：
   <%= form_with url: public_search_path, method: :get do |f| %>
     <%= f.hidden_field :subject, :value => "投稿_媒体別" %>
     <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
@@ -7,7 +7,7 @@
     <%= f.submit "検索" %>
   <%end%>
 
-  モチーフ別：
+  モチーフ：
   <%= form_with url: public_search_path, method: :get do |f| %>
     <%= f.hidden_field :subject, :value => "投稿_モチーフ別" %>
     <%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "制作モチーフを選択ください" %>
@@ -15,7 +15,7 @@
     <%= f.submit "検索" %>
   <%end%>
 
-  スタイル別：
+  スタイル：
   <%= form_with url: public_search_path, method: :get do |f| %>
     <%= f.hidden_field :subject, :value => "投稿_スタイル別" %>
     <%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "制作スタイルを選択ください" %>

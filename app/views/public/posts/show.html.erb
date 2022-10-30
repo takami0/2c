@@ -1,6 +1,7 @@
 
 <div class="container">
   <h1>投稿詳細</h1>
+  <!--ヘッダー-->
   <%= render partial: "public/shared/header" %>
 
   <div class="row">
@@ -16,19 +17,27 @@
 
   <div class="row">
     <div class="col-lg-8">
-      タイトル：<%= @post.title %>
+      タイトル：<%= @post.title %><br>
       制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
       媒体: <%= @medium.name%><br>
       モチーフ: <%= @motif.name%><br>
       スタイル: <%= @style.name%><br>
       紹介文：<%= @post.introduction %><br>
-      <%= link_to "編集", edit_public_post_path(@post.id) if @post.user.id == current_user.id %><br>
+
+      <!--to 編集画面-->
+      <% if @post.user.id == current_user.id %>
+        <%= link_to edit_public_post_path(@post.id) do %>
+          <i class="fa-solid fa-gears"></i>
+        <%end%>
+      <%end%><br>
+
+      <!--ブックマーク-->
       <% if current_user.member_status == 1 %>
-        <%#ブックマーク機能%>
         <div id="bookmark">
           <%= render "public/bookmarks/bookmark_button", post: @post %>
         </div>
       <%end%>
+
     </div>
   </div>
 

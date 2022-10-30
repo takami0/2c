@@ -24,7 +24,7 @@ class Public::PostsController < ApplicationController
     @motif = CategoryMotif.find(@post.category_motif_id)
     @style = CategoryStyle.find(@post.category_style_id)
     @comment = Comment.new
-    @comments = @post.comments.order("created_at DESC").page(params[:page]).per(8)
+    @comments = @post.comments.order("created_at DESC").page(params[:page]).per(6)
   end
 
   def edit
