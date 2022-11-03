@@ -1,10 +1,10 @@
 
-<% if current_user != user %>
+<% if user_signed_in? && current_user != user %>
 
-    <% if current_user.user_relationships.exists?(follow_user_id: user.id) %>
-        <%= link_to "フォロー解除", public_user_follow_path(user.id), method: :delete, remote: true, class: "btn-primary" %><br>
-    <%else%>
-        <%= link_to "フォロー", public_user_follow_path(user.id), method: :post, remote: true, class: "btn-primary" %><br>
-    <%end%>
+  <% if current_user.user_relationships.exists?(follow_user_id: user.id) %>
+    <%= link_to "フォロー解除", public_user_follow_path(user.id), method: :delete, remote: true, class: "btn-primary" %><br>
+  <%else%>
+    <%= link_to "フォロー", public_user_follow_path(user.id), method: :post, remote: true, class: "btn-primary" %><br>
+  <%end%>
 
 <%end%>
