@@ -7,15 +7,34 @@ class Public::HomesController < ApplicationController
   end
 
   def search
-    @subject = params[:subject]
-    display_users = User.where(valid_status: true).where.not(display_status: false)
-    if @subject == "ユーザ_媒体別"
-      @medium = CategoryMedium.find(params[:category_medium_id])
-      if display_users.where("name like?", "%#{params[:word]}%")
-        @display_users = display_users.where(category_medium_id: params[:category_medium_id]).where("name like?", "%#{params[:word]}%").page(params[:page]).per(10)
-      else
-        @display_users = display_users.where(category_medium_id: params[:category_medium_id]).page(params[:page]).per(10)
+    @word = params[:word]
+    @subject_main = params[:subject_main]
+    @subject_sub = params[:subject_sub]
+    @category_medium = params[:category_medium_id]
+    @occupation = params[:occupation_id]
+    #display_users = User.where(valid_status: true).where.not(display_status: false)
+
+    if @subject_main == "user"
+      @records = User.search_for(@subject_sub, @word, @category_medium, @occupation)
+      if @subject_sub == "category_medium"
+        @medium = CategoryMedium.find(params[:category_medium_id])
+      elsif @subject_sub == "occupation"
+        @occupation_find = Occupation.find(params[:occupation_id])
       end
+
+
+      #if self.display_users.where("name like?", "% #{params[:word]} %")
+       # @display_users = self.display_users.where(category_medium_id: params[:category_medium_id]).where("name like?", "%#{params[:word]}%").page(params[:page]).per(10)
+      #else
+       # @display_users = self.display_users.where(category_medium_id: params[:category_medium_id]).page(params[:page]).per(10)
+      #end
+    #elsif @subject == "ユーザ_職業別"
+     # @occupation = Occupation.find(params[:occupation_id])
+      #if display_users.where("name like?", "%#{params[:word]}%")
+       # @display_users = display_users.where(occupation_id: params[:occupation_id]).where("name like?", "%#{params[:word]}%").page(params[:page]).per(10)
+      #else
+       # @display_users = display_users.where(occupation_id: params[:occupation_id]).page(params[:page]).per(10)
+      #end
 
     elsif @subject == "投稿_媒体別"
       @medium = CategoryMedium.find(params[:category_medium_id])

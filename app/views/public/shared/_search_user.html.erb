@@ -1,13 +1,29 @@
 
 <h4>-<ユーザ検索>-</h4>
 <table class= "table-bordered">
+  <!--検索対象：制作媒体-->
   <%= form_with url: public_search_path, method: :get do |f| %>
   <tr>
-    <th>媒体：</th>
+    <th>制作媒体：</th>
     <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></td>
     <td>
       <%= f.search_field :word %>
-      <%= f.hidden_field :subject, :value => "ユーザ_媒体別" %>
+      <%= f.hidden_field :subject_main, :value => "user" %>
+      <%= f.hidden_field :subject_sub, :value => "category_medium" %>
+      <%= f.submit "検索" %>
+    </td>
+  </tr>
+  <%end%>
+
+  <!--検索対象：職業-->
+  <%= form_with url: public_search_path, method: :get do |f| %>
+  <tr>
+    <th>職業：</th>
+    <td><%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "職業を選択ください" %></td>
+    <td>
+      <%= f.search_field :word %>
+      <%= f.hidden_field :subject_main, :value => "user" %>
+      <%= f.hidden_field :subject_sub, :value => "occupation" %>
       <%= f.submit "検索" %>
     </td>
   </tr>

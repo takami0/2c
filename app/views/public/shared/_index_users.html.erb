@@ -7,7 +7,7 @@
         <%= user.name %>
       </th>
       <td>
-        <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+        <%= "職業：#{@occupation_find.name}" if @occupation_find.present? %>
         <%= "制作媒体：#{@medium.name}" if @medium.present? %>
       </td>
     </tr>
