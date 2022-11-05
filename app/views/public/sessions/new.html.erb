@@ -1,47 +1,38 @@
 
 <div class="container">
-  <%= render partial: "public/shared/header"%>
-
-  <h2>ログイン</h2>
-  <%= render "layouts/flash"%><br>
-
-  <%= form_with model: @user, url: user_session_path, method: :post do |f| %>
 
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :email, "メールアドレス：" %><br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力ください"%>
+    <div class="col-lg-4"> <h2>ログイン</h2> </div>
+    <div class="col-lg-4"> <%= render "public/shared/header"%> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <%= render "layouts/flash"%><br> <!--エラーメッセージ-->
+      <table class= "table-striped">
+        <%= form_with model: @user, url: user_session_path, method: :post do |f| %>
+        <tr>
+          <th><%= f.label :email, "メールアドレス：" %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30, placeholder: "メールアドレスを入力ください"%></td>
+        </tr>
+        <tr>
+          <th><%= f.label :password, "パスワード：" %></th>
+          <td><%= f.password_field :password, autocomplete: "current-password", size: 30,placeholder: "パスワードを入力ください" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "ログイン" , class: "btn-success" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= link_to "ログイン（ゲスト）", user_session_guest_path, method: :post %></td>
+        </tr>
+        <%end%>
+      </table>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :password, "パスワード：" %><br>
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力ください" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-2"><%= f.submit "ログイン" , class: "btn-success" %></div>
-  </div>
-  <%end%>
-
-  <div class="row">
-    <div class="col-lg-3"><%= link_to "新規登録", new_user_registration_path %></div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4"><%= link_to "ゲストユーザ", user_session_guest_path, method: :post %> としてログイン</div>
   </div>
 
 </div>
-
-
-
-
-
-
 
   <%# if devise_mapping.rememberable? %>
       <%#= f.check_box :remember_me %>
