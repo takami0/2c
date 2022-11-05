@@ -1,25 +1,30 @@
 
-<%= link_to public_top_path do %> <i class="fa-sharp fa-solid fa-house fa-2x"></i> <%end%> <!--Top画面-->
-<%= link_to public_users_path do %> <i class="fa-solid fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
-<%= link_to public_posts_path do %> <i class="fa-sharp fa-solid fa-comments fa-2x"></i> <%end%> <!--投稿一覧-->
+<div class="row">
+  <div class="col-lg-2"><h1>D_square</h1></div>
+  <div class="col-lg-6">
+    <%= link_to public_top_path do %> <i class="fa-sharp fa-solid fa-house fa-2x"></i> <%end%> <!--Top画面-->
+    <%= link_to public_users_path do %> <i class="fa-solid fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
+    <%= link_to public_posts_path do %> <i class="fa-sharp fa-solid fa-comments fa-2x"></i> <%end%> <!--投稿一覧-->
 
-<!--user = 会員-->
-<% if user_signed_in? && current_user.member_status == 1 %>
-  <%= link_to public_user_path(current_user.id) do %> <i class="fa-solid fa-user fa-2x"></i> <%end%> <!--マイページ-->
-  <%= link_to new_public_post_path do %> <i class="fa-solid fa-palette fa-2x"></i> <%end%> <!--新規投稿画面-->
-  <%= link_to public_user_notifications_path(current_user.id) do %> <!--通知画面-->
-    <% if current_user.received_notifications.present? %>
-      <i class="fa-solid fa-bell fa-2x"></i>
+    <!--user = 会員-->
+    <% if user_signed_in? && current_user.member_status == 1 %>
+      <%= link_to public_user_path(current_user.id) do %> <i class="fa-solid fa-user fa-2x"></i> <%end%> <!--マイページ-->
+      <%= link_to new_public_post_path do %> <i class="fa-solid fa-palette fa-2x"></i> <%end%> <!--新規投稿画面-->
+      <%= link_to public_user_notifications_path(current_user.id) do %> <!--通知画面-->
+        <% if current_user.received_notifications.present? %>
+          <i class="fa-solid fa-bell fa-2x"></i>
+        <%else%>
+          <i class="fa-regular fa-bell fa-2x"></i>
+        <%end%>
+      <%end%>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <!--user = ゲストアカウント-->
+    <% elsif user_signed_in? && current_user.member_status == 2 %>
+      <%= link_to "新規登録", public_guest_destroy_path, method: :delete %> <!--ゲストアカウントの削除後、新規登録画面に遷移-->
+    <!--user = ゲスト（アカウント未作成）-->
     <%else%>
-      <i class="fa-regular fa-bell fa-2x"></i>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
     <%end%>
-  <%end%>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<!--user = ゲストアカウント-->
-<% elsif user_signed_in? && current_user.member_status == 2 %>
-  <%= link_to "新規登録", public_guest_destroy_path, method: :delete %> <!--ゲストアカウントの削除後、新規登録画面に遷移-->
-<!--user = ゲスト（アカウント未作成）-->
-<%else%>
-  <%= link_to "新規登録", new_user_registration_path %>
-  <%= link_to "ログイン", new_user_session_path %>
-<%end%>
+  </div>
+</div>

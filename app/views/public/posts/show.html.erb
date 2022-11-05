@@ -1,9 +1,15 @@
-
 <div class="container">
 
+  <%= render partial: "public/shared/header" %>
+
   <div class="row">
-    <div class="col-lg-4"><h1>投稿詳細</h1></div>
-    <div class="col-lg-4"><%= render partial: "public/shared/header" %></div>
+    <div class="col-lg-12">
+      <h2><%= @post.title %></h2>
+      <!--to 編集画面-->
+      <% if user_signed_in? && @post.user.id == current_user.id %>
+        <%= link_to edit_public_post_path(@post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
+      <%end%>
+    </div>
   </div>
 
   <br>
@@ -17,27 +23,18 @@
     <!--投稿紹介-->
     <div class="col-lg-6">
       <table class= "table-striped">
-        <tr>
-          <th>タイトル：</th>
-          <td><%= @post.title %></td>
-          <!--ブックマーク-->
-          <td>
-            <% if user_signed_in? && current_user.member_status == 1 %>
-              <div id="bookmark"> <%= render "public/bookmarks/bookmark_button", post: @post %> </div>
-            <%end%>
-          </td>
-        </tr>
-        <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, public_user_path(@post.user.id) %></td> </tr>
-        <tr> <th>媒体：</th>     <td><%= @medium.name%></td> </tr>
-        <tr> <th>モチーフ：</th> <td><%= @motif.name%></td> </tr>
-        <tr> <th>スタイル：</th> <td><%= @style.name%></td> </tr>
-        <tr> <th>紹介文：</th>   <td><%= @post.introduction %></td> </tr>
+          <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, public_user_path(@post.user.id) %></td> </tr>
+          <tr> <th>媒体：</th>     <td><%= @medium.name%></td> </tr>
+          <tr> <th>モチーフ：</th> <td><%= @motif.name%></td> </tr>
+          <tr> <th>スタイル：</th> <td><%= @style.name%></td> </tr>
+          <tr> <th>紹介文：</th>   <td><%= @post.introduction %></td> </tr>
+        <% if user_signed_in? && current_user.member_status == 1 %>
+          <tr>
+            <th>ブックマーク：</th>
+            <td> <div id="bookmark"> <%= render "public/bookmarks/bookmark_button", post: @post %> </div> </td>
+          </tr>
+        <%end%>
       </table>
-
-      <!--to 編集画面-->
-      <% if user_signed_in? && @post.user.id == current_user.id %>
-        <%= link_to edit_public_post_path(@post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
-      <%end%>
 
       <br>
       <h3>-<コメント>-</h3>
@@ -48,7 +45,6 @@
       <% if user_signed_in? && current_user.member_status == 1 %>
         <%= render "public/comments/form", post: @post, comment: @comment %>
       <%end%>
-
     </div>
   </div>
 

@@ -2,84 +2,59 @@
 <div class="container">
   <%= render partial: "public/shared/header"%>
 
-  <h2>新規アカウント登録</h2>
-  <%= "＊：必須項目です"%><br>
-  <br>
-  <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
-  <%= render 'layouts/error_messages', resource: @user %>
-
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :name, "ユーザ名：＊"%><br>
-      <%= f.text_field :name, placeholder: "ユーザ名を入力ください"%>
+    <div class="col-lg-6">
+      <h2>新規アカウント登録画面</h2><br>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :icon, "アイコン"%><br>
-      <%= f.file_field :icon %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :email, "メールアドレス：＊" %><br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力ください" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :password, "パスワード：＊" %><br>
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %><br>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :telephone_number, "電話番号：＊"%><br>
-      <%= f.text_field :telephone_number, placeholder: "ハイフン不要" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :address, "お住まいの地域（都道府県）：＊"%><br>
-      <%= f.select :address, User.addresses.keys, {prompt: "お住まいの地域を選択ください"}  %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2">
-      <%= f.label :occupation, "職業：＊"%><br>
-      <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :medium, "制作媒体：＊"%><br>
-      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :introduction, "自己紹介："%><br>
-      <%= f.text_area :introduction, placeholder: "あなたはどんな人ですか？" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-2"><%= f.submit "登録", class: "btn-success" %></div><br>
-    <br>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">既にアカウントをお持ちの方 → <%= link_to "こちら", new_user_session_path %></div>
-  </div>
-
-  <%end%>
+  <table class= "table-striped">
+    <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
+    <%= render 'layouts/error_messages', resource: @user %>
+    ＊：必須項目です
+    <tr>
+      <th><%= f.label :name, "ユーザ名（＊）："%></th>
+      <td><%= f.text_field :name, placeholder: "ユーザ名を入力ください", size: 30 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :icon, "アイコン"%></th>
+      <td><%= f.file_field :icon %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email, "メールアドレス（＊）：" %></th>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力ください", size: 30 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, "パスワード（＊）：" %></th>
+      <td><%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", size: 30 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, "パスワード<確認用>（＊）：" %></th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用", size: 30 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telephone_number, "電話番号（＊）："%></th>
+      <td><%= f.text_field :telephone_number, placeholder: "ハイフン不要", size: 30 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address, "お住まいの地域 <都道府県>（＊）："%></th>
+      <td><%= f.select :address, User.addresses.keys, {prompt: "お住まいの地域を選択ください"}%></td>
+    </tr>
+    <tr>
+      <th><%= f.label :occupation, "職業（＊）："%></th>
+      <td><%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在の職業を選択ください-"%></td>
+    </tr>
+    <tr>
+      <th><%= f.label :medium, "制作媒体（＊）："%></th>
+      <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%></td>
+    </tr>
+    <tr>
+      <th><%= f.label :introduction, "自己紹介："%></th>
+      <td><%= f.text_area :introduction, placeholder: "あなたはどんな人ですか？" %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= f.submit "登録", class: "btn-success" %></td>
+    </tr>
+    <%end%>
+  </table>

@@ -1,7 +1,19 @@
 
+<h4>-<ユーザ検索>-</h4>
+<table class= "table-bordered">
   <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.hidden_field :subject, :value => "ユーザ_媒体別" %>
-    <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
-    <%= f.search_field :word %>
-    <%= f.submit "検索" %>
+  <tr>
+    <th>媒体：</th>
+    <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></td>
+    <td>
+      <%= f.search_field :word %>
+      <%= f.hidden_field :subject, :value => "ユーザ_媒体別" %>
+      <%= f.submit "検索" %>
+    </td>
+  </tr>
   <%end%>
+</table>
+
+
+
+
