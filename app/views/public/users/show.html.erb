@@ -1,16 +1,15 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-lg-4"><%= render partial: "public/shared/header" %></div>
-  </div>
-
-  <div class="row">
     <div class="col-lg-4">
       <% if user_signed_in? && @user.id == current_user.id %>
         <h1>マイページ</h1>
       <%else%>
         <h1><%= "#{@user.name}の部屋"%></h1>
       <%end%>
+    </div>
+    <div class="col-lg-4">
+      <%= render partial: "public/shared/header" %>
     </div>
   </div>
 
@@ -34,7 +33,7 @@
         <%end%><br>
       <%end%>
 
-      <h5>プロフィール</h5>
+      <h5>ー＜プロフィール＞ー</h5>
       住まい：<%= @user.address %><br>
       職業：<%= @occupation.name %><br>
       制作媒体（メイン）：<%= @medium.name %><br>

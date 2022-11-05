@@ -1,18 +1,19 @@
 
-<% posts.each do |_post| %>
-  <% if _post.user.valid_status == true && _post.user.display_status != false %>
-    <div class="row">
-      <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150, 150)), public_post_path(_post.id) %></div>
-      <div class="col-lg-3">
-        Title: <%= _post.title %><br>
-        投稿者：<%= link_to _post.user.name, public_user_path(_post.user.id) %><br>
-        <!--to 編集画面-->
-        <% if _post.user.id == current_user.id %>
-          <%= link_to edit_public_post_path(_post.id) do %>
-            <i class="fa-solid fa-gears"></i>
+<table class= "table-striped">
+  <% posts.each do |_post| %>
+    <% if _post.user.valid_status == true && _post.user.display_status != false %>
+      <tr>
+        <td><%= link_to (image_tag _post.get_image(150, 150)), public_post_path(_post.id) %></td>
+        <td>
+          Title: <%= _post.title %><br>
+          投稿者：<%= link_to _post.user.name, public_user_path(_post.user.id) %><br>
+          <!--to 編集画面-->
+          <% if user_signed_in? && _post.user.id == current_user.id %>
+            <%= link_to edit_public_post_path(_post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
           <%end%>
-        <%end%>
-      </div>
-    </div>
+        </td>
+      </tr>
+    <%end%>
   <%end%>
-<%end%>
+</table>
+

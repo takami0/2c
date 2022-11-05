@@ -1,55 +1,55 @@
 
 <div class="container">
-  <h1>投稿詳細</h1>
-  <!--ヘッダー-->
-  <%= render partial: "public/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-4">
-      <%= image_tag @post.get_image(300, 300) %>
-    </div>
-    <div class="col-lg-4">
-      <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
-      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>
-      <br>
-    </div>
+    <div class="col-lg-4"><h1>投稿詳細</h1></div>
+    <div class="col-lg-4"><%= render partial: "public/shared/header" %></div>
   </div>
 
+  <br>
   <div class="row">
-    <div class="col-lg-8">
-      タイトル：<%= @post.title %><br>
-      制作者：<%= link_to @post.user.name, public_user_path(@post.user.id) %><br>
-      媒体: <%= @medium.name%><br>
-      モチーフ: <%= @motif.name%><br>
-      スタイル: <%= @style.name%><br>
-      紹介文：<%= @post.introduction %><br>
+    <!--投稿画像-->
+    <div class="col-lg-6">
+      <%= image_tag @post.get_image(500, 500) %><br>
+      <%= image_tag @post.get_image_sub1(200, 200) if @post.image_sub1.present? %><br>
+      <%= image_tag @post.get_image_sub2(200, 200) if @post.image_sub2.present? %><br>
+    </div>
+    <!--投稿紹介-->
+    <div class="col-lg-6">
+      <table class= "table-striped">
+        <tr>
+          <th>タイトル：</th>
+          <td><%= @post.title %></td>
+          <!--ブックマーク-->
+          <td>
+            <% if user_signed_in? && current_user.member_status == 1 %>
+              <div id="bookmark"> <%= render "public/bookmarks/bookmark_button", post: @post %> </div>
+            <%end%>
+          </td>
+        </tr>
+        <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, public_user_path(@post.user.id) %></td> </tr>
+        <tr> <th>媒体：</th>     <td><%= @medium.name%></td> </tr>
+        <tr> <th>モチーフ：</th> <td><%= @motif.name%></td> </tr>
+        <tr> <th>スタイル：</th> <td><%= @style.name%></td> </tr>
+        <tr> <th>紹介文：</th>   <td><%= @post.introduction %></td> </tr>
+      </table>
 
       <!--to 編集画面-->
-      <% if @post.user.id == current_user.id %>
-        <%= link_to edit_public_post_path(@post.id) do %>
-          <i class="fa-solid fa-gears"></i>
-        <%end%>
-      <%end%><br>
+      <% if user_signed_in? && @post.user.id == current_user.id %>
+        <%= link_to edit_public_post_path(@post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
+      <%end%>
 
-      <!--ブックマーク-->
-      <% if current_user.member_status == 1 %>
-        <div id="bookmark">
-          <%= render "public/bookmarks/bookmark_button", post: @post %>
-        </div>
+      <br>
+      <h3>-<コメント>-</h3>
+      <!--一覧-->
+      <div id="comment_index"> <%= render "public/comments/index", post: @post, comments: @comments %> </div>
+      <%= paginate @comments %>
+      <!--入力フォーム-->
+      <% if user_signed_in? && current_user.member_status == 1 %>
+        <%= render "public/comments/form", post: @post, comment: @comment %>
       <%end%>
 
     </div>
   </div>
-
-  <h3>コメント</h3>
-  <!--一覧-->
-  <div id="comment_index">
-    <%= render "public/comments/index", post: @post, comments: @comments %>
-  </div>
-  <%= paginate @comments %>
-  <!--入力フォーム-->
-  <% if current_user.member_status == 1 %>
-    <%= render "public/comments/form", post: @post, comment: @comment %>
-  <%end%>
 
 </div>

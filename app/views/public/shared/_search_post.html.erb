@@ -1,24 +1,41 @@
 
-  媒体：
-  <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.hidden_field :subject, :value => "投稿_媒体別" %>
-    <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+<h4>-<投稿検索>-</h4>
+<table class= "table-bordered">
 
-  モチーフ：
-  <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.hidden_field :subject, :value => "投稿_モチーフ別" %>
-    <%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "制作モチーフを選択ください" %>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+  <!--検索対象：媒体-->
+  <tr>
+    <%= form_with url: public_search_path, method: :get do |f| %>
+    <th>媒体：<%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></th>
+    <td>
+      <%= f.text_field :word %>
+      <%= f.hidden_field :subject, :value => "投稿_媒体別" %>
+      <%= f.submit "検索" %>
+    </td>
+    <%end%>
+  </tr>
 
-  スタイル：
-  <%= form_with url: public_search_path, method: :get do |f| %>
-    <%= f.hidden_field :subject, :value => "投稿_スタイル別" %>
-    <%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "制作スタイルを選択ください" %>
-    <%= f.text_field :word %>
-    <%= f.submit "検索" %>
-  <%end%>
+  <!--検索対象：モチーフ-->
+  <tr>
+    <%= form_with url: public_search_path, method: :get do |f| %>
+    <th>モチーフ：<%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "制作モチーフを選択ください" %></th>
+    <td>
+      <%= f.text_field :word %>
+      <%= f.hidden_field :subject, :value => "投稿_モチーフ別" %>
+      <%= f.submit "検索" %>
+    </td>
+    <%end%>
+  </tr>
+
+  <!--検索対象：スタイル-->
+  <tr>
+    <%= form_with url: public_search_path, method: :get do |f| %>
+    <th>スタイル：<%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "制作スタイルを選択ください" %></th>
+    <td>
+      <%= f.text_field :word %>
+      <%= f.hidden_field :subject, :value => "投稿_スタイル別" %>
+      <%= f.submit "検索" %>
+    </td>
+    <%end%>
+  </tr>
+
+</table>

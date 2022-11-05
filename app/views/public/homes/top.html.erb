@@ -1,9 +1,12 @@
 
 <div class="container">
-  <h3>Top</h3>
-  <%= render partial: "public/shared/header"%>
+
+  <div class="row">
+    <div class="col-lg-4"><h3>Top</h3></div>
+    <div class="col-lg-4"><%= render partial: "public/shared/header"%></div>
+  </div>
+
   <br>
-  
   <%#最新の投稿を4件表示%>
   <h3>NEW POST</h3>
     <div class="row">
@@ -24,7 +27,7 @@
       <div class="col-lg-10"></div>
       <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
     </div>
-    
+
 
   <%#新規登録ユーザを4件表示%>
   <h3>NEWCOMER</h3>
