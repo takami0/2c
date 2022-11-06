@@ -15,29 +15,43 @@
   <div class="row">
     <div class="col-lg-4"><%= image_tag @user.get_icon(300,300) %><br></div>
     <div class="col-lg-4">
-      ユーザー名：<%= @user.name %><br>
-    <!--フォローボタン-->
-    <ul id="follow"><%= render "public/follows/follow_button", user: @user %></ul>
+      <table class= "table-striped">
+        <tr>
+          <th>ユーザー名：</th>
+          <td>
+            <%= @user.name %>
+            <!--to ユーザ編集画面-->
+            <% if user_signed_in? && @user.id == current_user.id %>
+              <%= link_to edit_public_user_path(@user.id), method: :get do %> <i class="fas fa-cogs"></i> <%end%><br>
+              <%= link_to  "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %>
+            <%end%>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <!--フォローボタン-->
+            <ul id="follow"><%= render "public/follows/follow_button", user: @user %></ul>
+          </td>
+        </tr>
 
-      <%= link_to "フォロー", public_user_followings_path(@user.id) %>
-        : <%= @user.followings.count %><br>
-      <%= link_to "フォロワー", public_user_followers_path(@user.id) %>
-        : <div id="followers_count"><%= render "public/follows/followers_count", user: @user %></div>
+        <tr>
+          <th><%= link_to "フォロー：", public_user_followings_path(@user.id) %></th>
+          <td><%= @user.followings.count %></td>
+        </tr>
 
-      <% if user_signed_in? && @user.id == current_user.id %>
-        <%= link_to  "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %><br>
-        <!--to ユーザ編集画面-->
-        <%= link_to edit_public_user_path(@user.id), method: :get do %>
-          <i class="fa-solid fa-user-gear fa-2x"></i>
-        <%end%><br>
-      <%end%>
+        <tr>
+          <th><%= link_to "フォロワー：", public_user_followers_path(@user.id) %></th>
+          <td> <div id="followers_count"><%= render "public/follows/followers_count", user: @user %> </td>
+        </tr>
 
-      <h5>ー＜プロフィール＞ー</h5>
-      住まい：<%= @user.address %><br>
-      職業：<%= @occupation.name %><br>
-      制作媒体（メイン）：<%= @medium.name %><br>
-      自己紹介：<%= @user.introduction %><br>
+        <h5>ー＜プロフィール＞ー</h5>
+        <tr> <th>住まい：</th> <td><%= @user.address %></td> </tr>
+        <tr> <th>職業：</th> <td><%= @occupation.name %></td> </tr>
+        <tr> <th>制作媒体（メイン）：</th> <td><%= @medium.name %></td> </tr>
+        <tr> <th>自己紹介：</th> <td><%= @user.introduction %></td> </tr>
 
+      </table>
     </div>
   </div>
 

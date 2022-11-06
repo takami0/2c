@@ -15,7 +15,7 @@
         <br>
         <!--編集画面-->
         <% if user_signed_in? && _post.user.id == current_user.id %>
-          <%= link_to edit_public_post_path(_post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
+          <%= link_to edit_public_post_path(_post.id) do %> <i class="fas fa-cogs"></i> <%end%>
         <%end%>
       </td>
     </tr>

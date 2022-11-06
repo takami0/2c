@@ -7,10 +7,11 @@
       <h2>新規アカウント登録画面</h2><br>
     </div>
   </div>
-
+  
+  <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
   <table class= "table-striped">
-    <%= form_with model: @user, url: user_registration_path, method: :post do |f|%>
     <%= render 'layouts/error_messages', resource: @user %>
+    
     ＊：必須項目です
     <tr>
       <th><%= f.label :name, "ユーザ名（＊）："%></th>
@@ -56,5 +57,5 @@
       <th></th>
       <td><%= f.submit "登録", class: "btn-success" %></td>
     </tr>
-    <%end%>
   </table>
+  <%end%>

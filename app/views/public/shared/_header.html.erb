@@ -2,21 +2,21 @@
 <div class="row">
   <div class="col-lg-2"><h1>D_square</h1></div>
   <div class="col-lg-6">
-  
-    <%= link_to public_top_path do %> <i class="fas fa-house-user fa-2x"></i> <%end%> <!--Top画面-->
-    <%= link_to public_users_path do %> <i class="fa-solid fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
-    <%= link_to public_posts_path do %> <i class="fa-sharp fa-solid fa-comments fa-2x"></i> <%end%> <!--投稿一覧-->
-    <%= link_to public_search_path do %> <i class="fa-solid fa-magnifying-glass fa-2x"></i> <%end%> <!--検索画面-->
+
+    <%= link_to public_top_path do %>    <i class="fas fa-house-user fa-2x"></i> <%end%> <!--Top画面-->
+    <%= link_to public_users_path do %>  <i class="fas fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
+    <%= link_to public_posts_path do %>  <i class="fas fa-clone fa-2x"></i> <%end%> <!--投稿一覧-->
+    <%= link_to public_search_path do %> <i class="fas fa-search fa-2x"></i> <%end%> <!--検索画面-->
 
     <!--user = 会員-->
     <% if user_signed_in? && current_user.member_status == 1 %>
-      <%= link_to public_user_path(current_user.id) do %> <i class="fa-solid fa-user fa-2x"></i> <%end%> <!--マイページ-->
-      <%= link_to new_public_post_path do %> <i class="fa-solid fa-palette fa-2x"></i> <%end%> <!--新規投稿画面-->
+      <%= link_to public_user_path(current_user.id) do %> <i class="far fa-user fa-2x"></i> <%end%> <!--マイページ-->
+      <%= link_to new_public_post_path do %> <i class="fas fa-edit fa-2x"></i> <%end%> <!--新規投稿画面-->
       <%= link_to public_user_notifications_path(current_user.id) do %> <!--通知画面-->
         <% if current_user.received_notifications.present? %>
-          <i class="fa-solid fa-bell fa-2x"></i>
+          <i class="fas fa-bell fa-2x"></i>
         <%else%>
-          <i class="fa-regular fa-bell fa-2x"></i>
+          <i class="far fa-bell fa-2x"></i>
         <%end%>
       <%end%>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

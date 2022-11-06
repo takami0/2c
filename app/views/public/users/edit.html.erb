@@ -1,57 +1,55 @@
 
 <div class="container">
-  <%= render partial: "public/shared/header" %>
-  <h1>ユーザ編集</h1>
 
-  <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
-    <%= render 'layouts/error_messages', resource: @user %>
+  <%= render "public/shared/header" %>
+
   <div class="row">
-    <div class="col-lg-4">
-      <%= image_tag current_user.get_icon(200, 200) %><br>
-      <%= f.label :jcon, "アイコン" %>
-      <%= f.file_field :icon %><br>
-    </div>
-    <div class="col-lg-4">
-      <%= f.label :name, "名前" %><br>
-      <%= f.text_field :name %>
-    </div>
+    <div class="col-lg-4"> <h2><%= "#{current_user.name}の編集部屋"%></h2> </div>
   </div>
+
 
   <div class="row">
     <div class="col-lg-4">
-      <br>
-      <%= f.label :address, "お住まいの地域" %><br>
-      <%= f.select :address, User.addresses.keys, {} %><br>
-      <br>
-      <%= f.label :occupation, "職業"%><br>
-      <%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在のご職業を選択ください-" %><br>
-      <br>
-      <%= f.label :medium, "制作媒体（メイン）"%><br>
-      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%><br>
-      <br>
-      <%= f.label :introduction, "自己紹介"%><br>
-      <%= f.text_area :introduction %>
+      <%= image_tag current_user.get_icon(200, 200) %>
+    </div>
+    <div class="col-lg-6">
+      <%= form_with model: current_user, url: public_user_path(current_user.id), method: :patch do |f|%>
+      <%= render 'layouts/error_messages', resource: @user %>
+      <table class= "table-striped">
+        <tr> <th><%= f.label :icon, "アイコン：" %></th> <td><%= f.file_field :icon %></td> </tr>
+        <tr> <th><%= f.label :name, "名前：" %></th>     <td><%= f.text_field :name %></td> </tr>
+        <tr>
+          <th><%= f.label :address, "お住まいの地域：" %></th>
+          <td><%= f.select :address, User.addresses.keys, {} %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :occupation, "職業："%></th>
+          <td><%= f.collection_select :occupation_id, Occupation.all, :id, :name, prompt: "-現在のご職業を選択ください-" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :medium, "制作媒体："%></th>
+          <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "-制作媒体を選択ください-"%></td>
+        </tr>
+        <tr>
+          <th><%= f.label :introduction, "自己紹介："%></th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :display_status, "表示設定：" %></th>
+          <td>
+            <%= f.radio_button :display_status, true %>
+            <%= f.label :display_status, "表示", value: true %><br>
+            <%= f.radio_button :display_status, false %>
+            <%= f.label :display_status, "非表示", value: false %>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "更新", class: "btn-success"%></td>
+        </tr>
+
+      </table>
+      <%end%>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <br>
-      <h4>表示設定</h4>
-      <%= f.radio_button :display_status, true %>
-      <%= f.label :display_status, "表示", value: true %><br>
-      <%= f.radio_button :display_status, false %>
-      <%= f.label :display_status, "非表示", value: false %>
-    </div>
-  </div>
-
-  <div class="container">
-  <div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4"><%= f.submit "更新", class: "btn-success"%></div>
-  </div>
-</div>
-
-  <%end%>
-
 </div>

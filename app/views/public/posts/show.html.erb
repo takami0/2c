@@ -7,7 +7,7 @@
       <h2><%= @post.title %></h2>
       <!--to 編集画面-->
       <% if user_signed_in? && @post.user.id == current_user.id %>
-        <%= link_to edit_public_post_path(@post.id) do %> <i class="fa-solid fa-gears"></i> <%end%>
+        <%= link_to edit_public_post_path(@post.id) do %> <i class="fas fa-cog fa-2x"></i> <%end%>
       <%end%>
     </div>
   </div>
