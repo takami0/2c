@@ -11,6 +11,14 @@ class Post < ApplicationRecord
   has_one_attached :image_sub1
   has_one_attached :image_sub2
 
+  validates :category_medium_id, presence: true
+  validates :category_motif_id, presence: true
+  validates :category_style_id, presence: true
+  validates :title, presence: true
+  validates :introduction, length: {minimum: 1, maximum: 240}
+  validates :image, presence: true
+
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join("app/assets/images/no_image.jpeg")
@@ -27,15 +35,32 @@ class Post < ApplicationRecord
     image_sub2.variant(resize_to_limit: [width, height]).processed
   end
 
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
-  
-  validates :category_medium_id, presence: true
-  validates :category_motif_id, presence: true
-  validates :category_style_id, presence: true
-  validates :title, presence: true
-  validates :introduction, length: {minimum: 1, maximum: 240}
-  validates :image, presence: true
+
+
+  def self.search_for(subject_sub, word, medium_id, motif_id, style_id)
+    if subject_sub == "category_medium"
+      if word.present?
+        Post.where(category_medium_id: medium_id).where("title like? OR introduction like?", "%" + word + "%", "%" + word + "%")
+      else
+        Post.where(category_medium_id: medium_id)
+      end
+    elsif subject_sub == "category_motif"
+      if word.present?
+        Post.where(category_motif_id: motif_id).where("title like? OR introduction like?", "%" + word + "%", "%" + word + "%")
+      else
+        Post.where(category_motif_id: motif_id)
+      end
+    elsif subject_sub == "category_style"
+      if word.present?
+        Post.where(category_style_id: style_id).where("title like? OR introduction like?", "%" + word + "%", "%" + word + "%")
+      else
+        Post.where(category_style_id: style_id)
+      end
+    end
+  end
 
 end

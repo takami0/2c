@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :icon
   has_one :category_medium
   has_one :occupation
   has_many :posts, dependent: :destroy
@@ -18,7 +19,12 @@ class User < ApplicationRecord
   has_many :send_notifications, class_name: "Notification", foreign_key: "send_user_id", dependent: :destroy
   has_many :received_notifications, class_name: "Notification", foreign_key: "received_user_id", dependent: :destroy
 
-  has_one_attached :icon
+
+  validates :category_medium_id, presence: true
+  validates :occupation_id, presence: true
+  validates :name, presence: true
+  validates :telephone_number, presence: true
+  validates :address, presence: true
 
   enum address:{
      北海道:0,青森県:1,岩手県:2,宮城県:3,秋田県:4,山形県:5,福島県:6,
@@ -32,6 +38,7 @@ class User < ApplicationRecord
      沖縄県:46
    }
 
+
   def get_icon(width, height)
     unless icon.attached?
       # binding.pry
@@ -41,29 +48,22 @@ class User < ApplicationRecord
     icon.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.search_for(subject_sub, word, category_medium, occupation)
+
+  def self.search_for(subject_sub, word, occupation_id, medium_id)
     display_users = User.where(valid_status: true).where.not(display_status: false)
-    if subject_sub == "category_medium"
-      #display_users_category_medium =
+    if subject_sub == "occupation"
       if word.present?
-        display_users.where(category_medium_id: category_medium).where("name like?", "%#{params[:word]}%")
+        display_users.where(occupation_id: occupation_id).where("name like?", "%" + word + "%")
       else
-        display_users.where(category_medium_id: category_medium)
+        display_users.where(occupation_id: occupation_id)
       end
-    elsif subject_sub == "occupation"
+    elsif subject_sub == "category_medium"
       if word.present?
-        display_users.where(occupation_id: occupation).where("name like?", "%#{params[:word]}%")
+        display_users.where(category_medium_id: medium_id).where("name like?", "%" + word + "%")
       else
-        display_users.where(occupation_id: occupation)
+        display_users.where(category_medium_id: medium_id)
       end
     end
   end
-
-
-  validates :category_medium_id, presence: true
-  validates :occupation_id, presence: true
-  validates :name, presence: true
-  validates :telephone_number, presence: true
-  validates :address, presence: true
 
 end

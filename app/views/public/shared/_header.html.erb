@@ -5,6 +5,7 @@
     <%= link_to public_top_path do %> <i class="fa-sharp fa-solid fa-house fa-2x"></i> <%end%> <!--Top画面-->
     <%= link_to public_users_path do %> <i class="fa-solid fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
     <%= link_to public_posts_path do %> <i class="fa-sharp fa-solid fa-comments fa-2x"></i> <%end%> <!--投稿一覧-->
+    <%= link_to public_search_path do %> <i class="fa-solid fa-magnifying-glass fa-2x"></i> <%end%> <!--検索画面-->
 
     <!--user = 会員-->
     <% if user_signed_in? && current_user.member_status == 1 %>

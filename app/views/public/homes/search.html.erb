@@ -17,15 +17,15 @@
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
 
-  <%elsif @subject == "投稿_媒体別" or "投稿_モチーフ別" or "投稿_スタイル別" %>
-    <% if @posts.present? %>
-      <%= render "public/shared/index_posts", posts: @posts %>
-      <%= paginate @posts %>
+  <%elsif @subject_main == "post" %>
+    <% if @records.present? %>
+      <%= render "public/shared/index_posts", posts: @records %>
+      <%#= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
   <%else%>
-    <h4>検索範囲が選択されていません。条件を変更して再度お試しください。</h4>
+    <h4>検索範囲が選択されていません。</h4>
   <%end%>
 
 </div>

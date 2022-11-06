@@ -8,7 +8,8 @@
 
   <h4>ユーザ検索</h4>
   <%= render partial: "public/shared/search_user" %>
-
+  
+  <br>
   <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
   <%= paginate @display_users %>
 
