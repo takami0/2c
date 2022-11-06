@@ -1,86 +1,75 @@
 
 <div class="container">
-  <h1>投稿編集</h1>
+
   <%= render partial: "public/shared/header" %>
 
-  <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f|%>
-    <%= render 'layouts/error_messages', resource: @post %>
+  <div class="row">
+    <div class="col-lg-4"> <h2>投稿編集</h2> </div>
+  </div>
 
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-6">
       <%= image_tag @post.get_image(200, 200) %><br>
-      <%= f.label :image, "投稿ファイル（メイン）" %>
-    </div>
-    <div class="col-lg-3"><%= f.file_field :image %></div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3">
       <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
-      <%= f.label :image, "投稿ファイル（サブ１）" %>
+      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %>
     </div>
-    <div class="col-lg-3"><%= f.file_field :image_sub1 %></div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-3">
-      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>
-      <%= f.label :image, "投稿ファイル（サブ２）" %>
-    </div>
-    <div class="col-lg-3"><%= f.file_field :image_sub2 %></div>
-    <br>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-4">
-      <%= f.label :title, "タイトル" %><br>
-      <%= f.text_field :title %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-1"><%= f.label :category_medium_id, "制作媒体" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-1"><%= f.label :category_motif_id, "モチーフ" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %></div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-1"><%= f.label :category_style_id, "スタイル" %></div>
-    <div class="col-lg-2"><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %></div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-4">
-      <%= f.label :introduction, "紹介文" %><br>
-      <%= f.text_area :introduction %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3"><%= f.label :display_status, "表示設定" %></div>
-    <div class="col-lg-4">
-      <%= f.radio_button :display_status, "true" %>
-      <%= f.label :display_status, "表示", value: true %>
-      <%= f.radio_button :display_status, "false" %>
-      <%= f.label :display_status, "非表示", value: false %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-4">
-      <%= f.submit "更新", class: "btn-success"%><br>
-      <br>
-      <%= link_to "削除", public_post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-danger" %><br>
+    <div class="col-lg-6">
+      <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f|%>
+      <%= render 'layouts/error_messages', resource: @post %>
+      <table class= "table-striped">
+        <tr>
+          <th><%= f.label :image, "投稿ファイル（メイン）" %></th>
+          <td><%= f.file_field :image %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :image, "投稿ファイル（サブ１）" %></th>
+          <td><%= f.file_field :image_sub1 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :image, "投稿ファイル（サブ２）" %></th>
+          <td><%= f.file_field :image_sub2 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :title, "タイトル" %></th>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_medium_id, "制作媒体" %></th>
+          <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_motif_id, "モチーフ" %></th>
+          <td><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_style_id, "スタイル" %></th>
+          <td><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :introduction, "紹介文" %></th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :display_status, "表示設定" %></th>
+          <td>
+            <%= f.radio_button :display_status, "true" %>
+            <%= f.label :display_status, "表示", value: true %>
+            <%= f.radio_button :display_status, "false" %>
+            <%= f.label :display_status, "非表示", value: false %>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "更新", class: "btn-success"%></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= link_to "削除", public_post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-danger" %></td>
+        </tr>
+      </table>
+      <%end%>
     </div>
   </div>
-  <%end%>
 
 </div>

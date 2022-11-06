@@ -3,7 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.order("created_at DESC").page(params[:page]).per(10)
+    @posts = Post.where(display_status: :true).order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new

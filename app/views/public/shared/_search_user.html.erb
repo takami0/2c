@@ -4,7 +4,6 @@
 <!--検索フィルター：制作媒体-->
 <%= form_with url: public_search_path, method: :get do |f| %>
 <table class= "table-bordered">
-
   <tr>
     <th style="width: 85px;">制作媒体：</th>
     <td style="width: 230px;"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></td>

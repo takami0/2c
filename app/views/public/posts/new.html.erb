@@ -1,71 +1,52 @@
 
-
 <div class="container">
   <%= render partial: "public/shared/header" %>
 
-  <h3>新規投稿</h3>
-  <%= "＊：必須項目です"%>
-
-  <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
-    <%= render 'layouts/error_messages', resource: @post %>
-
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :image, "投稿ファイル（メイン）：＊" %><br>
-      <%= f.file_field :image %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :image, "投稿ファイル（サブ１）" %><br>
-      <%= f.file_field :image_sub1 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :image, "投稿ファイル（サブ２）" %><br>
-      <%= f.file_field :image_sub2 %>
-    </div>
+    <div class="col-lg-6"> <h3>新規投稿</h3> </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :title, "タイトル：＊" %><br>
-      <%= f.text_field :title, placeholder: "タイトルを入力ください" %>
+    <div class="col-lg-6">
+      <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
+      <%= render 'layouts/error_messages', resource: @post %>
+      <%= "＊：必須項目です"%>
+      <table class= "table-striped">
+        <tr> <th><%= f.label :image, "投稿ファイル（メイン）：＊" %></th> <td><%= f.file_field :image %></td>      </tr>
+        <tr> <th><%= f.label :image, "投稿ファイル（サブ１）" %></th>     <td><%= f.file_field :image_sub1 %></td> </tr>
+        <tr> <th><%= f.label :image, "投稿ファイル（サブ２）" %></th>     <td><%= f.file_field :image_sub2 %></td> </tr>
+
+        <tr>
+          <th><%= f.label :title, "タイトル：＊" %></th>
+          <td><%= f.text_field :title, placeholder: "タイトルを入力ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_medium_id, "制作媒体：＊" %></th>
+          <td><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_motif_id, "モチーフ：＊" %></th>
+          <td><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :category_style_id, "スタイル：＊" %></th>
+          <td><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :introduction, "紹介文：＊" %></th>
+          <td><%= f.text_area :introduction, placeholder: "どんな作品ですか？" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit "投稿", class: "btn-success" %>
+          </td>
+        </tr>
+
+      </table>
+      <%end%>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :category_medium_id, "制作媒体：＊" %><br>
-      <%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "制作媒体を選択ください" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :category_motif_id, "モチーフ：＊" %><br>
-      <%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "モチーフを選択ください" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :category_style_id, "スタイル：＊" %><br>
-      <%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "スタイルを選択ください" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <%= f.label :introduction, "紹介文：＊" %><br>
-      <%= f.text_area :introduction, placeholder: "どんな作品ですか？" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <div class="col-lg-2"></div>
-    <div class="col-lg-2"><%= f.submit "投稿", class: "btn-success" %></div>
-  </div>
-
-  <%end%>
 </div>

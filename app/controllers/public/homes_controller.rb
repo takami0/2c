@@ -16,14 +16,14 @@ class Public::HomesController < ApplicationController
     @style_id = params[:category_style_id]
 
     if @subject_main == "user"
-      @records = User.search_for(@subject_sub, @word, @occupation_id, @medium_id )
+      @records = User.search_for(@subject_sub, @word, @occupation_id, @medium_id ).page(params[:page]).per(10)
       if @subject_sub == "category_medium"
         @medium = CategoryMedium.find(@medium_id)
       elsif @subject_sub == "occupation"
         @occupation = Occupation.find(@occupation_id)
       end
     elsif @subject_main == "post"
-      @records = Post.search_for(@subject_sub, @word, @medium_id, @motif_id, @style_id)
+      @records = Post.search_for(@subject_sub, @word, @medium_id, @motif_id, @style_id).page(params[:page]).per(10)
       if @subject_sub == "category_medium"
         @medium = CategoryMedium.find(@medium_id)
       elsif @subject_sub == "category_motif"

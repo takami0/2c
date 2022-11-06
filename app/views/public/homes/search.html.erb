@@ -12,7 +12,7 @@
   <%if @subject_main == "user" %>
     <% if @records.present? %>
       <%= render "public/shared/index_users", display_users: @records %>
-      <%#= paginate @records %>
+      <%= paginate @records %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
@@ -20,7 +20,7 @@
   <%elsif @subject_main == "post" %>
     <% if @records.present? %>
       <%= render "public/shared/index_posts", posts: @records %>
-      <%#= paginate @posts %>
+      <%= paginate @records %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
