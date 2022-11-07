@@ -1,16 +1,24 @@
 
 <div class="container">
-  <h1>フォロー(一覧)</h1>
+
   <%= render partial: "public/shared/header" %>
 
-  <% @followings.each do |following|%>
   <div class="row">
-    <div class="col-lg-3"><%= link_to (image_tag following.get_icon(150, 150)), public_user_path(following.id) %></div>
-    <div class="col-lg-3">
-      <%= following.name %>
+    <div class="col-lg-6"> <h2>フォロー(一覧)</h2> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <% @followings.each do |following|%>
+      <table class= "table-striped">
+        <tr>
+          <th><%= link_to (image_tag following.get_icon(150, 150)), public_user_path(following.id) %></th>
+          <td><%= following.name %></td>
+        </tr>
+      </table>
+      <%end%>
+      <%= paginate @followings %>
     </div>
   </div>
-  <%end%>
 
-<%= paginate @followings %>
 </div>

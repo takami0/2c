@@ -1,16 +1,24 @@
 
 <div class="container">
-  <h1>フォロワー(一覧)</h1>
+
   <%= render  "public/shared/header" %>
 
-  <% @followers.each do |follower| %>
   <div class="row">
-    <div class="col-lg-4"><%= link_to (image_tag follower.get_icon(100, 100)), public_user_path(follower.id) %></div>
-    <div class="col-lg-4">
-      <%= follower.name %>
+    <div class="col-lg-6"> <h2>フォロワー(一覧)</h2> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <% @followers.each do |follower| %>
+      <table class= "table-striped">
+        <tr>
+          <th><%= link_to (image_tag follower.get_icon(100, 100)), public_user_path(follower.id) %></th>
+          <td><%= follower.name %></td>
+        </tr>
+      </table>
+      <%end%>
+      <%= paginate @followers %>
     </div>
   </div>
-  <%end%>
 
-  <%= paginate @followers %>
 </div>

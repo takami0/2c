@@ -1,31 +1,29 @@
 
 <div class="container">
- 
+
  <%= render "public/shared/header" %>
- 
+
  <div class="row">
   <div class="col-lg-4"> <h2>ブックマーク一覧</h2> </div>
  </div>
- 
+
  <div class="row">
   <div class="col-lg-6">
    <% @bookmarks.each do |bookmark| %>
    <% _post = bookmark.post %>
    <table class= "table-striped">
     <tr>
-     <th>
-      <%= link_to image_tag(_post.get_image(100, 100)), public_post_path(_post.id) %>
-      <%= _post.title %>
-     </th>
+     <th><%= link_to image_tag(_post.get_image(200, 200)), public_post_path(_post.id) %></th>
      <td>
-      <%= _post.user.name %><br>
-      <%= _post.introduction %>
+      <%= "タイトル：#{_post.title}" %><br>
+      <%= "作者：#{_post.user.name}" %><br>
+      <%= "紹介文：#{_post.introduction}" %>
      </td>
     </tr>
    </table>
-   <%end%>  
-   <%= paginate @bookmarks %>  
+   <%end%>
+   <%= paginate @bookmarks %>
   </div>
  </div>
- 
+
 </div>
