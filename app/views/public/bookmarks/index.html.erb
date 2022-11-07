@@ -9,6 +9,7 @@
 
  <div class="row">
   <div class="col-lg-6">
+   
    <% @bookmarks.each do |bookmark| %>
    <% _post = bookmark.post %>
    <table class= "table-striped">
@@ -23,6 +24,7 @@
    </table>
    <%end%>
    <%= paginate @bookmarks %>
+   
   </div>
  </div>
 

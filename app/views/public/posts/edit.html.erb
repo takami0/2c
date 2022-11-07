@@ -1,7 +1,7 @@
 
 <div class="container">
 
-  <%= render partial: "public/shared/header" %>
+  <%= render "public/shared/header" %>
 
   <div class="row">
     <div class="col-lg-4"> <h2>投稿編集</h2> </div>
@@ -9,9 +9,9 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <%= image_tag @post.get_image(200, 200) %><br>
-      <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
-      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %>
+      <%= image_tag @post.get_image(400, 400) %><br>
+      <%= image_tag @post.get_image_sub1(200, 200) if @post.image_sub1.present? %><br>
+      <%= image_tag @post.get_image_sub2(200, 200) if @post.image_sub2.present? %>
     </div>
 
     <div class="col-lg-6">

@@ -9,6 +9,7 @@
 
   <div class="row">
     <div class="col-lg-6">
+      
       <% @followers.each do |follower| %>
       <table class= "table-striped">
         <tr>
@@ -18,6 +19,7 @@
       </table>
       <%end%>
       <%= paginate @followers %>
+      
     </div>
   </div>
 

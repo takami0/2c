@@ -1,21 +1,24 @@
 
 <div class="container">
-  <h1>通知一覧</h1>
+
   <%= render partial: "public/shared/header" %>
+
+  <h2>通知一覧</h2>
+
 
   <% if @notices.exists? %>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <%= link_to "全て既読にする", public_user_notifications_update_path(current_user.id), method: :patch %><br>
       </div>
     </div>
 
-    <%= render partial: "public/notifications/notifications", locals: {notices: @notices} %>
+    <%= render "public/notifications/notifications", notices: @notices %>
     <%= paginate @notices %>
 
   <%else%>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <%= "通知はありません" %>
       </div>
     </div>

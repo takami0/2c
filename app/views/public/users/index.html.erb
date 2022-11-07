@@ -1,16 +1,33 @@
 
 <div class="container">
-  
-  <%= render "public/shared/header" %>
-  
-  <h1>ユーザ(一覧)</h1>
-  
 
-  <h4>ユーザ検索</h4>
-  <%= render partial: "public/shared/search_user" %>
-  
-  <br>
-  <%= render partial: "public/shared/index_users", locals: {display_users: @display_users} %>
-  <%= paginate @display_users %>
+  <%= render "public/shared/header" %>
+
+  <div class="row">
+    <div class="col-lg-6"> <h2>ユーザ(一覧)</h2> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10">
+      <!--検索フィールド-->
+      <%= render partial: "public/shared/search_user" %>
+      <br>
+
+      <!--一覧表示-->
+      <% @display_users.each do |user|%>
+      <table class= "table-striped">
+        <tr>
+          <th><%= link_to (image_tag user.get_icon(150, 150)), public_user_path(user.id) %></th>
+          <td>
+            <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+            <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
+          </td>
+        </tr>
+      </table>
+      <%= paginate @display_users %>
+      <%end%>
+
+    </div>
+  </div>
 
 </div>

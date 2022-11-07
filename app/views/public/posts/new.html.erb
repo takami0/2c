@@ -12,6 +12,7 @@
       <%= render 'layouts/error_messages', resource: @post %>
       <%= "＊：必須項目です"%>
       <table class= "table-striped">
+        
         <tr> <th><%= f.label :image, "投稿ファイル（メイン）：＊" %></th> <td><%= f.file_field :image %></td>      </tr>
         <tr> <th><%= f.label :image, "投稿ファイル（サブ１）" %></th>     <td><%= f.file_field :image_sub1 %></td> </tr>
         <tr> <th><%= f.label :image, "投稿ファイル（サブ２）" %></th>     <td><%= f.file_field :image_sub2 %></td> </tr>
@@ -43,9 +44,10 @@
             <%= f.submit "投稿", class: "btn-success" %>
           </td>
         </tr>
-
+        
       </table>
       <%end%>
+      
     </div>
   </div>
 
