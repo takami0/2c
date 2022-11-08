@@ -3,7 +3,7 @@ class Admin::OccupationsController < ApplicationController
 
   def index
     @new_occupation = Occupation.new
-    @occupations = Occupation.all
+    @occupations = Occupation.page(params[:page]).per(5)
   end
 
   def create

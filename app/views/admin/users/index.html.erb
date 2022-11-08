@@ -1,13 +1,30 @@
 
 <div class="container">
-  <h1>ユーザ(一覧)</h1>
+
   <%= render partial: "admin/shared/header" %>
 
-  <h5>ユーザ検索</h5>
-  <%= render partial: "admin/shared/search_user" %>
+  <div class="row">
+    <div class="col-lg-6"> <h2>ユーザ(一覧)</h2> </div>
+  </div>
 
-  <h5>ユーザ一覧</h5>
-  <%= render partial: "admin/shared/index_users", locals: {users: @users} %>
-  <%= paginate @users %>
+  <div class="row">
+    <div class="col-lg-10">
+
+      <!--一覧表示-->
+      <% @users.each do |user|%>
+      <table class= "table-striped">
+        <tr>
+          <th><%= link_to (image_tag user.get_icon(150, 150)), admin_user_path(user.id) %></th>
+          <td>
+            <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+            <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
+          </td>
+        </tr>
+      </table>
+      <%= paginate @users %>
+      <%end%>
+
+    </div>
+  </div>
 
 </div>

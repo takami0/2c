@@ -1,51 +1,17 @@
 
 <div class="container">
-  <h3>Top</h3>
+
   <%= render partial: "admin/shared/header" %>
 
-  <h4>職業</h4>
-  <%= link_to "職業", admin_occupations_path %>
-  <h4>カテゴリ</h4>
-  <%= link_to "カテゴリ（媒体）", admin_category_media_path %><br>
-  <%= link_to "カテゴリ（モチーフ）", admin_category_motifs_path %><br>
-  <%= link_to "カテゴリ（スタイル）", admin_category_styles_path %><br>
-
-  <%#最新の投稿を4件表示%>
-  <h3>NEW POST</h3>
-    <div class="row">
-      <% time_post = 0 %>
-      <% @posts.each do |_post| %>
-        <% if _post.user.display_status == true %>
-          <div class="col-lg-3">
-            <%= image_tag(_post.get_image(100, 100)) %><br>
-            <%= link_to _post.title, admin_post_path(_post.id) %><br>
-            <%= _post.user.name %>
-          </div>
-          <% time_post += 1 %>
-          <% break if time_post == 4%>
-        <%end%>
-      <%end%>
+  <div class="row">
+    <div class="col-lg-6">
+      <table class= "table-striped">
+        <tr><h4>管理画面</h4></tr>
+        <tr> <td><%= link_to "職業", admin_occupations_path %></td> </tr>
+        <tr> <td><%= link_to "カテゴリ：制作媒体", admin_category_media_path %></td> </tr>
+        <tr> <td><%= link_to "カテゴリ：モチーフ", admin_category_motifs_path %></td> </tr>
+        <tr> <td><%= link_to "カテゴリ：スタイル", admin_category_styles_path %></td> </tr>
+      </table>
     </div>
-    <div class="row">
-      <div class="col-lg-10"></div>
-      <div class="col-lg-2"><%= link_to "もっと見る", admin_posts_path %></div>
-    </div>
-
-
-  <%#新規登録ユーザを4件表示%>
-  <h3>NEWCOMER</h3>
-    <div class="row">
-      <% @users.each do |user| %>
-      <div class="col-lg-3">
-        <%= image_tag (user.get_icon(150, 150)) %><br>
-        <%= link_to user.name, admin_user_path(user.id) %><br>
-        <%= CategoryMedium.find(user.category_medium_id).name %>
-      </div>
-      <%end%>
-    </div>
-    <div class="row">
-      <div class="col-lg-10"></div>
-      <div class="col-lg-2"><%= link_to "もっと見る", admin_users_path %></div>
-    </div>
-
+  </div>
 </div>

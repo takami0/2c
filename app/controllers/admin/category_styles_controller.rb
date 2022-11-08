@@ -4,7 +4,7 @@ class Admin::CategoryStylesController < ApplicationController
 
   def index
     @new_style = CategoryStyle.new
-    @styles = CategoryStyle.all
+    @styles = CategoryStyle.page(params[:page]).per(5)
   end
 
   def create

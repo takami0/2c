@@ -4,7 +4,7 @@ class Admin::CategoryMediaController < ApplicationController
 
   def index
     @new_medium= CategoryMedium.new
-    @media = CategoryMedium.all
+    @media = CategoryMedium.page(params[:page]).per(5)
   end
 
   def create

@@ -1,28 +1,43 @@
 
 <div class="container">
-  <h1><制作媒体> 管理画面</h1>
+
   <%= render partial: "admin/shared/header" %>
 
-
-  <h3>新規作成フォーム</h3>
-  <%= form_with model: @new_medium, url: admin_category_media_path, method: :post, local: true do |f|%>
-    <%= render 'layouts/error_messages', resource: @new_medium %>
+  <div class="row">
+    <div class="col-lg-6"> <h2>カテゴリ管理画面：制作媒体</h2> </div>
+  </div>
 
   <div class="row">
-    <div class="col-lg-4">
-      <%= f.text_field :name %>
-      <%= f.submit "作成", class: "btn-success"%>
+    <div class="col-lg-6">
+
+    <!--新規作成フォーム-->
+    <br>
+    <%= form_with model: @new_medium, url: admin_category_media_path, method: :post do |f|%>
+    <%= render 'layouts/error_messages', resource: @new_medium %>
+    <table class= "table-striped">
+      <tr>
+        <th>新規作成フォーム</th>
+        <td><%= f.text_field :name, placeholder: "追加するカテゴリを入力ください", size: 30 %></td>
+        <td><%= f.submit "作成", class: "btn-success"%></td>
+      </tr>
+    </table>
+    <%end%>
+
+    <br>
+    <table class= "table-striped">
+      <tr>
+        <th>媒体名（一覧）</th>
+        <td></td>
+      </tr>
+      <% @media.each do |medium|%>
+      <tr>
+        <td><%= "・#{medium.name}" %></td>
+        <td><%= link_to "編集",  edit_admin_category_medium_path(medium.id) %></td>
+      </tr>
+      <%end%>
+    </table>
+    <%= paginate @media %>
     </div>
   </div>
-  <%end%>
-
-  <br>
-  <h3><制作媒体> 一覧</h3>
-  <% @media.each do |medium|%>
-  <div class="row">
-    <div class="col-lg-2"><%= medium.name %></div>
-    <div class="col-lg-2"><%= link_to "編集",  edit_admin_category_medium_path(medium.id) %></div>
-  </div>
-  <%end%>
 
 </div>

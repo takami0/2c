@@ -4,7 +4,7 @@ class Admin::CategoryMotifsController < ApplicationController
 
   def index
     @new_motif = CategoryMotif.new
-    @motifs = CategoryMotif.all
+    @motifs = CategoryMotif.page(params[:page]).per(5)
   end
 
   def create
