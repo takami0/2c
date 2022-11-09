@@ -1,47 +1,79 @@
 <div class="container">
-  <h1>ユーザ詳細</h1>
+
   <%= render partial: "admin/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-4"><%= image_tag @user.get_icon(400,400) %><br></div>
-    <div class="col-lg-4">
-      ユーザー名：<%= @user.name %><br>
-      <%= link_to "フォロー (#{@user.followings.count})", admin_user_followings_path(@user.id) %><br>
-      <%= link_to "フォロワー (#{@user.followers.count})", admin_user_followers_path(@user.id) %><br>
-      <%=link_to "ブックマーク (一覧)", admin_user_bookmarks_path(@user.id) %><br>
-      <h3>有効ステータス</h3>
+    <div class="col-lg-6">
+      <h2><%= "#{@user.name}の部屋"%></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5"><%= image_tag @user.get_icon(300,300) %></div>
+    <div class="col-lg-5">
+      <table class= "table-striped">
+        <tr>
+          <th>ユーザー名：</th>
+          <td>
+            <%= @user.name %><br>
+            <%=link_to "ブックマーク (一覧)", admin_user_bookmarks_path(@user.id) %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= link_to "フォロー：", admin_user_followings_path(@user.id) %></th>
+          <td><%= @user.followings.count %></td>
+        </tr>
+        <tr>
+          <th><%= link_to "フォロワー：", admin_user_followers_path(@user.id) %></th>
+          <td><%= @user.followers.count %></td>
+        </tr>
+
+        <h5>ー＜プロフィール＞ー</h5>
+        <tr> <th>住まい：</th> <td><%= @user.address %></td> </tr>
+        <tr> <th>職業：</th> <td><%= @occupation.name %></td> </tr>
+        <tr> <th>制作媒体（メイン）：</th> <td><%= @medium.name %></td> </tr>
+        <tr> <th>自己紹介：</th> <td><%= @user.introduction %></td> </tr>
+      </table>
+
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f|%>
-        <%= f.radio_button :valid_status, true %>
-        <%= f.label :valid_status, "有効", value: true%><br>
-        <%= f.radio_button :valid_status, false %>
-        <%= f.label :valid_status, "強制退会", value: false%><br>
-        <%= f.submit "更新", class: "btn-warning"%>
+      <table class= "table-striped">
+        <tr>
+          <th>＃アカウントステータス＃</th>
+          <td>
+            <%= f.radio_button :valid_status, true %>
+            <%= f.label :valid_status, "有効", value: true%>
+            <%= f.radio_button :valid_status, false %>
+            <%= f.label :valid_status, "強制退会", value: false%>
+          </td>
+          <td><%= f.submit "更新", class: "btn-warning"%></td>
+        </tr>
+      </table>
       <%end%>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-8">
-      住まい：<%= @user.address %><br>
-      職業：<%= @occupation.name %><br>
-      制作媒体（メイン）：<%= @medium.name %><br>
-      自己紹介：<%= @user.introduction %><br>
-      <br>
+    <div class="col-lg-6">
+      <h3>投稿（一覧）</h3>
+      <% if @posts.present? %>
+        <% @posts.each do |_post|%>
+          <table class= "table-striped">
+            <tr>
+              <th>
+                <%= link_to (image_tag _post.get_image(150,150)), admin_post_path(_post.id) %>
+              </th>
+              <td>
+                <%= "・タイトル: #{_post.title}" %><br>
+                <%= "・制作媒体：#{CategoryMedium.find(_post.category_medium_id).name}" %><br>
+                <%= link_to "投稿削除", admin_post_path(_post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %>
+              </td>
+            </tr>
+          </table>
+        <%end%>
+      <%else%>
+        <h5>-投稿はまだありません。-</h5>
+      <%end%>
     </div>
   </div>
-
-  <h3>作品紹介</h3>
-  <% @posts.each do |_post|%>
-    <% if _post.user.id == @user.id %>
-      <div class="row">
-        <div class="col-lg-3"><%= link_to (image_tag _post.get_image(150,150)), admin_post_path(_post.id) %></div>
-        <div class="col-lg-3">
-          Title: <%= _post.title %><br>
-          制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %><br>
-          <%= link_to "投稿削除", admin_post_path(_post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %><br>
-        </div>
-      </div>
-    <%end%>
-  <%end%>
 
 </div>

@@ -9,7 +9,7 @@ class Admin::UsersController < ApplicationController
   def show
     @medium = CategoryMedium.find(@user.category_medium_id)
     @occupation = Occupation.find(@user.occupation_id)
-    @posts = Post.all
+    @posts = Post.where(user_id: @user.id)
   end
 
   def update

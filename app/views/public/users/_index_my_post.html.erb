@@ -1,19 +1,23 @@
-<% posts.each do |_post|%>
-  <table class= "table-striped">
-    <tr>
-      <th>
-        <%= link_to (image_tag _post.get_image(200,200)), public_post_path(_post.id) %>
-      </th>
-      <td>
-        <!--to投稿編集画面-->
-        <% if user_signed_in? && _post.user.id == current_user.id %>
-          <%= link_to edit_public_post_path(_post.id) do %>
-            <i class="fas fa-cogs"></i>
-          <%end%>
-        <%end%><br>
-        ・タイトル: <%= _post.title %><br>
-        ・制作媒体：<%= CategoryMedium.find(_post.category_medium_id).name %>
-      </td>
-    </tr>
-  </table>
+<% if posts.present? %>
+  <% posts.each do |_post|%>
+    <table class= "table-striped">
+      <tr>
+        <th>
+          <%= link_to (image_tag _post.get_image(200,200)), public_post_path(_post.id) %>
+        </th>
+        <td>
+          <!--to投稿編集画面-->
+          <% if user_signed_in? && _post.user.id == current_user.id %>
+            <%= link_to edit_public_post_path(_post.id) do %>
+              <i class="fas fa-cogs"></i>
+            <%end%>
+          <%end%><br>
+          <%= "・タイトル: #{_post.title}" %><br>
+          <%= "・制作媒体：#{CategoryMedium.find(_post.category_medium_id).name}" %>
+        </td>
+      </tr>
+    </table>
+  <%end%>
+<%else%>
+  <h5>-投稿はまだありません。-</h5>
 <%end%>

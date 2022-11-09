@@ -47,8 +47,7 @@ class User < ApplicationRecord
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
-
-
+  
   def self.search_for(subject_sub, word, occupation_id, medium_id)
     display_users = User.where(valid_status: true).where.not(display_status: false)
     if subject_sub == "occupation"
