@@ -33,12 +33,13 @@
         <tr> <th>職業：</th> <td><%= @occupation.name %></td> </tr>
         <tr> <th>制作媒体（メイン）：</th> <td><%= @medium.name %></td> </tr>
         <tr> <th>自己紹介：</th> <td><%= @user.introduction %></td> </tr>
+        <tr> <th>表示ステータス：</th> <td><%= @user.display_status %></td></tr>
       </table>
 
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f|%>
       <table class= "table-striped">
         <tr>
-          <th>＃アカウントステータス＃</th>
+          <th>＃有効ステータス＃</th>
           <td>
             <%= f.radio_button :valid_status, true %>
             <%= f.label :valid_status, "有効", value: true%>

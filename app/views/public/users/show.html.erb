@@ -36,11 +36,11 @@
         </tr>
         <tr>
           <th><%= link_to "フォロー：", public_user_followings_path(@user.id) %></th>
-          <td><%= @user.followings.count %></td>
+          <td><%= @followings.count %></td>
         </tr>
         <tr>
           <th><%= link_to "フォロワー：", public_user_followers_path(@user.id) %></th>
-          <td> <div id="followers_count"><%= render "public/follows/followers_count", user: @user %></div> </td>
+          <td> <div id="followers_count"><%= render "public/follows/followers_count", followers: @followers %></div> </td>
         </tr>
 
         <h5>ー＜プロフィール＞ー</h5>

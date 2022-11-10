@@ -19,6 +19,7 @@
         <tr>
           <th><%= link_to (image_tag user.get_icon(150, 150)), public_user_path(user.id) %></th>
           <td>
+            <%= "ユーザ名：#{user.name}"%><br>
             <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
             <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
           </td>

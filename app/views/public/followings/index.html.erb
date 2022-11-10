@@ -9,17 +9,23 @@
 
   <div class="row">
     <div class="col-lg-6">
-      
+    <% if @followings.present? %>
       <% @followings.each do |following|%>
       <table class= "table-striped">
         <tr>
           <th><%= link_to (image_tag following.get_icon(150, 150)), public_user_path(following.id) %></th>
-          <td><%= following.name %></td>
+          <td>
+            <%= "ユーザ名：#{following.name}" %><br>
+            <%= "職業：#{Occupation.find(following.occupation_id).name}"%><br>
+            <%= "制作媒体：#{CategoryMedium.find(following.category_medium_id).name}"%>
+          </td>
         </tr>
       </table>
       <%end%>
       <%= paginate @followings %>
-      
+    <%else%>
+      -フォローしているユーザはいません-
+    <%end%>
     </div>
   </div>
 

@@ -15,5 +15,6 @@ class Follow < ApplicationRecord
   def notice_follow_delete
     current_user.send_notifications.find_by(received_user_id: params[:user_id]).destroy if Notification.valid?
   end
+    
 
 end

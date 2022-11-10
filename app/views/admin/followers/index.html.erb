@@ -1,16 +1,32 @@
 
 <div class="container">
-  <h1>フォロワー(一覧)</h1>
+
   <%= render partial: "admin/shared/header" %>
 
-  <% @followers.each do |follower| %>
   <div class="row">
-    <div class="col-lg-4"><%= link_to (image_tag follower.get_icon(100, 100)), admin_user_path(follower.id) %></div>
-    <div class="col-lg-4">
-      <%= follower.name %>
+    <div class="col-lg-6"> <h2>フォロワー(一覧)</h2> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+    <% if @followers.present? %>
+      <% @followers.each do |follower| %>
+      <table class= "table-striped">
+        <tr>
+          <th><%= link_to (image_tag follower.get_icon(150, 150)), admin_user_path(follower.id) %></th>
+          <td>
+            <%= "ユーザ名：#{follower.name}" %><br>
+            <%= "職業：#{Occupation.find(follower.occupation_id).name}"%><br>
+            <%= "制作媒体：#{CategoryMedium.find(follower.category_medium_id).name}"%>
+          </td>
+        </tr>
+      </table>
+      <%end%>
+      <%= paginate @followers %>
+    <%else%>
+      -フォロワーはいません-
+    <%end%>
     </div>
   </div>
-  <%end%>
 
-  <%= paginate @followers %>
 </div>
