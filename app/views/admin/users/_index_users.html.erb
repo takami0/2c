@@ -1,0 +1,27 @@
+<% users.each do |user|%>
+  <table class= "table-borderd">
+    <tr>
+      <th><%= link_to (image_tag user.get_icon(150, 150)), admin_user_path(user.id) %></th>
+      <td>
+        <%= "ユーザ名：#{user.name}"%><br>
+        <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+        <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%><br>
+        <%= "表示ステータス："%>
+        <% if user.display_status == true %>
+          表示
+        <%else%>
+          非表示
+        <%end%><br>
+        <%= "有効ステータス："%>
+        <% if user.valid_status == true %>
+          有効
+        <%else%>
+          強制退会
+        <%end%><br>
+      </td>
+    </tr>
+  </table>
+  <%= paginate users %>
+<%end%>
+
+

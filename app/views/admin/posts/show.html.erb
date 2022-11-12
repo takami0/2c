@@ -1,45 +1,64 @@
 <div class="container">
-  <h1>投稿詳細</h1>
-  <%= render partial: "admin/shared/header" %>
+
+  <%= render "admin/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-4">
-      <%= image_tag @post.get_image(300, 300) %>
-    </div>
-    <div class="col-lg-4">
-      <%= image_tag @post.get_image_sub1(150, 150) if @post.image_sub1.present? %><br>
-      <%= image_tag @post.get_image_sub2(150, 150) if @post.image_sub2.present? %><br>
-      <br>
+    <div class="col-lg-12">
+      <h2><%= @post.title %></h2> <br>
+      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %>
     </div>
   </div>
 
+  <br>
   <div class="row">
-    <div class="col-lg-8">
-      タイトル：<%= @post.title %><br>
-      制作者：<%= link_to @post.user.name, admin_user_path(@post.user.id) %><br>
-      媒体: <%= @medium.name%><br>
-      モチーフ: <%= @motif.name%><br>
-      スタイル: <%= @style.name%><br>
-      紹介文：<%= @post.introduction %><br>
-      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %><br>
+    <!--投稿画像-->
+    <div class="col-lg-6">
+      <%= image_tag @post.get_image(500, 500) %><br>
+      <%= image_tag @post.get_image_sub1(200, 200) if @post.image_sub1.present? %><br>
+      <%= image_tag @post.get_image_sub2(200, 200) if @post.image_sub2.present? %><br>
+    </div>
+    <!--投稿紹介-->
+    <div class="col-lg-6">
+      <table class= "table-striped">
+          <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, admin_user_path(@post.user.id) %></td> </tr>
+          <tr> <th>媒体：</th>     <td><%= @medium.name%></td> </tr>
+          <tr> <th>モチーフ：</th> <td><%= @motif.name%></td> </tr>
+          <tr> <th>スタイル：</th> <td><%= @style.name%></td> </tr>
+          <tr> <th>紹介文：</th>   <td><%= @post.introduction %></td> </tr>
+          <tr>
+            <th>表示ステータス：</th>
+            <td>
+              <% if @post.display_status == true %>
+                表示
+              <%else%>
+                非表示
+              <%end%>
+            </td>
+          </tr>
+      </table>
+
       <br>
+      <h3>-<コメント>-</h3>
+      <% if @comments.present? %>
+        <% @comments.each do |comment| %>
+          <table class= "table-borderd">
+            <tr>
+              <th>
+                <%= link_to image_tag(comment.user.get_icon(50, 50)), admin_user_path(comment.user.id) %><br>
+                <%= comment.user.name %>
+              </th>
+              <td>
+                <%= comment.content %><br>
+                <%= link_to "コメント削除", admin_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %>
+              </td>
+            </tr>
+          </table>
+        <%end%>
+        <%= paginate @comments %>
+      <%else%>
+        <h6>-コメントはまだありません-</h6>
+      <%end%>
     </div>
   </div>
-
-  <%#コメント表示(降順)%>
-  <% @comments.each do |comment| %>
-    <div class="row">
-      <div class="col-lg-2">
-        <% user = comment.user %>
-        <%= link_to image_tag(user.get_icon(100, 100)), admin_user_path(user.id) %><br>
-        name: <%= user.name %>
-      </div>
-      <div class="col-lg-4">
-        コメント：<br>
-        <%= comment.content %><br>
-        <%= link_to "コメント削除", admin_post_comment_path(@post.id, comment.id), method: :delete, class: "btn-danger", data: {confirm: "本当に削除しますか？"} %>
-      </div>
-    </div>
-  <%end%>
 
 </div>

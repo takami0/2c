@@ -1,0 +1,23 @@
+
+<% posts.each do |_post| %>
+  <table class= "table-bordered">
+    <tr>
+      <th>
+        <%= link_to (image_tag _post.get_image(150, 150)), admin_post_path(_post.id) %><br>
+        <%= _post.title %>
+      </th>
+      <td>
+        <%= "ユーザ名：#{_post.user.name}" %><br>
+        <%= "媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
+        <%= "モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
+        <%= "スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
+        <%= "表示ステータス："%>
+        <% if _post.display_status == true %>
+          表示
+        <%else%>
+          非表示
+        <%end%>
+      </td>
+    </tr>
+  </table>
+<%end%>

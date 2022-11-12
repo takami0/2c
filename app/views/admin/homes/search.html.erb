@@ -4,36 +4,31 @@
   <br>
 
   <h2>検索画面</h2>
-  <%= render partial: "public/homes/search_user" %>
-  <%= render partial: "public/homes/search_post" %>
-  <br>
-  
-
-  <br>
-  <h5>ユーザ検索</h5>
-  <%= render partial: "admin/shared/search_user" %>
-  <h5>投稿検索</h5>
-  <%= render partial: "admin/shared/search_post" %>
+  <%= render partial: "admin/homes/search_user" %>
+  <%= render partial: "admin/homes/search_post" %>
   <br>
 
-  <%#検索結果%>
-  <%if @subject == "ユーザ_媒体別" %>
-    <% if @users.exists? %>
-      <%= render partial: "admin/shared/index_users", locals: {users: @users} %>
+
+  <%if @subject_main == "user" %>
+    <h5>ー「ユーザ」の検索結果ー</h5>
+    <% if @users.present? %>
+      <%= render "admin/users/index_users", users: @users %>
       <%= paginate @users %>
     <%else%>
-      <h4>検索対象が見つかりませんでした。</h4>
+      <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
 
-  <%elsif @subject == "投稿_媒体別" or "投稿_モチーフ別" or "投稿_スタイル別" %>
-    <% if @posts.exists? %>
-      <%= render partial: "admin/shared/index_posts", locals: {posts: @posts} %>
+  <%elsif @subject_main == "post" %>
+    <h5>ー「投稿」の検索結果ー</h5>
+    <% if @posts.present? %>
+      <%= render "admin/posts/index_posts", posts: @posts %>
       <%= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
+
   <%else%>
-    <h4>検索範囲が選択されていません。条件を変更して再度お試しください。</h4>
+    <h4>検索範囲が選択されていません。</h4>
   <%end%>
 
 </div>

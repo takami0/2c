@@ -4,29 +4,17 @@
   <%= render partial: "admin/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-6"> <h2>ユーザ(一覧)</h2> </div>
+    <div class="col-lg-6"> <h2>ユーザ一覧</h2> </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-10">
-
-      <!--一覧表示-->
-      <% @users.each do |user|%>
-      <table class= "table-striped">
-        <tr>
-          <th><%= link_to (image_tag user.get_icon(150, 150)), admin_user_path(user.id) %></th>
-          <td>
-            <%= "ユーザ名：#{user.name}"%><br>
-            <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
-            <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%><br>
-            <%= "表示ステータス：#{user.display_status}"%><br>
-            <%= "有効ステータス：#{user.valid_status}"%><br>
-          </td>
-        </tr>
-      </table>
+    <div class="col-lg-12">
+      <!--検索フィールド-->
+      <%= render partial: "admin/homes/search_user" %>
+      <br>
+      <!--ユーザ一覧-->
+      <%= render "admin/users/index_users", users: @users %>
       <%= paginate @users %>
-      <%end%>
-
     </div>
   </div>
 
