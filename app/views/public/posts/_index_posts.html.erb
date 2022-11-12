@@ -1,5 +1,5 @@
 
-<% posts.each do |_post| %>
+<% posts.each do |_post| if posts.present? %>
   <% if _post.user.valid_status == true && _post.user.display_status != false %>
   <table class= "table-bordered">
     <tr>
