@@ -1,6 +1,6 @@
-<% if posts.present? %>
+
   <% posts.each do |_post| %>
-    <% if _post.user.valid_status == true && _post.user.display_status != false %>
+    <%# if _post.user.valid_status == true && _post.user.display_status != false %>
     <table class= "table-bordered">
       <tr>
         <th>
@@ -19,8 +19,5 @@
         </td>
       </tr>
     </table>
-    <%end%>
+    <%#end%>
   <%end%>
-<%else%>
-  投稿はまだありません。
-<%end%>
