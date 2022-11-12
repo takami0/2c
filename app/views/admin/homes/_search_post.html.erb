@@ -1,0 +1,50 @@
+
+<h4>-<投稿検索>-</h4>
+
+<!--検索フィルター：媒体-->
+<%= form_with url: admin_search_path, method: :get do |f| %>
+<table class= "table-bordered">
+  <tr>
+    <th style="width: 85px;">媒体：</th>
+    <td style="width: 232px;"><%= f.collection_select :category_medium_id, CategoryMedium.all, :id, :name, prompt: "媒体を選択ください" %></td>
+    <td>
+      <%= f.search_field :word %>
+      <%= f.hidden_field :subject_main, :value => "post" %>
+      <%= f.hidden_field :subject_sub, :value => "category_medium" %>
+      <%= f.submit "検索" %>
+    </td>
+  </tr>
+</table>
+<%end%>
+
+<!--検索フィルター：モチーフ-->
+<%= form_with url: admin_search_path, method: :get do |f| %>
+<table class= "table-bordered">
+  <tr>
+    <th style="width: 85px;">モチーフ：</th>
+    <td style="width: 230px;"><%= f.collection_select :category_motif_id, CategoryMotif.all, :id, :name, prompt: "制作モチーフを選択ください" %></td>
+    <td>
+      <%= f.search_field :word %>
+      <%= f.hidden_field :subject_main, :value => "post" %>
+      <%= f.hidden_field :subject_sub, :value => "category_motif" %>
+      <%= f.submit "検索" %>
+    </td>
+  </tr>
+</table>
+<%end%>
+
+<!--検索フィルター：スタイル-->
+<%= form_with url: admin_search_path, method: :get do |f| %>
+<table class= "table-bordered">
+  <tr>
+    <th style="width: 85px;">スタイル：</th>
+    <td style="width: 230px;"><%= f.collection_select :category_style_id, CategoryStyle.all, :id, :name, prompt: "制作スタイルを選択ください" %></td>
+    <td>
+      <%= f.search_field :word %>
+      <%= f.hidden_field :subject_main, :value => "post" %>
+      <%= f.hidden_field :subject_sub, :value => "category_style" %>
+      <%= f.submit "検索" %>
+    </td>
+  </tr>
+</table>
+<%end%>

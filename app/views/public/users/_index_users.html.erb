@@ -1,0 +1,16 @@
+
+<% display_users.each do |user|%>
+  <table class= "table-borderd">
+    <tr>
+      <th>
+        <%= link_to (image_tag user.get_icon(150, 150)), public_user_path(user.id) %><br>
+        <%= user.name %>
+      </th>
+      <td>
+        <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+        <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
+      </td>
+    </tr>
+  </table>
+  <%= paginate display_users %>
+<%end%>

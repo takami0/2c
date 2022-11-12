@@ -10,10 +10,10 @@
   <div class="row">
     <div class="col-lg-12">
       <!--検索フィールド-->
-      <%= render "public/shared/search_post" %>
+      <%= render "public/homes/search_post" %>
       <br>
       <!--投稿一覧-->
-      <%= render "public/shared/index_posts", posts: @posts %>
+      <%= render "public/posts/index_posts", posts: @posts %>
       <%= paginate @posts %>
     </div>
   </div>

@@ -4,27 +4,27 @@
   <br>
 
   <h2>検索画面</h2>
-  <%= render partial: "public/shared/search_user" %>
-  <%= render partial: "public/shared/search_post" %>
+  <%= render partial: "public/homes/search_user" %>
+  <%= render partial: "public/homes/search_post" %>
   <br>
 
   <h5>ー検索結果ー</h5>
   <%if @subject_main == "user" %>
-    <% if @records.present? %>
-      <%= render "public/shared/index_users", display_users: @records %>
-      <%= paginate @records %>
+    <% if @display_users.present? %>
+      <%= render "public/users/index_users", display_users: @display_users %>
+      <%= paginate @display_users %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
 
   <%elsif @subject_main == "post" %>
-    <% if @records.present? %>
-      <%= render "public/shared/index_posts", posts: @records %>
-      <%= paginate @records %>
+    <% if @posts.present? %>
+      <%= render "public/posts/index_posts", posts: @posts %>
+      <%= paginate @posts %>
     <%else%>
       <h4>検索対象が見つかりませんでした。条件を変えて再度お試しください</h4>
     <%end%>
-    
+
   <%else%>
     <h4>検索範囲が選択されていません。</h4>
   <%end%>

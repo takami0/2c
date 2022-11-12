@@ -47,20 +47,19 @@ class User < ApplicationRecord
     end
     icon.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.search_for(subject_sub, word, occupation_id, medium_id)
-    display_users = User.where(valid_status: true).where.not(display_status: false)
     if subject_sub == "occupation"
       if word.present?
-        display_users.where(occupation_id: occupation_id).where("name like?", "%" + word + "%")
+        User.where(occupation_id: occupation_id).where("name like?", "%" + word + "%")
       else
-        display_users.where(occupation_id: occupation_id)
+        User.where(occupation_id: occupation_id)
       end
     elsif subject_sub == "category_medium"
       if word.present?
-        display_users.where(category_medium_id: medium_id).where("name like?", "%" + word + "%")
+        User.where(category_medium_id: medium_id).where("name like?", "%" + word + "%")
       else
-        display_users.where(category_medium_id: medium_id)
+        User.where(category_medium_id: medium_id)
       end
     end
   end

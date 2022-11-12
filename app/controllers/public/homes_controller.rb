@@ -16,24 +16,14 @@ class Public::HomesController < ApplicationController
     @style_id = params[:category_style_id]
 
     if @subject_main == "user"
-      @records = User.search_for(@subject_sub, @word, @occupation_id, @medium_id ).page(params[:page]).per(10)
-      if @subject_sub == "category_medium"
-        @medium = CategoryMedium.find(@medium_id)
-      elsif @subject_sub == "occupation"
-        @occupation = Occupation.find(@occupation_id)
-      end
+      search_for_users = User.search_for(@subject_sub, @word, @occupation_id, @medium_id )
+      @display_users = search_for_users.where(valid_status: true).where.not(display_status: false).page(params[:page]).per(10)
+      
     elsif @subject_main == "post"
-      @records = Post.search_for(@subject_sub, @word, @medium_id, @motif_id, @style_id).page(params[:page]).per(10)
-      if @subject_sub == "category_medium"
-        @medium = CategoryMedium.find(@medium_id)
-      elsif @subject_sub == "category_motif"
-        @motif = CategoryMotif.find(@motif_id)
-      elsif @subject_sub == "category_style"
-        @style = CategoryStyle.find(@style_id)
-      end
+      @posts = Post.search_for(@subject_sub, @word, @medium_id, @motif_id, @style_id).page(params[:page]).per(10)
     end
   end
-  
+
 
   def guest_destroy
     User.destroy(current_user.id)
