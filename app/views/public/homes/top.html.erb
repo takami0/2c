@@ -11,9 +11,12 @@
       <% @posts.each do |_post| %>
         <% if _post.user.valid_status == true && _post.user.display_status != false %>
           <div class="col-lg-3">
-            <%= image_tag(_post.get_image(100, 100)) %><br>
+            <%= image_tag(_post.get_image(150, 150)) %><br>
             <%= link_to _post.title, public_post_path(_post.id) %><br>
-            <%= _post.user.name %>
+            <%= "ユーザ名：#{_post.user.name}" %><br>
+            <%= "媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
+            <%= "モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
+            <%= "スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
           </div>
           <% time += 1 %>
           <% break if time == 4%>
@@ -33,7 +36,8 @@
       <div class="col-lg-3">
         <%= image_tag (user.get_icon(150, 150)) %><br>
         <%= link_to user.name, public_user_path(user.id) %><br>
-        <%= CategoryMedium.find(user.category_medium_id).name %>
+        <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
+        <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
       </div>
       <%end%>
     </div>
