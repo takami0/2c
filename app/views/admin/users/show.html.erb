@@ -29,11 +29,12 @@
         </tr>
 
         <h5>ー＜プロフィール＞ー</h5>
-        <tr> <th>住まい：</th> <td><%= @user.address %></td> </tr>
-        <tr> <th>職業：</th> <td><%= @occupation.name %></td> </tr>
+        <tr> <th>住まい：</th>             <td><%= @user.address %></td> </tr>
+        <tr> <th>職業：</th>               <td><%= @occupation.name %></td> </tr>
         <tr> <th>制作媒体（メイン）：</th> <td><%= @medium.name %></td> </tr>
-        <tr> <th>自己紹介：</th> <td><%= @user.introduction %></td> </tr>
-        <tr> <th>表示ステータス：</th> <td><%= @user.display_status %></td></tr>
+        <tr> <th>メールアドレス：</th>     <td><%= @user.email %></td> </tr>
+        <tr> <th>自己紹介：</th>           <td><%= @user.introduction %></td> </tr>
+        <tr> <th>表示ステータス：</th>     <td><%= @user.display_status %></td> </tr>
       </table>
 
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f|%>
