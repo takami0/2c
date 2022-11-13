@@ -35,5 +35,7 @@ ER図：　https://app.diagrams.net/?libs=general;er#G1HPNfkQ0HPe7gQAbzL0W3dhjjy
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+・ICOOON MONO：https://icooon-mono.com/category/person/
+・illustAC：https://www.ac-illust.com/
+・photoAC：https://www.photo-ac.com/
+・vectorShelf：https://vectorshelf.com/
