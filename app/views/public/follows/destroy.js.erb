@@ -2,4 +2,4 @@
 $("#follow").html("<%= j render 'public/follows/follow_button', user: @user %>");
 
 
-$("#followers_count").html('<%= j render "public/follows/followers_count", user: @user %>');
+$("#followers_count").html('<%= j render "public/follows/followers_count", followers: @followers %>');
