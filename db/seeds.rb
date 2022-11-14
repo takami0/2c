@@ -38,28 +38,28 @@ category_styles = CategoryStyle.create!([
   ])
 
 users = User.create!([
-  {category_medium_id: 1, occupation_id: 1, name: "テストユーザ（1）", email: "aa@exam.com", password: "aaaaaa", telephone_number: "11111111111",
-   address: 1, introduction: "テストユーザ（1）の自己紹介文になります。", member_status: 1, display_status: true, valid_status: true,
+  {category_medium_id: 1, occupation_id: 1, name: "たつや", email: "aa@exam.com", password: "aaaaaa", telephone_number: "11111111111",
+   address: 1, introduction: "大学で絵画を専攻しています。", member_status: 1, display_status: true, valid_status: true,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_1.png")), filename: "user_1.png", content_type: "image/jpeg")},
 
-  {category_medium_id: 2, occupation_id: 2, name: "テストユーザ（2）", email: "bb@exam.com", password: "bbbbbb", telephone_number: "22222222222",
-   address: 2, introduction: "テストユーザ（2）の自己紹介文になります。", member_status: 1, display_status: false, valid_status: true,
+  {category_medium_id: 2, occupation_id: 2, name: "涼太", email: "bb@exam.com", password: "bbbbbb", telephone_number: "22222222222",
+   address: 2, introduction: "大学で経済学を学んでいます。", member_status: 1, display_status: false, valid_status: true,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_2.png")), filename: "user_2.png", content_type: "image/jpeg")},
 
-  {category_medium_id: 3, occupation_id: 3, name: "テストユーザ（3）", email: "cc@exam.com", password: "cccccc", telephone_number: "33333333333",
-   address: 3, introduction: "テストユーザ（3）の自己紹介文になります。", member_status: 1, display_status: true, valid_status: false,
+  {category_medium_id: 3, occupation_id: 3, name: "みゆき", email: "cc@exam.com", password: "cccccc", telephone_number: "33333333333",
+   address: 3, introduction: "Webデザイン会社に勤めています。", member_status: 1, display_status: true, valid_status: false,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_3.png")), filename: "user_3.png", content_type: "image/jpeg")},
 
-  {category_medium_id: 2, occupation_id: 2, name: "テストユーザ（4）", email: "dd@exam.com", password: "dddddd", telephone_number: "44444444444",
-   address: 4, introduction: "テストユーザ（4）の自己紹介文になります。", member_status: 1, display_status: true, valid_status: true,
+  {category_medium_id: 2, occupation_id: 2, name: "あらた", email: "dd@exam.com", password: "dddddd", telephone_number: "44444444444",
+   address: 4, introduction: "高校生です。", member_status: 1, display_status: true, valid_status: true,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_4.png")), filename: "user_4.png", content_type: "image/jpeg")},
 
-  {category_medium_id: 3, occupation_id: 3, name: "テストユーザ（5）", email: "ee@exam.com", password: "eeeeee", telephone_number: "55555555555",
-   address: 5, introduction: "テストユーザ（5）の自己紹介文になります。", member_status: 1, display_status: true, valid_status: true,
+  {category_medium_id: 3, occupation_id: 3, name: "正人", email: "ee@exam.com", password: "eeeeee", telephone_number: "55555555555",
+   address: 5, introduction: "イラストレーターをしています。", member_status: 1, display_status: true, valid_status: true,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_5.png")), filename: "user_5.png", content_type: "image/jpeg")},
 
-  {category_medium_id: 4, occupation_id: 4, name: "テストユーザ（6）", email: "ff@exam.com", password: "ffffff", telephone_number: "66666666666",
-   address: 6, introduction: "テストユーザ（6）の自己紹介文になります。", member_status: 1, display_status: true, valid_status: true,
+  {category_medium_id: 4, occupation_id: 4, name: "あきと", email: "ff@exam.com", password: "ffffff", telephone_number: "66666666666",
+   address: 6, introduction: "飲食関連の営業をしています。", member_status: 1, display_status: true, valid_status: true,
    icon: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/user_6.png")), filename: "user_6.png", content_type: "image/jpeg")},
   ])
 
