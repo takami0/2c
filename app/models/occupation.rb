@@ -1,5 +1,5 @@
 class Occupation < ApplicationRecord
-  belongs_to :user, optional: true
+  has_many :users, dependent: :destroy
   
   validates :name, presence: true
 end

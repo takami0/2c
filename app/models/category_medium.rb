@@ -1,5 +1,5 @@
 class CategoryMedium < ApplicationRecord
-  belongs_to :user, optional: true
+  has_many :users, dependent: :destroy
   belongs_to :post, optional: true
 
   validates :name, presence: true

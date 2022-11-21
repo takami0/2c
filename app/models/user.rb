@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :icon
-  has_one :category_medium
-  has_one :occupation
+  belongs_to :category_medium
+  belongs_to :occupation
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
