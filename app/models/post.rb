@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  has_one :category_medium
-  has_one :category_motif
-  has_one :category_style
+  belongs_to :category_medium
+  belongs_to :category_motif
+  belongs_to :category_style
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
 

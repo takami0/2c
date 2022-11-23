@@ -1,5 +1,5 @@
 class CategoryStyle < ApplicationRecord
-  belongs_to :post, optional: true
-  
+  has_many :posts, dependent: :destroy
+
   validates :name, presence: true
 end
