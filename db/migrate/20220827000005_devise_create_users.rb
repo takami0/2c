@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ##
       t.string :telephone_number, null: false
       t.integer :address, null: false
-      t.string :introduction
+      t.text :introduction
       t.integer :member_status, null: false, default: 1
       t.boolean :display_status, null: false, default: true
       t.boolean :valid_status, null: false, default: true

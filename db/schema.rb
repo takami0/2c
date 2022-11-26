@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_000011) do
     t.string "encrypted_password", default: "", null: false
     t.string "telephone_number", null: false
     t.integer "address", null: false
-    t.string "introduction"
+    t.text "introduction"
     t.integer "member_status", default: 1, null: false
     t.boolean "display_status", default: true, null: false
     t.boolean "valid_status", default: true, null: false
