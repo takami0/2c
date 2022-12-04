@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
 
   root 'public/homes#top', as: 'public_top'
-  namespace :public do
+  
+  scope module: :public do
     get "search" => "homes#search"
     delete "users/guest_destroy" => "homes#guest_destroy", as: "guest_destroy"
 
