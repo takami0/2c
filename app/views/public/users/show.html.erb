@@ -22,8 +22,8 @@
             <%= @user.name %>
             <!--to ユーザ編集画面-->
             <% if user_signed_in? && @user.id == current_user.id %>
-              <%= link_to edit_public_user_path(@user.id), method: :get do %> <i class="fas fa-cogs"></i> <%end%><br>
-              <%= link_to  "ブックマーク (一覧)", public_user_bookmarks_path(current_user.id) %>
+              <%= link_to edit_user_path(@user.id), method: :get do %> <i class="fas fa-cogs"></i> <%end%><br>
+              <%= link_to  "ブックマーク (一覧)", user_bookmarks_path(current_user.id) %>
             <%end%>
           </td>
         </tr>
@@ -35,11 +35,11 @@
           </td>
         </tr>
         <tr>
-          <th><%= link_to "フォロー：", public_user_followings_path(@user.id) %></th>
+          <th><%= link_to "フォロー：", user_followings_path(@user.id) %></th>
           <td><%= @followings.count %></td>
         </tr>
         <tr>
-          <th><%= link_to "フォロワー：", public_user_followers_path(@user.id) %></th>
+          <th><%= link_to "フォロワー：", user_followers_path(@user.id) %></th>
           <td> <div id="followers_count"><%= render "public/follows/followers_count", followers: @followers %></div> </td>
         </tr>
 

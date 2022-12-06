@@ -7,7 +7,7 @@
       <h2><%= @post.title %></h2>
       <!--to 編集画面-->
       <% if user_signed_in? && @post.user.id == current_user.id %>
-        <%= link_to edit_public_post_path(@post.id) do %> <i class="fas fa-cog fa-2x"></i> <%end%>
+        <%= link_to edit_post_path(@post.id) do %> <i class="fas fa-cog fa-2x"></i> <%end%>
       <%end%>
     </div>
   </div>
@@ -23,7 +23,7 @@
     <!--投稿紹介-->
     <div class="col-lg-6">
       <table class= "table-striped">
-          <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, public_user_path(@post.user.id) %></td> </tr>
+          <tr> <th>制作者：</th>   <td><%= link_to @post.user.name, user_path(@post.user.id) %></td> </tr>
           <tr> <th>媒体：</th>     <td><%= @medium.name%></td> </tr>
           <tr> <th>モチーフ：</th> <td><%= @motif.name%></td> </tr>
           <tr> <th>スタイル：</th> <td><%= @style.name%></td> </tr>

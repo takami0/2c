@@ -2,7 +2,7 @@
 <h4>-<ユーザ検索>-</h4>
 
 <!--検索フィルター：制作媒体-->
-<%= form_with url: public_search_path, method: :get do |f| %>
+<%= form_with url: search_path, method: :get do |f| %>
 <table class= "table-bordered">
   <tr>
     <th style="width: 85px;">制作媒体：</th>
@@ -18,7 +18,7 @@
 <%end%>
 
 <!--検索フィルター：職業-->
-<%= form_with url: public_search_path, method: :get do |f| %>
+<%= form_with url: search_path, method: :get do |f| %>
 <table class= "table-bordered">
   <tr>
     <th style="width: 85px;">職業：</th>

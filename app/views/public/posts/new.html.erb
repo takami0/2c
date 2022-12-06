@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <%= form_with model: @post, url: public_posts_path(@post.id), method: :post do |f|%>
+      <%= form_with model: @post, url: posts_path(@post.id), method: :post do |f|%>
       <%= render 'layouts/error_messages', resource: @post %>
       <%= "＊：必須項目です"%>
       <table class= "table-striped">

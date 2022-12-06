@@ -3,11 +3,11 @@
     <table class= "table-borederd">
       <tr>
         <th>
-          <%= link_to (image_tag _post.get_image(200,200)), public_post_path(_post.id) %><br>
+          <%= link_to (image_tag _post.get_image(200,200)), post_path(_post.id) %><br>
           <%= _post.title%>
           <!--to投稿編集画面-->
           <% if user_signed_in? && _post.user.id == current_user.id %>
-            <%= link_to edit_public_post_path(_post.id) do %> <i class="fas fa-cogs"></i> <%end%>
+            <%= link_to edit_post_path(_post.id) do %> <i class="fas fa-cogs"></i> <%end%>
           <%end%>
         </th>
         <td>

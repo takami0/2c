@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-lg-6">
-      <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f|%>
+      <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f|%>
       <%= render 'layouts/error_messages', resource: @post %>
       <table class= "table-striped">
         <tr>
@@ -65,7 +65,7 @@
         </tr>
         <tr>
           <th></th>
-          <td><%= link_to "削除", public_post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-danger" %></td>
+          <td><%= link_to "削除", post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-danger" %></td>
         </tr>
       </table>
       <%end%>

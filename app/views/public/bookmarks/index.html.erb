@@ -14,7 +14,7 @@
    <% _post = bookmark.post %>
    <table class= "table-striped">
     <tr>
-     <th><%= link_to image_tag(_post.get_image(200, 200)), public_post_path(_post.id) %></th>
+     <th><%= link_to image_tag(_post.get_image(200, 200)), post_path(_post.id) %></th>
      <td>
       <%= "タイトル：#{_post.title}" %><br>
       <%= "作者：#{_post.user.name}" %><br>

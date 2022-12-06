@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to public_posts_path
+      redirect_to posts_path
     else
       render :new
     end
@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to public_posts_path
+      redirect_to posts_path
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
   def destroy
     user = User.find(@post.user.id)
     if @post.destroy!
-      redirect_to public_user_path(user.id)
+      redirect_to user_path(user.id)
     end
   end
 

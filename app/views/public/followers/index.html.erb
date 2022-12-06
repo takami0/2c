@@ -13,7 +13,7 @@
       <% @followers.each do |follower| %>
       <table class= "table-striped">
         <tr>
-          <th><%= link_to (image_tag follower.get_icon(150, 150)), public_user_path(follower.id) %></th>
+          <th><%= link_to (image_tag follower.get_icon(150, 150)), user_path(follower.id) %></th>
           <td>
             <%= "ユーザ名：#{follower.name}" %><br>
             <%= "職業：#{Occupation.find(follower.occupation_id).name}"%><br>

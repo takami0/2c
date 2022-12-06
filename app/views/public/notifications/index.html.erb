@@ -9,7 +9,7 @@
   <% if @notices.exists? %>
     <div class="row">
       <div class="col-lg-6">
-        <%= link_to "全て既読にする", public_user_notifications_update_path(current_user.id), method: :patch %><br>
+        <%= link_to "全て既読にする", user_notifications_update_path(current_user.id), method: :patch %><br>
       </div>
     </div>
 

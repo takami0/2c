@@ -5,14 +5,14 @@
       <table class= "table-borderd">
         <tr>
           <th>
-            <%= link_to image_tag(comment.user.get_icon(50, 50)), public_user_path(comment.user.id) %><br>
+            <%= link_to image_tag(comment.user.get_icon(50, 50)), user_path(comment.user.id) %><br>
             <%= comment.user.name %>
           </th>
           <td>
             <%= comment.content %><br>
             <!--コメント削除-->
             <% if comment.user.id == current_user.id %>
-              <%= link_to public_post_comment_path(post.id, comment.id), method: :delete, remote: true do %>
+              <%= link_to post_comment_path(post.id, comment.id), method: :delete, remote: true do %>
                 <i class="fas fa-trash"></i>
               <%end%>
             <%end%>

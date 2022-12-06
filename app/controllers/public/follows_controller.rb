@@ -11,7 +11,7 @@ class Public::FollowsController < ApplicationController
         )
     respond_to do |format|
       if follow.save
-        format.html { redirect_to public_user_path(params[:user_id]) }
+        format.html { redirect_to user_path(params[:user_id]) }
         format.js
         notice_follow.save
       end
@@ -23,7 +23,7 @@ class Public::FollowsController < ApplicationController
     follow_notice = current_user.send_notifications.find_by(received_user_id: params[:user_id], action: "follow")
     respond_to do |format|
       if follow.destroy
-        format.html { redirect_to public_user_path(params[:user_id]) }
+        format.html { redirect_to user_path(params[:user_id]) }
         format.js
         follow_notice.destroy
       end

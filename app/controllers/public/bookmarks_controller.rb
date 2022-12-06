@@ -16,7 +16,7 @@ class Public::BookmarksController < ApplicationController
       )
     respond_to do |format|
       if @bookmark.save
-        format.html {redirect_to public_post_path(@post.id)}
+        format.html {redirect_to post_path(@post.id)}
         format.js
         notice_bookmark.save
       end
@@ -28,7 +28,7 @@ class Public::BookmarksController < ApplicationController
     notice_bookmark = current_user.send_notifications.find_by(post_id: @post.id, action: "bookmark")
     respond_to do |format|
       if bookmark.destroy
-        format.html {redirect_to public_post_path(@post.id)}
+        format.html {redirect_to post_path(@post.id)}
         format.js
         notice_bookmark.destroy
       end

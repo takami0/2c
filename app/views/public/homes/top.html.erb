@@ -12,7 +12,7 @@
         <% if _post.user.valid_status == true && _post.user.display_status != false %>
           <div class="col-lg-3">
             <%= image_tag(_post.get_image(150, 150)) %><br>
-            <%= link_to _post.title, public_post_path(_post.id) %><br>
+            <%= link_to _post.title, post_path(_post.id) %><br>
             <%= "ユーザ名：#{_post.user.name}" %><br>
             <%= "媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
             <%= "モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-lg-10"></div>
-      <div class="col-lg-2"><%= link_to "もっと見る", public_posts_path %></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", posts_path %></div>
     </div>
 
 
@@ -35,7 +35,7 @@
       <% @display_users.each do |user| %>
       <div class="col-lg-3">
         <%= image_tag (user.get_icon(150, 150)) %><br>
-        <%= link_to user.name, public_user_path(user.id) %><br>
+        <%= link_to user.name, user_path(user.id) %><br>
         <%= "職業：#{Occupation.find(user.occupation_id).name}"%><br>
         <%= "制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
       </div>
@@ -43,7 +43,7 @@
     </div>
     <div class="row">
       <div class="col-lg-10"></div>
-      <div class="col-lg-2"><%= link_to "もっと見る", public_users_path %></div>
+      <div class="col-lg-2"><%= link_to "もっと見る", users_path %></div>
     </div>
 
 </div>

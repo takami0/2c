@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       notice.save if notice.received_user_id != current_user.id
       respond_to do |format|
-        format.html { public_post_path(@post.id) }
+        format.html { post_path(@post.id) }
         format.js
       end
     end
@@ -24,7 +24,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     respond_to do |format|
       if @comment.destroy
-        format.html { public_post_path(@post.id) }
+        format.html { post_path(@post.id) }
         format.js
       end
     end

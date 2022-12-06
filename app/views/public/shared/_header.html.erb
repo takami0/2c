@@ -4,15 +4,15 @@
   
   <div class="col-lg-6">
     <%= link_to public_top_path do %>    <i class="fas fa-house-user fa-2x"></i> <%end%> <!--Top画面-->
-    <%= link_to public_users_path do %>  <i class="fas fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
-    <%= link_to public_posts_path do %>  <i class="fas fa-clone fa-2x"></i> <%end%> <!--投稿一覧-->
-    <%= link_to public_search_path do %> <i class="fas fa-search fa-2x"></i> <%end%> <!--検索画面-->
+    <%= link_to users_path do %>  <i class="fas fa-users fa-2x"></i> <%end%> <!--ユーザ一覧-->
+    <%= link_to posts_path do %>  <i class="fas fa-clone fa-2x"></i> <%end%> <!--投稿一覧-->
+    <%= link_to search_path do %> <i class="fas fa-search fa-2x"></i> <%end%> <!--検索画面-->
 
     <!--user = 会員-->
     <% if user_signed_in? && current_user.member_status == 1 %>
-      <%= link_to public_user_path(current_user.id) do %> <i class="far fa-user fa-2x"></i> <%end%> <!--マイページ-->
-      <%= link_to new_public_post_path do %> <i class="fas fa-edit fa-2x"></i> <%end%> <!--新規投稿画面-->
-      <%= link_to public_user_notifications_path(current_user.id) do %> <!--通知画面-->
+      <%= link_to user_path(current_user.id) do %> <i class="far fa-user fa-2x"></i> <%end%> <!--マイページ-->
+      <%= link_to new_post_path do %> <i class="fas fa-edit fa-2x"></i> <%end%> <!--新規投稿画面-->
+      <%= link_to user_notifications_path(current_user.id) do %> <!--通知画面-->
         <% if current_user.received_notifications.present? %>
           <i class="fas fa-bell fa-2x"></i>
         <%else%>
@@ -22,7 +22,7 @@
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <!--user = ゲストアカウント-->
     <% elsif user_signed_in? && current_user.member_status == 2 %>
-      <%= link_to "新規登録", public_guest_destroy_path, method: :delete %> <!--ゲストアカウントの削除後、新規登録画面に遷移-->
+      <%= link_to "新規登録", guest_destroy_path, method: :delete %> <!--ゲストアカウントの削除後、新規登録画面に遷移-->
     <!--user = ゲスト（アカウント未作成）-->
     <%else%>
       <%= link_to "新規登録", new_user_registration_path %>
