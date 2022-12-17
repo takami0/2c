@@ -60,12 +60,12 @@ gem 'image_processing', '~> 1.2'
 gem "enum_help"
 gem "kaminari", "~> 1.2.1"
 gem "rails-i18n"
-gem 'hirb'
-gem 'hirb-unicode'
 
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 gem "jquery-rails"
