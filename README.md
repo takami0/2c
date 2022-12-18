@@ -20,6 +20,7 @@
 ・自分の好きなジャンルについて、他の人と語りたい時
 
 ## 設計書
+[google]: http://google.com/        "Google"
 実装機能リスト:　https://docs.google.com/spreadsheets/d/1GXS_ESMkaYisZpvolbrBLdtJ01JNcoPwSY0CHySXGxo/edit?usp=sharing
 WBS：　https://docs.google.com/spreadsheets/d/1Acb89txFUaEO8p66_eUJdlxKf7PIaIwt4PvJWo2M1Qo/edit#gid=1773513600
 ER図：　https://app.diagrams.net/?libs=general;er#G1HPNfkQ0HPe7gQAbzL0W3dhjjyiwHq1Ci
