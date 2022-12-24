@@ -16,7 +16,8 @@
             <%= "媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
             <%= "モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
             <%= "スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
-            <%= "投稿日時：#{_post.updated_at}"%><br>
+            <%= "投稿日：" %><%= l _post.updated_at, format: :short %>
+
           </td>
         </tr>
       </table>

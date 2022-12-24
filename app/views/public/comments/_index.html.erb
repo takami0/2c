@@ -10,6 +10,7 @@
           </th>
           <td>
             <%= comment.content %><br>
+            <%= l comment.created_at, format: :short %>
             <!--コメント削除-->
             <% if comment.user.id == current_user.id %>
               <%= link_to post_comment_path(post.id, comment.id), method: :delete, remote: true do %>
