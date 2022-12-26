@@ -20,10 +20,10 @@
 
 ## 設計書
 - [実装機能リスト](https://docs.google.com/spreadsheets/d/1GXS_ESMkaYisZpvolbrBLdtJ01JNcoPwSY0CHySXGxo/edit?usp=sharing)
-- [WBS](https://docs.google.com/spreadsheets/d/1Acb89txFUaEO8p66_eUJdlxKf7PIaIwt4PvJWo2M1Qo/edit#gid=1773513600)
-- [ER図](https://app.diagrams.net/?libs=general;er#G1HPNfkQ0HPe7gQAbzL0W3dhjjyiwHq1Ci)
-- [テーブル定義書](https://docs.google.com/spreadsheets/d/11nptTROGBKlm24WTlce0MJHWeVUEc9dpBBxjXMT6YmI/edit#gid=383646341)
-- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1hMiWk1E7ePUiZgGv-EhmIN7oJL0QAuabENIjHysvzfQ/edit#gid=0)
+- [WBS](https://docs.google.com/spreadsheets/d/1Acb89txFUaEO8p66_eUJdlxKf7PIaIwt4PvJWo2M1Qo/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1HPNfkQ0HPe7gQAbzL0W3dhjjyiwHq1Ci/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/11nptTROGBKlm24WTlce0MJHWeVUEc9dpBBxjXMT6YmI/edit?usp=sharing)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1hMiWk1E7ePUiZgGv-EhmIN7oJL0QAuabENIjHysvzfQ/edit?usp=sharing)
 
 ## 開発環境
 - OS：macOS Monterey ver 12.6
