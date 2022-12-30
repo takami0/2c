@@ -2,7 +2,7 @@
   <!--コメント表示(降順)-->
   <% if comments.present? %>
     <% comments.each do |comment| %>
-      <table class= "table-borderd">
+      <table class= "table-bordered">
         <tr>
           <th>
             <%= link_to image_tag(comment.user.get_icon(50, 50)), user_path(comment.user.id) %><br>
