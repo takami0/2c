@@ -57,5 +57,5 @@ ja:
         other: "エラーが発生しました。"
   time:
     formats:
-      long: "%Y/%m/%d %H:%M"
+      times: "%m/%d %H:%M"
       short: "%Y/%m/%d"
