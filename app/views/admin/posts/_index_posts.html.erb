@@ -11,6 +11,7 @@
         <%= "媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
         <%= "モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
         <%= "スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
+        <%= "投稿日：" %><%= l _post.updated_at, format: :short %><br>
         <%= "表示ステータス："%>
         <% if _post.display_status == true %>
           表示
