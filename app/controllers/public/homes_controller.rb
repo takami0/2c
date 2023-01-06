@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @posts = Post.where(display_status: true)
+    @posts = Post.where(display_status: true).reverse
     display_users = User.where(valid_status: true).where.not(member_status: 2).where.not(display_status: false)
     @display_users = display_users.last(4)
   end
