@@ -8,13 +8,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/sign_in/guest" => "public/sessions#guest_login", as: "user_session_guest"
   end
-
   root 'public/homes#top', as: 'public_top'
-  
   scope module: :public do
     get "search" => "homes#search"
     delete "users/guest_destroy" => "homes#guest_destroy", as: "guest_destroy"
-
     resources :users, only: [:index, :show, :edit, :update] do
       resource :follow, only: [:create, :destroy]
       resources :followings, only: [:index]
@@ -29,15 +26,14 @@ Rails.application.routes.draw do
     end
   end
 
+
   #--admin--
   devise_for :admin, controllers: {
     sessions: 'admin/sessions'
   }
-
   namespace :admin do
     root "homes#top", as: "top"
     get "search" => "homes#search"
-
     resources :users, only: [:index, :show, :update] do
       resources :followings, only: [:index]
       resources :followers, only: [:index]
