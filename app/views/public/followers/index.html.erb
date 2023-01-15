@@ -4,24 +4,17 @@
   <%= render  "public/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-6"> <h2><%= "#{@user.name}のフォロワー" %></h2> </div>
+    <div class="col-lg-6">
+      <h2><%= "#{@user.name}のフォロワー：#{@followers.count}" %></h2>
+    </div>
   </div>
+  <br>
 
   <div class="row">
     <div class="col-lg-6">
     <% if @followers.present? %>
-      <% @followers.each do |follower| %>
-      <table class= "table-striped">
-        <tr>
-          <th><%= link_to (image_tag follower.get_icon(150, 150)), user_path(follower.id) %></th>
-          <td>
-            <%= "ユーザ名：#{follower.name}" %><br>
-            <%= "職業：#{Occupation.find(follower.occupation_id).name}"%><br>
-            <%= "制作媒体：#{CategoryMedium.find(follower.category_medium_id).name}"%>
-          </td>
-        </tr>
-      </table>
-      <%end%>
+      <!--ユーザ（フォロワー）一覧-->
+      <%= render "public/users/index_users", display_users: @followers %>
       <%= paginate @followers %>
     <%else%>
       -フォロワーはいません-

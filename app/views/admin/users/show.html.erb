@@ -38,8 +38,20 @@
 
       <table class= "table-striped">
         <h5>ー＜プロフィール (管理者権限)＞ー</h5>
-        <tr> <th>表示ステータス：</th>     <td><%= @user.display_status %></td> </tr>
-        <tr> <th>メールアドレス：</th>     <td><%= @user.email %></td> </tr>
+        <tr>
+          <th>メールアドレス：</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>表示ステータス：</th>
+          <td>
+            <% if @user.display_status == true %>
+              表示
+            <%else%>
+              非表示
+            <%end%>
+          </td>
+        </tr>
       </table>
 
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f|%>

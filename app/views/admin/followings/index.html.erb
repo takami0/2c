@@ -4,24 +4,17 @@
   <%= render partial: "admin/shared/header" %>
 
   <div class="row">
-    <div class="col-lg-6"> <h2><%= "#{@user.name}がフォローしているユーザ"%></h2> </div>
+    <div class="col-lg-6">
+      <h2><%= "#{@user.name}がフォローしているユーザ：#{@followings.count}"%></h2>
+    </div>
   </div>
+  <br>
 
   <div class="row">
     <div class="col-lg-6">
     <% if @followings.present? %>
-      <% @followings.each do |following|%>
-      <table class= "table-striped">
-        <tr>
-          <th><%= link_to (image_tag following.get_icon(150, 150)), admin_user_path(following.id) %></th>
-          <td>
-            <%= "ユーザ名：#{following.name}" %><br>
-            <%= "職業：#{Occupation.find(following.occupation_id).name}"%><br>
-            <%= "制作媒体：#{CategoryMedium.find(following.category_medium_id).name}"%>
-          </td>
-        </tr>
-      </table>
-      <%end%>
+      <!--ユーザ（フォロー）一覧-->
+      <%= render "admin/users/index_users", users: @followings %>
       <%= paginate @followings %>
     <%else%>
       -フォローしているユーザはいません-
