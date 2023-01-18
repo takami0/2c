@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :post_find, only: [:show, :edit, :update, :destroy]
+  before_action :authentication_of_access, only:[:edit, :update, :destroy]
 
   def index
     @posts = Post.where(display_status: :true).order("created_at DESC").page(params[:page]).per(10)
@@ -46,6 +47,18 @@ class Public::PostsController < ApplicationController
   end
 
   private
+  # <before_actionメソッド>
+  def post_find
+    @post = Post.find(params[:id])
+  end
+
+  def authentication_of_access
+    @post = Post.find(params[:id])
+    user = User.find(@post.user.id)
+    redirect_to new_user_session_path unless user.id == current_user.id
+  end
+  # </before_actionメソッド>
+
   def post_params
     params.require(:post).permit(:title, :introduction, :display_status, :image, :image_sub1, :image_sub2, :user_id, :category_medium_id, :category_motif_id, :category_style_id)
   end
