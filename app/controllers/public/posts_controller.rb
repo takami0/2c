@@ -54,17 +54,12 @@ class Public::PostsController < ApplicationController
 
   def authentication_of_access
     @post = Post.find(params[:id])
-    user = User.find(@post.user.id)
-    redirect_to new_user_session_path unless user.id == current_user.id
+    @user = User.find(@post.user.id)
+    redirect_to new_user_session_path unless @user.id == current_user.id
   end
   # </before_actionメソッド>
 
   def post_params
     params.require(:post).permit(:title, :introduction, :display_status, :image, :image_sub1, :image_sub2, :user_id, :category_medium_id, :category_motif_id, :category_style_id)
   end
-
-  def post_find
-    @post = Post.find(params[:id])
-  end
-
 end

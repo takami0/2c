@@ -1,9 +1,19 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @posts = Post.where(display_status: true).reverse
-    display_users = User.where(valid_status: true).where.not(member_status: 2).where.not(display_status: false)
-    @display_users = display_users.last(4)
+    display_users = User.where(
+      valid_status: true,
+      member_status: 1,
+      display_status: true
+      )
+    @display_users = display_users.order(created_at: :desc).first(4)
+
+
+    @posts = Post.where(display_status: true).first(4)
+
+
+    # @posts  = Post.joins(:user).where(display_status: true).where(users: {valid_status: true,member_status: 1,display_status: true}).order(created_at: :desc).first(4)
+
   end
 
   def search
