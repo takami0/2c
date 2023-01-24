@@ -23,6 +23,8 @@
   <!--最新の投稿を表示（〜４件）-->
   <h3>NEW POST</h3>
     <div class="row">
+      <%# @display_posts.each do |_post| %>
+
       <% time = 0 %>
       <% @posts.each do |_post| %>
         <% if _post.user.valid_status == true && _post.user.display_status != false %>
