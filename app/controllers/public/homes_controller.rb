@@ -3,8 +3,9 @@ class Public::HomesController < ApplicationController
   def top
     @display_users = User.display_users.order(created_at: :desc).first(4)
     posts  = Post.joins(:user).where(display_status: true).where(users: {valid_status: true,member_status: 1,display_status: true})
-    @posts = posts.order(created_at: :desc).first(4)
+    @display_posts = posts.order(created_at: :desc).first(4)
   end
+
 
   def search
     @subject_main = params[:subject_main]

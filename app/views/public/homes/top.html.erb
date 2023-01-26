@@ -7,12 +7,12 @@
   <h3>NEWCOMER</h3>
     <div class="row">
       <% @display_users.each do |user| %>
-      <div class="col-lg-3">
-        <%= user.name %><br>
-        <%= link_to image_tag(user.get_icon(150, 150)), user_path(user.id) %><br>
-        <%= "・職業：#{Occupation.find(user.occupation_id).name}"%><br>
-        <%= "・制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
-      </div>
+        <div class="col-lg-3">
+          <%= user.name %><br>
+          <%= link_to image_tag(user.get_icon(150, 150)), user_path(user.id) %><br>
+          <%= "・職業：#{Occupation.find(user.occupation_id).name}"%><br>
+          <%= "・制作媒体：#{CategoryMedium.find(user.category_medium_id).name}"%>
+        </div>
       <%end%>
     </div>
     <div class="row">
@@ -23,22 +23,15 @@
   <!--最新の投稿を表示（〜４件）-->
   <h3>NEW POST</h3>
     <div class="row">
-      <%# @display_posts.each do |_post| %>
-
-      <% time = 0 %>
-      <% @posts.each do |_post| %>
-        <% if _post.user.valid_status == true && _post.user.display_status != false %>
-          <div class="col-lg-3">
-            <%= _post.title %><br>
-            <%= link_to image_tag(_post.get_image(150, 150)), post_path(_post.id) %><br>
-            <%= "・制作者：#{_post.user.name}" %><br>
-            <%= "・媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
-            <%= "・モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
-            <%= "・スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
-          </div>
-          <% time += 1 %>
-          <% break if time == 4%>
-        <%end%>
+      <% @display_posts.each do |_post| %>
+        <div class="col-lg-3">
+          <%= _post.title %><br>
+          <%= link_to image_tag(_post.get_image(150, 150)), post_path(_post.id) %><br>
+          <%= "・制作者：#{_post.user.name}" %><br>
+          <%= "・媒体：#{CategoryMedium.find(_post.category_medium_id).name}"%><br>
+          <%= "・モチーフ：#{CategoryMotif.find(_post.category_motif_id).name}"%><br>
+          <%= "・スタイル：#{CategoryStyle.find(_post.category_style_id).name}"%><br>
+        </div>
       <%end%>
     </div>
     <div class="row">
