@@ -11,11 +11,13 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  # アソシエーション → follows
   has_many :user_relationships, class_name: "Follow", foreign_key: "user_id", dependent: :destroy
   has_many :follow_user_relationships, class_name: "Follow", foreign_key: "follow_user_id", dependent: :destroy
   has_many :followings, through: :user_relationships, source: :follow_user, dependent: :destroy
   has_many :followers, through: :follow_user_relationships, source: :user, dependent: :destroy
 
+  # アソシエーション → notifications
   has_many :send_notifications, class_name: "Notification", foreign_key: "send_user_id", dependent: :destroy
   has_many :received_notifications, class_name: "Notification", foreign_key: "received_user_id", dependent: :destroy
 

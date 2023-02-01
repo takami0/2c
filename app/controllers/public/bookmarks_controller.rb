@@ -1,6 +1,6 @@
 class Public::BookmarksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_find, only: [:create, :destroy]
+  before_action :find_post, only: [:create, :destroy]
 
   def index
     @bookmarks = current_user.bookmarks.page(params[:page]).per(10)
@@ -36,7 +36,7 @@ class Public::BookmarksController < ApplicationController
   end
 
   private
-  def set_find
+  def find_post
     @post = Post.find(params[:post_id])
   end
 

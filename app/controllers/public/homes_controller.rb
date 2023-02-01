@@ -17,7 +17,7 @@ class Public::HomesController < ApplicationController
     @style_id = params[:category_style_id]
     if @subject_main == "user"
       search_for_users = User.search_for(@subject_sub, @word, @occupation_id, @medium_id )
-      @display_users = search_for_users.where(valid_status: true).where.not(display_status: false).page(params[:page]).per(10)
+      @display_users = search_for_users.display_users.page(params[:page]).per(10)
     elsif @subject_main == "post"
       @posts = Post.search_for(@subject_sub, @word, @medium_id, @motif_id, @style_id).page(params[:page]).per(10)
     end
