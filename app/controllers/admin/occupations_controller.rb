@@ -1,5 +1,6 @@
 class Admin::OccupationsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :find_occupation, only: [:edit, :update, :destroy]
 
   def index
     @new_occupation = Occupation.new
@@ -17,15 +18,19 @@ class Admin::OccupationsController < ApplicationController
   end
 
   def edit
-    @occupation = Occupation.find(params[:id])
   end
 
   def update
-    @occupation = Occupation.find(params[:id])
     if @occupation.update(occupation_params)
       redirect_to admin_occupations_path
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @occupation.destroy!
+      redirect_to admin_occupations_path
     end
   end
 
@@ -34,7 +39,8 @@ class Admin::OccupationsController < ApplicationController
     params.require(:occupation).permit(:name)
   end
 
-  # def ensure_occupation
-  #   @occupation = Occupation.find(params[:id])
-  # end
+  def find_occupation
+    @occupation = Occupation.find(params[:id])
+  end
+
 end
