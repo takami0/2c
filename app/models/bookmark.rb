@@ -13,14 +13,14 @@ class Bookmark < ApplicationRecord
       action: "bookmark"
       )
   end
-  
+
   def self.destroy_notification(current_user, _post)
-    current_user.send_notifications.destroy(
+    current_user.send_notifications.find_by(
       send_user_id: current_user.id,
       received_user_id: _post.user.id,
       post_id: _post.id,
       action: "bookmark"
-      )
+      ).destroy
   end
 
 end
