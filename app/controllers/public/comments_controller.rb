@@ -1,18 +1,11 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :preset, only: [:create, :destroy]
-  
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      notice = current_user.send_notifications.new(
-      send_user_id: current_user.id,
-      received_user_id: @post.user.id,
-      post_id: @post.id,
-      comment_id: @comment.id,
-      action: "comment"
-      )
-      notice.save if notice.received_user_id != current_user.id
+      Comment.create_notification(current_user, @post, @comment) if @comment.post_id != current_user.id
       respond_to do |format|
         format.html { post_path(@post.id) }
         format.js
@@ -20,28 +13,11 @@ class Public::CommentsController < ApplicationController
     end
   end
 
-  # def create
-  #   @comment = Comment.new(comment_params)
-  #   notice = current_user.send_notifications.new(
-  #     send_user_id: current_user.id,
-  #     received_user_id: @post.user.id,
-  #     post_id: @post.id,
-  #     comment_id: @comment.id,
-  #     action: "comment"
-  #     )
-  #   if @comment.save
-  #     notice.save if notice.received_user_id != current_user.id
-  #     respond_to do |format|
-  #       format.html { post_path(@post.id) }
-  #       format.js
-  #     end
-  #   end
-  # end
-
   def destroy
     @comment = Comment.find(params[:id])
-    respond_to do |format|
-      if @comment.destroy
+    Comment.destroy_notification(current_user, @post, @comment)
+    if @comment.destroy
+      respond_to do |format|
         format.html { post_path(@post.id) }
         format.js
       end

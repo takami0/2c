@@ -5,7 +5,7 @@ class Bookmark < ApplicationRecord
 
   scope :bookmarked, -> (current_user, _post) { where("user_id = ? and post_id = ?", current_user.id, _post.id) }
 
-  def self.generate_notification(current_user, _post)
+  def self.create_notification(current_user, _post)
     current_user.send_notifications.create(
       send_user_id: current_user.id,
       received_user_id: _post.user.id,
