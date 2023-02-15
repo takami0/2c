@@ -2,6 +2,9 @@ class Follow < ApplicationRecord
   belongs_to :user
   belongs_to :follow_user, class_name: "User", foreign_key: "follow_user_id"
   has_many :notifications, dependent: :destroy
+  
+  def self.create_notification(current_user, _post)
+  end
 
   def notice_follow
     notice = current_user.send_notifications.new(
