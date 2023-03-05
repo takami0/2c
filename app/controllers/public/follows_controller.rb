@@ -3,7 +3,9 @@ class Public::FollowsController < ApplicationController
   before_action :pre_set, only:[:create, :destroy]
 
   def create
+    @received_user = User.find(params[:user_id])
     follow = current_user.user_relationships.new(follow_user_id: params[:user_id])
+    Follow.create_notification(current_user, @received_user.id)
     notice_follow = current_user.send_notifications.new(
         send_user_id: current_user.id,
         received_user_id: params[:user_id],
