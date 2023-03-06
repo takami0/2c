@@ -3,19 +3,14 @@ class Public::FollowsController < ApplicationController
   before_action :pre_set, only:[:create, :destroy]
 
   def create
-    @received_user = User.find(params[:user_id])
+    @followed_user = User.find(params[:user_id])
+    Follow.create_notification(current_user, @followed_user)
+
     follow = current_user.user_relationships.new(follow_user_id: params[:user_id])
-    Follow.create_notification(current_user, @received_user.id)
-    notice_follow = current_user.send_notifications.new(
-        send_user_id: current_user.id,
-        received_user_id: params[:user_id],
-        action: "follow"
-        )
-    respond_to do |format|
-      if follow.save
+    if follow.save
+      respond_to do |format|
         format.html { redirect_to user_path(params[:user_id]) }
         format.js
-        notice_follow.save
       end
     end
   end
