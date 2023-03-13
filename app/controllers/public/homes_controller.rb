@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
+    # @count = current_user.received_user_id.count
     @display_users = User.display_users.order(created_at: :desc).first(4)
     posts  = Post.where(display_status: true).joins(:user).where(users: {valid_status: true,member_status: 1,display_status: true})
     @display_posts = posts.order(created_at: :desc).first(4)
